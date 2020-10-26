@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mon Application Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Ma première application Vue.js !</h1>
+        <p>J'ai hâte de créer des applications incroyables !</p>
+        <p>{{ message }}</p>
+
+        <p>{{ info }}</p>
+
+    </div>
+    <!-- Version développement. Celle-ci donne des avertissements utiles sur la console -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const app = new Vue({   
+            el: '#app',
+            data () {
+                return {
+                message: 'Hello Vue !',
+                info: 'e'
+                }
+            },
+            mounted () {
+                axios
+                    //.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+                    .get('http://localhost:3000/api/animal')
+                    .then(response => (this.info = response))
+            }
+        })
+    </script>
+</body>
+</html>
+<!--app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+});-->
