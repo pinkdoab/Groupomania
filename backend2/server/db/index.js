@@ -4,16 +4,16 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     password: 'cheval62',
     user: 'pink',
-    database: 'elevage',
+    database: 'groupomania',
     host: 'localhost',
     port: '3306'
 });
 
-let animaldb = {};
+let groupomaniadb = {};
 
-animaldb.all = () => {
+groupomaniadb.all = () => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT * FROM Animal`, (err, results) => {
+        pool.query(`SELECT * FROM Post`, (err, results) => {
             if(err) {
                 return reject(err);
             }
@@ -22,9 +22,9 @@ animaldb.all = () => {
     });   
 };
 
-animaldb.one = (id) => {
+groupomaniadb.one = (id) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT * FROM Animal WHERE id = ?`, [id], (err, results) => {
+        pool.query(`SELECT * FROM Post WHERE id = ?`, [id], (err, results) => {
             if(err) {
                 return reject(err);
             }
@@ -33,4 +33,4 @@ animaldb.one = (id) => {
     });       
 }
 
-module.exports = animaldb;
+module.exports = groupomaniadb;

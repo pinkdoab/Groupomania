@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/animal', apiRouter);
+app.use('/api/Post', apiRouter);
 
 app.listen(process.env.PORT || '3000', () => {
 

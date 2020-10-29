@@ -1,42 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <title>Mon Application Vue.js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Groupomania</title>
 </head>
 <body>
     <div id="app">
-        <h1>Ma première application Vue.js !</h1>
-        <p>J'ai hâte de créer des applications incroyables !</p>
-        <p>{{ message }}</p>
+        <h1>Groupomania</h1>
 
-        <p>{{ info }}</p>
+    <div id="post-list-example">
+        <form v-on:submit.prevent="addNewPost">
+            <p>{{ requete }}</p>
+            <ul>
+                <li
+                v-for="item in requete"
+                v-bind:key="requete.id"
+                v-bind:title="requete.title"
+                > {{ item.titre }}
+                </li>
+            </ul><br>
+
+            <label for="new-post">Liste de Publications</label>
+            <input
+            v-model="newPost"
+            id="new-post"
+            placeholder="New post..."
+            >
+            <button>Add</button>
+        </form>
+        <ul>
+            <li
+            is="post-item"
+            v-for="(post, index) in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+            v-on:remove="posts.splice(index, 1)"
+            ></li>
+        </ul>
+    </div>
 
     </div>
     <!-- Version développement. Celle-ci donne des avertissements utiles sur la console -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
+        Vue.component('post-item', {
+        template: '\
+            <li>\
+            {{ title }}\
+            <button v-on:click="$emit(\'remove\')">Remove</button>\
+            </li>\
+        ',
+        props: ['title'],
+        })
+
         const app = new Vue({   
             el: '#app',
             data () {
                 return {
-                message: 'Hello Vue !',
-                info: 'e'
+                    requete: '',
+                    newPost: '',
+                    posts: [
+                    {
+                        id: 1,
+                        title: 'Do the dishes',
+                    },
+                    {
+                        id: 2,
+                        title: 'Take out the trash',
+                    },
+                    {
+                        id: 3,
+                        title: 'Mow the lawn'
+                    }
+                    ],
+                    nextPostoId: 4,
+                    nextPostRequeteId: 4
                 }
             },
             mounted () {
                 axios
-                    //.get('https://api.coindesk.com/v1/bpi/currentprice.json')
-                    .get('http://localhost:3000/api/animal')
-                    .then(response => (this.info = response))
+                    .get('http://localhost:3000/Post')
+                    //.get('http://localhost:3000/api/Post')
+                    //.then(response => (this.requete = response.data[0].titre))
+                    .then(response => (this.requete = response.data))
+            },
+            methods: {
+                addNewPost: function () {
+
+                this.requete.push({
+                    id: this.nextPostRequeteId++,
+                    titre: this.newPost
+                })
+
+                axios
+                    .post('http://localhost:3000/Post', {
+                    //.post('http://localhost:3000/api/Post', {
+                        titre: this.newPost
+                    })
+                .then((response) => {
+                    console.log(response);
+                }, (error) => {
+                    console.log(error);
+                });         
+
+                this.posts.push({
+                    id: this.nextPostId++,
+                    title: this.newPost
+                })
+                this.newPost = ''
+                }
             }
         })
     </script>
-</body>
+</body> 
 </html>
-<!--app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
-});-->
