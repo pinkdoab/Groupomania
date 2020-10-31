@@ -7,7 +7,8 @@ module.exports = app => {
     // Create a new Customer
     app.post("/post", post.create);
   
-
+    // Delete a Customer with customerId
+    app.delete("/post/:postId", post.delete);
   
     // Retrieve a single Customer with customerId
     //app.get("/customers/:customerId", customers.findOne);
@@ -15,8 +16,7 @@ module.exports = app => {
     // Update a Customer with customerId
     //app.put("/customers/:customerId", customers.update);
   
-    // Delete a Customer with customerId
-    //app.delete("/customers/:customerId", customers.delete);
+
   
     // Create a new Customer  <= erreurrrrrrrrrrrrrrrrrrrrrrrr
     //app.delete("/customers", customers.deleteAll);

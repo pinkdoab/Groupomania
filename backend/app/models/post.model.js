@@ -30,6 +30,25 @@ Post.create = (newPost, result) => {
     result(null, { id: res.insertId, ...newPost });
   });
 };
+
+Post.remove = (id, result) => {
+  sql.query("DELETE FROM post WHERE id = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found Customer with the id
+      result({ kind: "not_found" }, null);
+      return;
+    }
+
+    console.log("deleted customer with id: ", id);
+    result(null, res);
+  });
+};
 /*
 Customer.findById = (customerId, result) => {
   sql.query(`SELECT * FROM customers WHERE id = ${customerId}`, (err, res) => {
@@ -75,24 +94,7 @@ Customer.updateById = (id, customer, result) => {
   );
 };
 
-Customer.remove = (id, result) => {
-  sql.query("DELETE FROM customers WHERE id = ?", id, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
 
-    if (res.affectedRows == 0) {
-      // not found Customer with the id
-      result({ kind: "not_found" }, null);
-      return;
-    }
-
-    console.log("deleted customer with id: ", id);
-    result(null, res);
-  });
-};
 
 Customer.removeAll = result => {
   sql.query("DELETE FROM customers", (err, res) => {

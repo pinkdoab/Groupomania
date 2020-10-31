@@ -38,7 +38,22 @@ exports.create = (req, res) => {
   });
 };
 
-
+// Delete a Customer with the specified customerId in the request
+exports.delete = (req, res) => {
+  Post.remove(req.params.postId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Post with id ${req.params.postId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not delete Post with id " + req.params.postId
+        });
+      }
+    } else res.send({ message: `Post was deleted successfully!` });
+  });
+};
 /*
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
@@ -87,22 +102,7 @@ exports.update = (req, res) => {
   );
 };
 
-// Delete a Customer with the specified customerId in the request
-exports.delete = (req, res) => {
-  Customer.remove(req.params.customerId, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Customer with id ${req.params.customerId}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Could not delete Customer with id " + req.params.customerId
-        });
-      }
-    } else res.send({ message: `Customer was deleted successfully!` });
-  });
-};
+
 
 // Delete all Customers from the database.
 exports.deleteAll = (req, res) => {
