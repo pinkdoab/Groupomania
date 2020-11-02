@@ -3,48 +3,46 @@
         <h1>Groupomania</h1>
 
         <div id="post-list-example">
+
             <form v-on:submit.prevent="addNewPost">
                 <p>{{ requete }}</p>
                 <br>
 
-                <label for="new-post">Liste de Publications</label>
-                <input
-                v-model="newrequete"
-                id="new-post"
-                placeholder="New post..."
-                >
+                <h3>Liste de Publications</h3>
+                <input v-model="newrequete" id="new-post" placeholder="New post...">
                 <button>Add</button>
             </form>
+
             <ul>
-                <li
-                is="post-item"
-                v-for="(req, index) in requete"
-                v-bind:key="req.id"
-                v-bind:title="req.titre"
-                v-on:remove="suppPost(index)"
-                >
-                    <PostItem/>
+                <li is="ItemPost" 
+                    v-for="(req, index) in requete"
+                    v-bind:key="req.id" 
+                    v-bind:title="req.titre"
+                    v-on:remove="suppPost(index)"
+                    >
+                    <ItemPost/>
                 </li>
             </ul>
+
         </div>
     </div>
 </template>
 
+
+<!------------------------------------------------------------------------>
 <script>
-import PostItem from './PostItem.vue'
+import ItemPost from './ItemPost.vue'
 const axios = require('axios');
 
 export default {
-    name: 'ListPost',
+    name: 'ListPosts',
     components: {
-        PostItem
+        ItemPost
     },
     data () {
         return {
             requete: '',
-            newrequete: '',
-            itemAjout: '',
-            itemSuppresion: '',
+            newrequete: ''
         }
     },
     mounted () {
@@ -55,34 +53,34 @@ export default {
     methods: {
         addNewPost: function () {
             axios
-                .post('http://localhost:3000/Post', {
-                    titre: this.newrequete
+            .post('http://localhost:3000/Post', {
+                titre: this.newrequete
+            })
+            .then(response => {
+                this.requete.push({
+                    id: response.data.id,
+                    titre: response.data.titre
                 })
-                .then(response => {
-                    this.itemAjout = response.data;
-                    this.requete.push({
-                        id: this.itemAjout.id,
-                        titre: this.itemAjout.titre
-
-                    })
-                });
-
+            });
             this.newrequete = ''                  
         },
         suppPost: function (aa) {
             console.log(aa)
-            this.requete.splice(aa,1)
+            console.table(this.requete[aa].id)
+            console.log(`http://localhost:3000/Post/${this.requete[aa].id}`);
+
             axios
-            .delete('http://localhost:3000/Post/'+ aa)
+            .delete(`http://localhost:3000/Post/${this.requete[aa].id}`)
             .then(response => {
-                this.itemSuppresion = response.data;                  
+                console.log(response.data);
+                this.requete.splice(aa,1)                   
             });
         }
     }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
 
+<!------ Add "scoped" attribute to limit CSS to this component only ------>
+<style scoped lang="scss">
 </style>

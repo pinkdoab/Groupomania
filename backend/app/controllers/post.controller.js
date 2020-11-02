@@ -1,59 +1,70 @@
 const Post = require("../models/post.model.js");
 
-// Retrieve all Customers from the database.
+// ----------------------------------------------------------------------------------------
+// Récupérer tous les posts de la base de données
+// ----------------------------------------------------------------------------------------
 exports.findAll = (req, res) => {
     Post.getAll((err, data) => {
       if (err)
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving post."
+            err.message || "Une erreur s'est produite lors de la récupération des posts"
         });
       else res.send(data);
     });
   };
 
-// Create and Save a new Customer
+
+// ----------------------------------------------------------------------------------------
+// Créer et enregistrer un nouveau post
+// ----------------------------------------------------------------------------------------
 exports.create = (req, res) => {
   
-  // Validate request
+  // La requête possède un req.body ?
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "Le req.body ne peut pas être vide!"
     });
   }
 
-  // Create a Customer
+  // Création d'un post
   const post = new Post({
     titre: req.body.titre,
   });
 
-  // Save Customer in the database
+  // Sauvegarde du post dans la base de données
   Post.create(post, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Customer."
+          err.message || "Une erreur s'est produite lors de la création du post"
       });
     else res.send(data);
   });
 };
 
-// Delete a Customer with the specified customerId in the request
+
+// ----------------------------------------------------------------------------------------
+// Supprimer un post avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
 exports.delete = (req, res) => {
   Post.remove(req.params.postId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Post with id ${req.params.postId}.`
+          message: `post non trouvé avec un Id ${req.params.postId}.`
         });
       } else {
         res.status(500).send({
-          message: "Could not delete Post with id " + req.params.postId
+          message: "Impossible de supprimer le post avec un Id " + req.params.postId
         });
       }
-    } else res.send({ message: `Post was deleted successfully!` });
+    } else res.send({ message: `Le post est bien supprimé !` });
   });
 };
+
+
+// ----------------------------------------------------------------------------------------
 /*
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {

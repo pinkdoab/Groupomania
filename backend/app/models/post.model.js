@@ -5,6 +5,10 @@ const Post = function(post) {
   this.titre = post.titre;
 };
 
+
+// ----------------------------------------------------------------------------------------
+// Récupérer tous les posts de la base de données
+// ----------------------------------------------------------------------------------------
 Post.getAll = result => {
     sql.query("SELECT * FROM Post", (err, res) => {
       if (err) {
@@ -18,6 +22,10 @@ Post.getAll = result => {
     });
   };
 
+
+// ----------------------------------------------------------------------------------------
+// Créer et enregistrer un nouveau post
+// ----------------------------------------------------------------------------------------
 Post.create = (newPost, result) => {
   sql.query("INSERT INTO post SET ?", newPost, (err, res) => {
     if (err) {
@@ -26,11 +34,15 @@ Post.create = (newPost, result) => {
       return;
     }
 
-    console.log("created post: ", { id: res.insertId, ...newPost });
+    console.log("Création du post: ", { id: res.insertId, ...newPost });
     result(null, { id: res.insertId, ...newPost });
   });
 };
 
+
+// ----------------------------------------------------------------------------------------
+// Supprimer un post avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
 Post.remove = (id, result) => {
   sql.query("DELETE FROM post WHERE id = ?", id, (err, res) => {
     if (err) {
@@ -45,10 +57,12 @@ Post.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted customer with id: ", id);
+    console.log("Suppression du post avec id: ", id);
     result(null, res);
   });
 };
+
+// ----------------------------------------------------------------------------------------
 /*
 Customer.findById = (customerId, result) => {
   sql.query(`SELECT * FROM customers WHERE id = ${customerId}`, (err, res) => {
