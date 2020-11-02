@@ -91,12 +91,17 @@
                 },
                 suppPost: function (aa) {
                     console.log(aa)
-                    this.requete.splice(aa,1)
+                    //this.requete.splice(aa,1)
+                    console.table(this.requete[aa].id)
+                    console.log(`http://localhost:3000/Post/${this.requete[aa].id}`);
+                    //this.requete.splice(aa,1)
                     axios
-                    .delete('http://localhost:3000/Post/'+ aa)
+
+                    .delete(`http://localhost:3000/Post/${this.requete[aa].id}`)
                     .then(response => {
-                        this.itemSuppresion = response.data;
-                        //this.requete.splice(aa,1)                   
+                        console.log(response.data);
+                        //this.itemSuppresion = response.data;
+                        this.requete.splice(aa,1)                   
                     });
                 }
             }
