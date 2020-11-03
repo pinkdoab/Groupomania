@@ -19,7 +19,7 @@
                     v-bind:key="req.id" 
                     v-bind:title="req.titre"
                     v-on:remove="suppPost(index)"
-                    >
+                >
                     <ItemPost/>
                 </li>
             </ul>
