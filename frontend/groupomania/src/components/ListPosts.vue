@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Groupomania</h1>
-
+<router-link to="/about">About</router-link>
         <div id="post-list-example">
 
             <form v-on:submit.prevent="addNewPost">
@@ -12,7 +12,7 @@
                 <input v-model="newrequete" id="new-post" placeholder="New post...">
                 <button>Add</button>
             </form>
-
+            <button>Création</button>
             <ul>
                 <li is="ItemPost" 
                     v-for="(req, index) in requete"
@@ -83,4 +83,7 @@ export default {
 
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
+#post-list-example {
+    background-color:rgb(206, 243, 252);
+}
 </style>
