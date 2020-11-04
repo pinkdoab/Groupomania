@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Groupomania 1</h1>
+        <h1>Groupomania 2</h1>
 <router-link to="/CreaPost">Page créa post</router-link>
 
         <div id="post-list-example">
@@ -11,20 +11,10 @@
                 <br>
 
                 <h3>Liste de Publications</h3>
-                <input v-model="newpublication" id="new-post" placeholder="New post...">
+                <input v-model="newrequete" id="new-post" placeholder="New post...">
                 <button>Add</button>
             </form>
-            <button>Création</button>
-            <ul>
-                <li is="ItemPost" 
-                    v-for="(req, index) in publications"
-                    v-bind:key="req.id" 
-                    v-bind:title="req.titre"
-                    v-on:remove="suppPost(index)"
-                >
-                    <ItemPost/>
-                </li>
-            </ul>
+            
 
         </div>
     </div>
@@ -33,18 +23,18 @@
 
 <!------------------------------------------------------------------------>
 <script>
-import ItemPost from './ItemPost.vue'
+//import ItemPost from './ItemPost.vue'
 const axios = require('axios');
 
 export default {
     name: 'ListPosts',
     components: {
-        ItemPost
+        //ItemPost
     },
     data () {
         return {
             publications: '',
-            newpublication: ''
+            newrequete: ''
         }
     },
     mounted () {
@@ -56,7 +46,7 @@ export default {
         addNewPost: function () {
             axios
             .post('http://localhost:3000/Post', {
-                titre: this.newpublication
+                titre: this.newrequete
             })
             .then(response => {
                 this.publications.push({
@@ -64,7 +54,7 @@ export default {
                     titre: response.data.titre
                 })
             });
-            this.newpublication = ''                  
+            this.newrequete = ''                  
         },
         suppPost: function (aa) {
             console.log(aa)
