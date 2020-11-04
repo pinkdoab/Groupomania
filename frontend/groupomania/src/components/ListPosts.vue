@@ -1,8 +1,10 @@
 <template>
     <div>
         <h1>Groupomania</h1>
-<router-link to="/about">About</router-link>
+<router-link to="/CreaPost">Page créa post</router-link>
+
         <div id="post-list-example">
+            
 
             <form v-on:submit.prevent="addNewPost">
                 <p>{{ requete }}</p>
@@ -42,7 +44,8 @@ export default {
     data () {
         return {
             requete: '',
-            newrequete: ''
+            newrequete: '',
+            postFontSize: '4'
         }
     },
     mounted () {
