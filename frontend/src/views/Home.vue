@@ -1,9 +1,9 @@
 <template>
   <div class="home">
 
-    <p>{{ publications }}</p>
-    <ListPosts2 @emettrePublications="setPublications" :publications="publications"></ListPosts2>
-    <ListPosts @emettrePublications="setPublications" :publications="publications"></ListPosts>
+    <!--p>{{ publications }}</p-->
+    <CreaPost  :publications="publications"></CreaPost>
+    <AffPosts :publications="publications"></AffPosts>
   
   </div>
 </template>
@@ -12,18 +12,18 @@
 <script>
 const axios = require('axios');
 
-import ListPosts from '@/components/ListPosts.vue'
-import ListPosts2 from '@/components/ListPosts2.vue'
+import CreaPost from '@/components/CreaPost.vue'
+import AffPosts from '@/components/AffPosts.vue'
 
 export default {
   name: 'Home',
   components: {
-    ListPosts,
-    ListPosts2
+    CreaPost,
+    AffPosts
   },
   data () {
     return {
-        publications: 'eee'
+        publications: []
     }
   },
   mounted () {
@@ -37,6 +37,8 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 .home {
-    background-color:rgb(208, 243, 54);
+    width: 60vw;
+    margin: auto;
+    background-color:rgb(190, 191, 188);
 }
 </style>

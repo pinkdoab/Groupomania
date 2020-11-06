@@ -5,10 +5,11 @@
 
         <div id="post-list-example">
             <form v-on:submit.prevent="addNewPost">
-                <p>{{ publications }}</p>
+                <!--p>{{ publications }}</p-->
                 <h3>Création de publication</h3>
-                <input v-model="newrequete" id="new-post" placeholder="New post...">
-                <button>Add</button>
+                <!--input v-model="newrequete" id="new-post" placeholder="New post..."-->
+                <textarea name="nom" v-model="newrequete" id="new-post" rows=4 cols=40></textarea>
+                <button>Publication</button>
             </form>
         </div>
     </div>
@@ -24,7 +25,9 @@ export default {
     components: {
     },
     props: {
-        publications: []
+        publications: {
+            type: Array
+        }
     },
     data () {
         return {

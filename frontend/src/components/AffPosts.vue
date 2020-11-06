@@ -1,24 +1,14 @@
 <template>
-    <div>
 <!--router-link to="/CreaPost">Page créa post</router-link-->
-
-        <div id="post-list-example">
-
-            <form v-on:submit.prevent="addNewPost">
-                <p>{{ publications }}</p>
-            </form>
-            <ul>
-                <li is="ItemPost" 
-                    v-for="(req, index) in publications"
-                    v-bind:key="req.id" 
-                    v-bind:title="req.titre"
-                    v-on:remove="suppPost(index)"
-                >
-                    <ItemPost/>
-                </li>
-            </ul>
-
-        </div>
+    <div id="post-list-example">
+        <li is="ItemPost" 
+            v-for="(req, index) in publications"
+            v-bind:key="req.id" 
+            v-bind:title="req.titre"
+            v-on:remove="suppPost(index)"
+        >
+            <ItemPost/>
+        </li>
     </div>
 </template>
 
@@ -34,7 +24,9 @@ export default {
         ItemPost
     },
     props: {
-        publications: []
+        publications: {
+            type: Array
+        }
     },
     methods: {
         suppPost: function (aa) {
@@ -57,6 +49,9 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #post-list-example {
-    background-color:rgb(206, 243, 252);
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    background-color:rgb(241, 249, 249);
 }
 </style>
