@@ -2,8 +2,9 @@
   <div class="home">
 
     <p>{{ publications }}</p>
-    <ListPosts @emettrePublications="setPublications" :publications="publications"></ListPosts>
     <ListPosts2 @emettrePublications="setPublications" :publications="publications"></ListPosts2>
+    <ListPosts @emettrePublications="setPublications" :publications="publications"></ListPosts>
+  
   </div>
 </template>
 
@@ -29,12 +30,13 @@ export default {
         axios
             .get('http://localhost:3000/Post')
             .then(response => (this.publications = response.data))
-            //this.$emit('emettrePublications', { message: this.publications})
     },
-  /*methods: {
-    setPublications(payload) {
-      this.publications = payload.message
-    }
-  }*/
 }
 </script>
+
+<!------ Add "scoped" attribute to limit CSS to this component only ------>
+<style scoped lang="scss">
+.home {
+    background-color:rgb(208, 243, 54);
+}
+</style>

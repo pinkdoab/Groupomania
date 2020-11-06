@@ -1,20 +1,12 @@
 <template>
     <div>
-        <h1>Groupomania 1</h1>
-<router-link to="/CreaPost">Page créa post</router-link>
+<!--router-link to="/CreaPost">Page créa post</router-link-->
 
         <div id="post-list-example">
-            
 
             <form v-on:submit.prevent="addNewPost">
                 <p>{{ publications }}</p>
-                <br>
-
-                <h3>Liste de Publications</h3>
-                <input v-model="newpublication" id="new-post" placeholder="New post...">
-                <button>Add</button>
             </form>
-            <button>Création</button>
             <ul>
                 <li is="ItemPost" 
                     v-for="(req, index) in publications"
@@ -41,38 +33,10 @@ export default {
     components: {
         ItemPost
     },
-    data () {
-        return {
-            //publications: '',
-            //newpublication: ''
-        }
-    },
     props: {
         publications: []
     },
-    /*mounted () {
-        axios
-            .get('http://localhost:3000/Post')
-            .then(response => {
-                this.publications = response.data
-                //this.$emit('emettrePublications', { message: this.publications})
-            })
-    },*/
     methods: {
-        /*addNewPost: function () {
-            axios
-            .post('http://localhost:3000/Post', {
-                titre: this.newpublication
-            })
-            .then(response => {
-                this.publications.push({
-                    id: response.data.id,
-                    titre: response.data.titre
-                });
-                this.$emit('emettrePublications', { message: this.publications})
-            });
-            this.newpublication = '';
-        },*/
         suppPost: function (aa) {
             console.log(aa)
             console.table(this.publications[aa].id)
