@@ -4,18 +4,13 @@
 <router-link to="/CreaPost">Page créa post</router-link>
 
         <div id="post-list-example">
-            
-
             <form v-on:submit.prevent="addNewPost">
                 <p>{{ publications }}</p>
                 <br>
-
-                <h3>Liste de Publications</h3>
+                <h3>Création de publication</h3>
                 <input v-model="newrequete" id="new-post" placeholder="New post...">
                 <button>Add</button>
             </form>
-            
-
         </div>
     </div>
 </template>
@@ -23,25 +18,26 @@
 
 <!------------------------------------------------------------------------>
 <script>
-//import ItemPost from './ItemPost.vue'
 const axios = require('axios');
 
 export default {
-    name: 'ListPosts',
+    name: 'ListPosts2',
     components: {
-        //ItemPost
+    },
+    props: {
+        publications: []
     },
     data () {
         return {
-            publications: '',
             newrequete: ''
         }
     },
-    mounted () {
+    /*mounted () {
         axios
             .get('http://localhost:3000/Post')
             .then(response => (this.publications = response.data))
-    },
+            //this.$emit('emettrePublications', { message: this.publications})
+    },*/
     methods: {
         addNewPost: function () {
             axios
@@ -52,21 +48,11 @@ export default {
                 this.publications.push({
                     id: response.data.id,
                     titre: response.data.titre
-                })
+                });
+                //this.$emit('emettrePublications', { message: this.publications});
+                this.newrequete = '';
             });
-            this.newrequete = ''                  
-        },
-        suppPost: function (aa) {
-            console.log(aa)
-            console.table(this.publications[aa].id)
-            console.log(`http://localhost:3000/Post/${this.publications[aa].id}`);
-
-            axios
-            .delete(`http://localhost:3000/Post/${this.publications[aa].id}`)
-            .then(response => {
-                console.log(response.data);
-                this.publications.splice(aa,1)                   
-            });
+            //this.newrequete = ''
         }
     }
 }

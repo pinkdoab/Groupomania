@@ -43,17 +43,23 @@ export default {
     },
     data () {
         return {
-            publications: '',
-            newpublication: ''
+            //publications: '',
+            //newpublication: ''
         }
     },
-    mounted () {
+    props: {
+        publications: []
+    },
+    /*mounted () {
         axios
             .get('http://localhost:3000/Post')
-            .then(response => (this.publications = response.data))
-    },
+            .then(response => {
+                this.publications = response.data
+                //this.$emit('emettrePublications', { message: this.publications})
+            })
+    },*/
     methods: {
-        addNewPost: function () {
+        /*addNewPost: function () {
             axios
             .post('http://localhost:3000/Post', {
                 titre: this.newpublication
@@ -62,10 +68,11 @@ export default {
                 this.publications.push({
                     id: response.data.id,
                     titre: response.data.titre
-                })
+                });
+                this.$emit('emettrePublications', { message: this.publications})
             });
-            this.newpublication = ''                  
-        },
+            this.newpublication = '';
+        },*/
         suppPost: function (aa) {
             console.log(aa)
             console.table(this.publications[aa].id)
