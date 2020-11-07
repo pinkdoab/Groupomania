@@ -44,9 +44,9 @@ export default {
     flex-direction: row;
     background-color:rgb(216, 248, 249);
 }
-.pied {
+//.pied {
     //background-color:rgb(248, 121, 248);    
-}
+//}
 .bordure {
     margin-left: 10px;
 }
