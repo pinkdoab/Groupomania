@@ -1,11 +1,12 @@
 module.exports = app => {
   const post = require("../controllers/post.controller.js");
-  
+  const multer = require('../middleware/multer-config');
+
   // Récupérer tous les posts
   app.get("/post", post.findAll);
 
   // Création d'un nouveau post
-  app.post("/post", post.create);
+  app.post("/post", multer, post.create);
 
   // Supprimer un post avec Id
   app.delete("/post/:postId", post.delete);

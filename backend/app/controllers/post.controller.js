@@ -26,12 +26,16 @@ exports.create = (req, res) => {
       message: "Le req.body ne peut pas être vide!"
     });
   }
+  console.log(`/app/images/${req.file.filename}`);
 
   // Création d'un post
   const post = new Post({
     titre: req.body.titre,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    //imageUrl: "eee"
   });
-
+  console.log(req.body.titre);
+  console.log(post);
   // Sauvegarde du post dans la base de données
   Post.create(post, (err, data) => {
     if (err)
