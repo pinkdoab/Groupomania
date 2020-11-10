@@ -6,7 +6,7 @@ const Post = require("../models/post.model.js");
 exports.findAll = (req, res) => {
     Post.getAll((err, data) => {
       if (err)
-        res.status(500).send({
+        res.status(501).send({
           message:
             err.message || "Une erreur s'est produite lors de la récupération des posts"
         });
@@ -32,9 +32,9 @@ exports.create = (req, res) => {
       message: "Le req.file ne peut pas être vide!"
     });
   } else {
-
+    //console.log(req)
     console.log('\nreq.body : ' + JSON.stringify(req.body));
-    //console.log('\nreq.body.titre', req.body['titre']);
+    console.log('\nreq.body.image', req.body['image']);
     console.log('\nreq.file')
     console.dir(req.file);
 

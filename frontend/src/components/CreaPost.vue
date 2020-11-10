@@ -31,17 +31,27 @@ export default {
     },
     data () {
         return {
-            newrequete: ''
+            newrequete: '',
+            newimage: '/Users/pink01/Desktop/photoA.png'
         }
     },
     methods: {
         addNewPost: function () {
+            const formData = new FormData();
+                formData.append('titre', 'rrrrrr');
+                formData.append('image', '/Users/pink01/Desktop/sauceA.jpg');
             axios
-            .post('http://localhost:3000/Post', {
-                titre: this.newrequete
-
-            })
+            .post('http://localhost:3000/Post', formData, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+    })
+            //.post('http://localhost:3000/Post', {
+            //    titre: this.newrequete,
+            //    image: this.newimage
+            //})
             .then(response => {
+                console.log(response);
                 this.publications.push({
                     id: response.data.id,
                     titre: response.data.titre

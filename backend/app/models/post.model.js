@@ -3,7 +3,7 @@ const sql = require("./db.js");
 // constructor
 const Post = function(post) {
   this.titre = post.titre;
-  this.imageUrl = post.imageUrl;
+  this.image = post.image;
 };
 
 
