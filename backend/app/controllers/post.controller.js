@@ -22,29 +22,38 @@ exports.create = (req, res) => {
   
   // La requête possède un req.body ?
   if (!req.body) {
-    res.status(400).send({
+    res.status(401).send({
       message: "Le req.body ne peut pas être vide!"
     });
   }
-  console.log(`/app/images/${req.file.filename}`);
+  // La requête possède un req.file (pour filename non indéfini) ?
+  if (!req.file) {
+    res.status(410).send({
+      message: "Le req.file ne peut pas être vide!"
+    });
+  } else {
 
-  // Création d'un post
-  const post = new Post({
-    titre: req.body.titre,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    //imageUrl: "eee"
-  });
-  console.log(req.body.titre);
-  console.log(post);
-  // Sauvegarde du post dans la base de données
-  Post.create(post, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Une erreur s'est produite lors de la création du post"
-      });
-    else res.send(data);
-  });
+    console.log('\nreq.body : ' + JSON.stringify(req.body));
+    //console.log('\nreq.body.titre', req.body['titre']);
+    console.log('\nreq.file')
+    console.dir(req.file);
+
+    // Création d'un post
+    const post = new Post({
+      titre: req.body.titre,
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    });
+
+    // Sauvegarde du post dans la base de données
+    Post.create(post, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Une erreur s'est produite lors de la création du post"
+        });
+      else res.send(data);
+    });
+  }
 };
 
 

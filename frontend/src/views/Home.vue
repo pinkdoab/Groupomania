@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <!--p>{{ publications }}</p-->
+    <p>{{ publications }}</p>
     <CreaPost  :publications="publications"></CreaPost>
     <AffPosts :publications="publications"></AffPosts>
   

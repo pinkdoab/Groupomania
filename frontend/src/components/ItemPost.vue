@@ -5,7 +5,7 @@
         </div>
         <div class="corps">
             <img src="../assets/paysage1.jpg" width="200">
-            <p class="bordure">{{ title }}</p>
+            <p class="bordure">{{ title }} {{ image }}</p>
         </div>
         <div class ="pied">
             <button v-on:click="$emit('remove')">Remove</button>
@@ -18,7 +18,7 @@
 <script>
 export default {
     name: 'ItemPost',
-    props: ['title'],
+    props: ['title','image']
 }
 </script>
 

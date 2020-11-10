@@ -1,3 +1,4 @@
+// gestion du téléchargement des images
 const multer = require('multer');
 
 const MIME_TYPES = {
@@ -18,6 +19,5 @@ const storage = multer.diskStorage({
     callback(null, name + '_' + Date.now() + '.' + extension);
   }
 });
-
 
 module.exports = multer({storage: storage}).single('image');

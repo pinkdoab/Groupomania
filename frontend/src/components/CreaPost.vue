@@ -39,6 +39,7 @@ export default {
             axios
             .post('http://localhost:3000/Post', {
                 titre: this.newrequete
+
             })
             .then(response => {
                 this.publications.push({
