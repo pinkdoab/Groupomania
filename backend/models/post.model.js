@@ -1,7 +1,5 @@
 const sql = require("./db.js");
 
-
-
 // constructor
 const Post = function(post) {
   this.titre = post.titre;
@@ -66,9 +64,10 @@ Post.remove = (id, result) => {
 };
 
 // ----------------------------------------------------------------------------------------
-/*
-Customer.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM customers WHERE id = ${customerId}`, (err, res) => {
+// Récupérer un post avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
+Post.findById = (customerId, result) => {
+  sql.query(`SELECT * FROM post WHERE id = ${customerId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -85,7 +84,7 @@ Customer.findById = (customerId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
-*/
+
 
 /*
 Customer.updateById = (id, customer, result) => {

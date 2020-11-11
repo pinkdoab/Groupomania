@@ -1,4 +1,5 @@
 const Post = require("../models/post.model.js");
+const fs = require('fs');
 
 // ----------------------------------------------------------------------------------------
 // Récupérer tous les posts de la base de données
@@ -13,6 +14,25 @@ exports.findAll = (req, res) => {
       else res.send(data);
     });
   };
+
+// ----------------------------------------------------------------------------------------
+// Récupérer un simple post avec customerId
+// ----------------------------------------------------------------------------------------
+exports.findOne = (req, res) => {
+  Post.findById(req.params.customerId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `post non trouvé avec id ${req.params.customerId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "erreur lors de la récupération du post avec id " + req.params.customerId
+        });
+      }
+    } else res.send(data);
+  });
+};
 
 
 // ----------------------------------------------------------------------------------------
@@ -61,6 +81,15 @@ exports.create = (req, res) => {
 // Supprimer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 exports.delete = (req, res) => {
+  Post.findById(req.params.postId, (err, data, next) => {
+    console.dir(data);
+    const filename = data.imageUrl.split('/images/')[1];
+    console.log('data.imageUrl : ' + filename)
+    fs.unlink(`images/${filename}`, () => {
+      console.log("Suppression de l'image du serveur : " + filename)
+    });
+  });
+
   Post.remove(req.params.postId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -77,25 +106,9 @@ exports.delete = (req, res) => {
 };
 
 
-// ----------------------------------------------------------------------------------------
-/*
-// Find a single Customer with a customerId
-exports.findOne = (req, res) => {
-  Customer.findById(req.params.customerId, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Customer with id ${req.params.customerId}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving Customer with id " + req.params.customerId
-        });
-      }
-    } else res.send(data);
-  });
-};
 
+//----------------------------------------------------------------------------------------
+/*
 // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
   // Validate Request
