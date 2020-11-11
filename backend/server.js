@@ -16,7 +16,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('app/images', express.static(path.join(__dirname, 'app/images')));
+//app.use('app/images', express.static(path.join(__dirname, 'app/images')));
 
 // simple route
 app.get("/", (req, res) => {

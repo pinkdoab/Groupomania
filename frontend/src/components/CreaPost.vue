@@ -11,6 +11,9 @@
                 <textarea name="nom" v-model="newrequete" id="new-post" rows=4 cols=40></textarea>
                 <button>Publication</button>
             </form>
+            <input type="file"
+                id="avatar" name="avatar"
+                accept="image/png, image/jpeg">
         </div>
     </div>
 </template>
@@ -39,7 +42,10 @@ export default {
         addNewPost: function () {
             const formData = new FormData();
                 formData.append('titre', 'rrrrrr');
-                formData.append('image', '/Users/pink01/Desktop/sauceA.jpg');
+                //formData.append('image', '/Users/pink01/Desktop/sauceA.jpg');
+                var imagefile = document.querySelector('#avatar');
+                formData.append("image", imagefile.files[0]);
+
             axios
             .post('http://localhost:3000/Post', formData, {
                 headers: {
@@ -50,6 +56,18 @@ export default {
             //    titre: this.newrequete,
             //    image: this.newimage
             //})
+
+            /*Add the file to a formData object, and set the Content-Type header to multipart/form-data.
+
+var formData = new FormData();
+var imagefile = document.querySelector('#file');
+formData.append("image", imagefile.files[0]);
+axios.post('upload_file', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+})*/
+
             .then(response => {
                 console.log(response);
                 this.publications.push({

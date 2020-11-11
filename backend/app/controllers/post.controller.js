@@ -34,7 +34,7 @@ exports.create = (req, res) => {
   } else {
     //console.log(req)
     console.log('\nreq.body : ' + JSON.stringify(req.body));
-    console.log('\nreq.body.image', req.body['image']);
+    //console.log('\nreq.body.image', req.body['imageUrl']);
     console.log('\nreq.file')
     console.dir(req.file);
 

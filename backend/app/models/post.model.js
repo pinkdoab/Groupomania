@@ -1,9 +1,11 @@
 const sql = require("./db.js");
 
+
+
 // constructor
 const Post = function(post) {
   this.titre = post.titre;
-  this.image = post.image;
+  this.imageUrl = post.imageUrl;
 };
 
 
