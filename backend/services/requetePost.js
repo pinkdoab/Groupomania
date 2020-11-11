@@ -1,10 +1,11 @@
-const sql = require("./db.js");
+const sql = require("../models/db.js");
+const Post = require("../models/modelsPost.js");
 
 // constructor
-const Post = function(post) {
+/*const Post = function(post) {
   this.titre = post.titre;
   this.imageUrl = post.imageUrl;
-};
+};*/
 
 
 // ----------------------------------------------------------------------------------------

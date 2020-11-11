@@ -1,4 +1,4 @@
-const Post = require("../models/post.model.js");
+const Post = require("../services/requetePost.js");
 const fs = require('fs');
 
 // ----------------------------------------------------------------------------------------

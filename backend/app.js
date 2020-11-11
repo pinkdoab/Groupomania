@@ -5,12 +5,6 @@ const path = require('path');
 
 const PostRoutes = require('./routes/postRoutes')
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -18,10 +12,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+app.use('/images', express.static(path.join(__dirname, 'images')));         // requete http://localhost:3000/images/photoA_1605106010.jpg
 
 app.use('/post', PostRoutes);
 
 module.exports = app;
-
-//app.use('app/images', express.static(path.join(__dirname, 'app/images')));
