@@ -5,9 +5,8 @@
 
         <div id="post-list-example">
             <form v-on:submit.prevent="addNewPost">
-                <!--p>{{ publications }}</p-->
+                <p>{{ publications }}</p>
                 <h3>Création de publication</h3>
-                <!--input v-model="newrequete" id="new-post" placeholder="New post..."-->
                 <textarea name="nom" v-model="newrequete" id="new-post" rows=4 cols=40></textarea>
                 <button>Publication</button>
             </form>
@@ -41,22 +40,21 @@ export default {
     methods: {
         addNewPost: function () {
             const formData = new FormData();
-                formData.append('titre', 'rrrrrr');
-                //formData.append('image', '/Users/pink01/Desktop/sauceA.jpg');
+                formData.append('titre', this.newrequete);
                 var imagefile = document.querySelector('#avatar');
+                console.dir(imagefile.files[0])
                 formData.append("image", imagefile.files[0]);
 
             axios
-            .post('http://localhost:3000/Post', formData, {
-                headers: {
-                'Content-Type': 'multipart/form-data'
-                }
-            })
+            .post('http://localhost:3000/Post', formData
+            )
             .then(response => {
                 console.log(response);
                 this.publications.push({
                     id: response.data.id,
-                    titre: response.data.titre
+                    titre: response.data.titre,
+                    imageUrl: response.data.imageUrl
+
                 });
                 this.newrequete = '';
             });

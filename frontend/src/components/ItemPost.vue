@@ -4,7 +4,8 @@
             <!--h3> {{ title }}</h3-->
         </div>
         <div class="corps">
-            <img src="../assets/paysage1.jpg" width="200">
+            <!--img src="../assets/paysage1.jpg" width="200"-->
+            <img v-bind:src="image" width="200">
             <p class="bordure">{{ title }} {{ image }}</p>
         </div>
         <div class ="pied">
