@@ -50,24 +50,8 @@ export default {
             .post('http://localhost:3000/Post', formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
-            }
-    })
-            //.post('http://localhost:3000/Post', {
-            //    titre: this.newrequete,
-            //    image: this.newimage
-            //})
-
-            /*Add the file to a formData object, and set the Content-Type header to multipart/form-data.
-
-var formData = new FormData();
-var imagefile = document.querySelector('#file');
-formData.append("image", imagefile.files[0]);
-axios.post('upload_file', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-})*/
-
+                }
+            })
             .then(response => {
                 console.log(response);
                 this.publications.push({
