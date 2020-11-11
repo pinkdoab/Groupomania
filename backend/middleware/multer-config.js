@@ -13,8 +13,7 @@ const MIME_TYPES = {
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
 
-    //console.log('file : ' + file);
-    callback(null, 'app/images');
+    callback(null, 'images');
     //callback(null, '/Users/pink01/Documents/git/groupomania/backend/app/images');
   },
   filename: (req, file, callback) => {
