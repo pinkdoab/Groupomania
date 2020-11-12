@@ -28,9 +28,10 @@ Post.create = (newPost, result) => {
       result(err, null);
       return;
     }
-
+    console.log(JSON.stringify(newPost));
     console.log("Création du post: ", { id: res.insertId, ...newPost });
-    result(null, { id: res.insertId, ...newPost });
+    //result(null, { id: res.insertId, ...newPost });
+    result(null, { id: res.insertId, texte: newPost.p_texte, imageUrl: newPost.p_image_url });
   });
 };
 

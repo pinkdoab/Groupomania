@@ -55,8 +55,8 @@ export default {
                 console.log(response.data);
                 this.publications.push({
                     id: response.data.id,
-                    texte: response.data.p_texte,
-                    imageUrl: response.data.p_image_url
+                    texte: response.data.texte,
+                    imageUrl: response.data.imageUrl
 
                 });
                 this.newrequete = '';
