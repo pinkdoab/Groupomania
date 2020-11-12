@@ -59,8 +59,8 @@ exports.create = (req, res) => {
 
     // Création d'un post
     const post = new Post({
-      titre: req.body.titre,
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      p_texte: req.body.texte,
+      p_image_url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
 
     // Sauvegarde du post dans la base de données
@@ -82,7 +82,7 @@ exports.create = (req, res) => {
 exports.delete = (req, res) => {
   Post.findById(req.params.postId, (err, data, next) => {
     console.dir(data);
-    const filename = data.imageUrl.split('/images/')[1];
+    const filename = data.p_image_url.split('/images/')[1];
     console.log('data.imageUrl : ' + filename)
     fs.unlink(`images/${filename}`, () => {
       console.log("Suppression de l'image du serveur : " + filename)

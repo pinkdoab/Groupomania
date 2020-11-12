@@ -4,7 +4,7 @@
         <li is="ItemPost" 
             v-for="(req, index) in publications"
             v-bind:key="req.id" 
-            v-bind:title="req.titre"
+            v-bind:texte="req.texte"
             v-bind:image="req.imageUrl"
             v-on:remove="suppPost(index)"
         >
@@ -52,6 +52,6 @@ export default {
 #post-list-example {
     width: 70%;
     margin: auto;
-    background-color:rgb(237, 237, 245);
+    background-color:rgb(193, 223, 43);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <!--p>{{ publications }}</p-->
+    <p>{{ publications }}</p>
     <CreaPost  :publications="publications"></CreaPost>
     <AffPosts :publications="publications"></AffPosts>
   
@@ -39,6 +39,6 @@ export default {
 .home {
     width: 50vw;
     margin: auto;
-    background-color:rgb(237, 237, 245);
+    background-color:rgb(193, 223, 43);
 }
 </style>

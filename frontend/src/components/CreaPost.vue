@@ -43,7 +43,7 @@ export default {
     methods: {
         addNewPost: function () {
             const formData = new FormData();
-                formData.append('titre', this.newrequete);
+                formData.append('texte', this.newrequete);
                 var imagefile = document.querySelector('#avatar');
                 console.dir(imagefile.files[0])
                 formData.append("image", imagefile.files[0]);
@@ -52,11 +52,11 @@ export default {
             .post('http://localhost:3000/Post', formData
             )
             .then(response => {
-                console.log(response);
+                console.log(response.data);
                 this.publications.push({
                     id: response.data.id,
-                    titre: response.data.titre,
-                    imageUrl: response.data.imageUrl
+                    texte: response.data.p_texte,
+                    imageUrl: response.data.p_image_url
 
                 });
                 this.newrequete = '';

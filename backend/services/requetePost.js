@@ -5,7 +5,7 @@ const Post = require("../models/modelsPost.js");
 // Récupérer tous les posts de la base de données
 // ----------------------------------------------------------------------------------------
 Post.getAll = result => {
-    sql.query("SELECT * FROM Post", (err, res) => {
+    sql.query("SELECT id, p_texte AS titre, p_image_url AS imageUrl FROM t_publication", (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -22,7 +22,7 @@ Post.getAll = result => {
 // Créer et enregistrer un nouveau post
 // ----------------------------------------------------------------------------------------
 Post.create = (newPost, result) => {
-  sql.query("INSERT INTO post SET ?", newPost, (err, res) => {
+  sql.query("INSERT INTO t_publication SET ?", newPost, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -39,7 +39,7 @@ Post.create = (newPost, result) => {
 // Supprimer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 Post.remove = (id, result) => {
-  sql.query("DELETE FROM post WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM t_publication WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -61,7 +61,7 @@ Post.remove = (id, result) => {
 // Récupérer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 Post.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM post WHERE id = ${customerId}`, (err, res) => {
+  sql.query(`SELECT * FROM t_publication WHERE id = ${customerId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

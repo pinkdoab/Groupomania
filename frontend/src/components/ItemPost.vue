@@ -5,7 +5,7 @@
         </div>
         <div class="corps">
             <img v-bind:src="image" width="200">
-            <p class="bordure">{{ title }}</p>
+            <p class="bordure">{{ texte }}</p>
         </div>
         <div class ="pied">
             <button v-on:click="$emit('remove')">Remove</button>
@@ -18,7 +18,7 @@
 <script>
 export default {
     name: 'ItemPost',
-    props: ['title','image']
+    props: ['texte','image']
 }
 </script>
 
