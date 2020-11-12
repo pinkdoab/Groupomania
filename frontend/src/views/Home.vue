@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <p>{{ publications }}</p>
+    <!--p>{{ publications }}</p-->
     <CreaPost  :publications="publications"></CreaPost>
     <AffPosts :publications="publications"></AffPosts>
   
@@ -37,8 +37,8 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 .home {
-    width: 60vw;
+    width: 50vw;
     margin: auto;
-    background-color:rgb(190, 191, 188);
+    background-color:rgb(237, 237, 245);
 }
 </style>

@@ -1,13 +1,6 @@
 const sql = require("../models/db.js");
 const Post = require("../models/modelsPost.js");
 
-// constructor
-/*const Post = function(post) {
-  this.titre = post.titre;
-  this.imageUrl = post.imageUrl;
-};*/
-
-
 // ----------------------------------------------------------------------------------------
 // Récupérer tous les posts de la base de données
 // ----------------------------------------------------------------------------------------

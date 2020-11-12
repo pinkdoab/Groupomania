@@ -50,9 +50,8 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #post-list-example {
-    width: 80%;
+    width: 70%;
     margin: auto;
-    padding: 10px;
-    background-color:rgb(241, 249, 249);
+    background-color:rgb(237, 237, 245);
 }
 </style>
