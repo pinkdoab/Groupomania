@@ -70,8 +70,26 @@ exports.create = (req, res) => {
           message:
             err.message || "Une erreur s'est produite lors de la création du post"
         });
+      //else res.send(data);
+    });
+
+
+
+    Post.getAll((err, data) => {
+      if (err)
+        res.status(501).send({
+          message:
+            err.message || "Une erreur s'est produite lors de la récupération des posts"
+        });
       else res.send(data);
     });
+  //});
+
+
+
+
+
+
   }
 };
 

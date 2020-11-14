@@ -1,10 +1,11 @@
 <template>
-  <div class="home">
+  <div  class="home">
 
     <p>{{ publications }}</p>
-    <CreaPost  :publications="publications"></CreaPost>
-    <AffPosts :publications="publications"></AffPosts>
-  
+    <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
+    <CreaPost @refresh="refresh"></CreaPost>
+    <AffPosts   :publications="publications"></AffPosts>
+
   </div>
 </template>
 
@@ -27,10 +28,18 @@ export default {
     }
   },
   mounted () {
-        axios
-            .get('http://localhost:3000/Post')
-            .then(response => (this.publications = response.data))
-    },
+    //this.refresh ()
+    axios
+    .get('http://localhost:3000/Post')
+    .then(response => (this.publications = response.data))
+  },
+  methods: {
+    refresh () {
+      axios
+      .get('http://localhost:3000/Post')
+      .then(response => (this.publications = response.data))
+    }
+  }
 }
 </script>
 

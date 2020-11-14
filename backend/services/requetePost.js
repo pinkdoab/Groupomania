@@ -5,14 +5,15 @@ const Post = require("../models/modelsPost.js");
 // Récupérer tous les posts de la base de données
 // ----------------------------------------------------------------------------------------
 Post.getAll = result => {
-    sql.query("SELECT id, p_texte AS titre, p_image_url AS imageUrl FROM t_publication", (err, res) => {
+    //sql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date FROM t_publication", (err, res) => {
+    sql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date, t_user.u_nom AS createur  FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
         return;
       }
   
-      console.log("post: ", res);
+      console.log("post getAll: ", res);
       result(null, res);
     });
   };
@@ -22,17 +23,20 @@ Post.getAll = result => {
 // Créer et enregistrer un nouveau post
 // ----------------------------------------------------------------------------------------
 Post.create = (newPost, result) => {
+
   sql.query("INSERT INTO t_publication SET ?", newPost, (err, res) => {
     if (err) {
       console.log("error: ", err);
-      result(err, null);
+      result(null, err);
       return;
     }
-    console.log(JSON.stringify(newPost));
+    //result(null, res);
     console.log("Création du post: ", { id: res.insertId, ...newPost });
-    //result(null, { id: res.insertId, ...newPost });
-    result(null, { id: res.insertId, texte: newPost.p_texte, imageUrl: newPost.p_image_url });
+    result(null, { id: res.insertId, ...newPost });
+    //console.log("Création du post: ", { id: res.insertId, texte: newPost.p_texte, imageUrl: newPost.p_image_url, date: newPost.p_date_creation, createur: newPost.createur});
+    //result(null, { id: res.insertId, texte: newPost.p_texte, imageUrl: newPost.p_image_url, date: newPost.p_date_creation, createur: newPost.p_user_createur});  // date: response.data.date, createur: response.data.createur
   });
+
 };
 
 

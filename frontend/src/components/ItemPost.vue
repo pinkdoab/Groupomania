@@ -1,11 +1,13 @@
 <template>
     <div class="post">
         <div class="entete">
-            <!--h3> {{ title }}</h3-->
+            <p class="bordure">{{ createur }}</p>
         </div>
         <div class="corps">
             <img v-bind:src="image" width="200">
             <p class="bordure">{{ texte }}</p>
+            <p class="bordure">{{ date }}</p>
+            
         </div>
         <div class ="pied">
             <button v-on:click="$emit('remove')">Remove</button>
@@ -18,7 +20,7 @@
 <script>
 export default {
     name: 'ItemPost',
-    props: ['texte','image']
+    props: ['texte','image','date','createur']
 }
 </script>
 

@@ -4,8 +4,9 @@
 <!--router-link to="/CreaPost">Page créa post</router-link-->
 
         <div id="post-list-example">
+
             <form v-on:submit.prevent="addNewPost">
-                <!--p>{{ publications }}</p-->
+                <!--p>publications : {{ publications }}</p-->
                 <h3 class="titre">Création d'une publication</h3>
                 <div class="input">
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
@@ -30,17 +31,18 @@ export default {
     components: {
     },
     props: {
-        publications: {
-            type: Array
-        }
+        //publications: {
+        //    type: Array
+        //}
     },
     data () {
         return {
             newrequete: '',
-            newimage: '/Users/pink01/Desktop/photoA.png'
+            newimage: '/Users/pink01/Desktop/photoA.png',
         }
     },
     methods: {
+
         addNewPost: function () {
             const formData = new FormData();
                 formData.append('texte', this.newrequete);
@@ -48,20 +50,22 @@ export default {
                 console.dir(imagefile.files[0])
                 formData.append("image", imagefile.files[0]);
 
-            axios
-            .post('http://localhost:3000/Post', formData
-            )
-            .then(response => {
-                console.log(response.data);
-                this.publications.push({
-                    id: response.data.id,
-                    texte: response.data.texte,
-                    imageUrl: response.data.imageUrl
 
-                });
-                this.newrequete = '';
-            });
+            axios
+            .post('http://localhost:3000/Post', formData)
+            .then(response => {
+                console.log("reponse : ");
+                console.dir(response);
+                /*this.publications.push({
+                    id: response.data.id,
+                    titre: response.data.texte,
+                    imageUrl: response.data.imageUrl
+                });*/
+                this.$emit('refresh');
+                this.newrequete = '';       
+            });         
         }
+
     }
 }
 </script>

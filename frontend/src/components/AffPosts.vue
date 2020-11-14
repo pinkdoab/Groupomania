@@ -6,6 +6,8 @@
             v-bind:key="req.id" 
             v-bind:texte="req.texte"
             v-bind:image="req.imageUrl"
+            v-bind:date="req.date"
+            v-bind:createur="req.createur"
             v-on:remove="suppPost(index)"
         >
             <ItemPost/>
