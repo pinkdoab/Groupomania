@@ -15,7 +15,7 @@
                     <!--textarea name="nom" v-model="newrequete" id="new-post" rows=4 cols=60></textarea-->
                     <textarea name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
-                <button class="bouton">Publication</button>
+                <button class="bouton" @click="renders++" >Publication</button>
             </form>
         </div>
     </div>
@@ -35,10 +35,11 @@ export default {
         //    type: Array
         //}
     },
-    data () {
+    data: function() {
         return {
             newrequete: '',
             newimage: '/Users/pink01/Desktop/photoA.png',
+            renders: 1 // à 1 car il y aura forcément 1 rendu
         }
     },
     methods: {
@@ -51,8 +52,7 @@ export default {
                 formData.append("image", imagefile.files[0]);
 
 
-            axios
-            .post('http://localhost:3000/Post', formData)
+            axios.post('http://localhost:3000/Post', formData)
             .then(response => {
                 console.log("reponse : ");
                 console.dir(response);

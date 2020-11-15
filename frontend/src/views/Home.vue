@@ -22,21 +22,19 @@ export default {
     CreaPost,
     AffPosts
   },
-  data () {
+  data: function () {
     return {
         publications: []
     }
   },
   mounted () {
     //this.refresh ()
-    axios
-    .get('http://localhost:3000/Post')
+    axios.get('http://localhost:3000/Post')
     .then(response => (this.publications = response.data))
   },
   methods: {
     refresh () {
-      axios
-      .get('http://localhost:3000/Post')
+      axios.get('http://localhost:3000/Post')
       .then(response => (this.publications = response.data))
     }
   }
