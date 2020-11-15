@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
 
-const PostRoutes = require('./routes/postRoutes')
+const PostRoutes = require('./routes/post');
+const userRoutes = require('./routes/user');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,8 +16,9 @@ app.use((req, res, next) => {
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-
-
 app.use('/post', PostRoutes);
+app.use('/auth', userRoutes);
+
 app.use('/images', express.static(path.join(__dirname, 'images')));         // requete http://localhost:3000/images/photoA_1605106010.jpg
+
 module.exports = app;

@@ -1,20 +1,20 @@
 const express = require('express')
 const router = express.Router();
 
-const postControleur = require("../controllers/post.controller.js");
+const postCtrl = require("../controllers/post.js");
 const multer = require('../middleware/multer-config');
 
   // Récupérer tous les posts
-  router.get("/", postControleur.findAll);
+  router.get("/", postCtrl.findAll);
 
   // Récupérer un simple post avec customerId
-  router.get("/:customerId", postControleur.findOne);
+  router.get("/:customerId", postCtrl.findOne);
 
   // Création d'un nouveau post
-  router.post("/", multer, postControleur.create);
+  router.post("/", multer, postCtrl.create);
 
   // Supprimer un post avec Id
-  router.delete("/:postId", postControleur.delete);
+  router.delete("/:postId", postCtrl.delete);
 
 module.exports = router;
 
