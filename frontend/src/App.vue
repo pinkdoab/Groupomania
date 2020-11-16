@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" v-bind:pseudo="pseudo">
+      <p> {{ pseudo }}</p>
+      <!--router-link to="{ path: '/', data: pseudo }">Home</router-link-->
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
@@ -8,6 +10,16 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  data: function () {
+    return {
+      pseudo: 'inconnu'
+    }
+  }, 
+}
+</script>
 
 <style lang="scss">
 #app {

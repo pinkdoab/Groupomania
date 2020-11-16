@@ -21,6 +21,7 @@
 export default {
     name: 'ItemPost',
     props: ['texte','image','date','createur']
+
 }
 </script>
 

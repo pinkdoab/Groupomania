@@ -1,12 +1,12 @@
-const sql = require("../models/db.js");
+const connectionMySql = require("../models/db.js");
 const User = require("../models/modelsUser.js");
 
 // ----------------------------------------------------------------------------------------
-// Créer et enregistrer un nouveau user
+// Créer un nouveau user
 // ----------------------------------------------------------------------------------------
 User.create = (newUser, result) => {
 
-    sql.query("INSERT INTO t_user SET ?", newUser, (err, res) => {
+  connectionMySql.query("INSERT INTO t_user SET ?", newUser, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -17,9 +17,19 @@ User.create = (newUser, result) => {
       result(null, { id: res.insertId, ...newUser });
     });
 };
+/*-- Création
+CREATE USER 'login'@'hote' [IDENTIFIED BY 'mot_de_passe'];
 
+-- Suppression
+DROP USER 'login'@'hote';
+*/
+
+// ----------------------------------------------------------------------------------------
+// Connection user
+// ----------------------------------------------------------------------------------------
 User.findById = (userEmail, result) => {
-  sql.query(`SELECT * FROM t_user WHERE u_email = '${userEmail}'`, (err, res) => {
+
+  connectionMySql.query(`SELECT * FROM t_user WHERE u_email = '${userEmail}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

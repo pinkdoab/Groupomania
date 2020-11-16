@@ -1,10 +1,10 @@
 <template>
   <div  class="home">
 
-    <p>{{ publications }}</p>
+    <p>{{ publications }} t {{ pseudo }}</p>
     <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
     <CreaPost @refresh="refresh"></CreaPost>
-    <AffPosts   :publications="publications"></AffPosts>
+    <AffPosts :publications="publications"></AffPosts>
 
   </div>
 </template>
@@ -26,6 +26,11 @@ export default {
     return {
         publications: []
     }
+  },
+  props: {
+    pseudo:  {
+            type: String
+        },
   },
   mounted () {
     //this.refresh ()

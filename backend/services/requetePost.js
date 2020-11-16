@@ -1,4 +1,4 @@
-const sql = require("../models/db.js");
+const connectionMySql = require("../models/db.js");
 const Post = require("../models/modelsPost.js");
 
 // ----------------------------------------------------------------------------------------
@@ -6,7 +6,7 @@ const Post = require("../models/modelsPost.js");
 // ----------------------------------------------------------------------------------------
 Post.getAll = result => {
     //sql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date FROM t_publication", (err, res) => {
-    sql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date, t_user.u_nom AS createur  FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
+    connectionMySql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date, t_user.u_nom AS createur  FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -24,7 +24,7 @@ Post.getAll = result => {
 // ----------------------------------------------------------------------------------------
 Post.create = (newPost, result) => {
 
-  sql.query("INSERT INTO t_publication SET ?", newPost, (err, res) => {
+  connectionMySql.query("INSERT INTO t_publication SET ?", newPost, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -44,7 +44,7 @@ Post.create = (newPost, result) => {
 // Supprimer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 Post.remove = (id, result) => {
-  sql.query("DELETE FROM t_publication WHERE id = ?", id, (err, res) => {
+  connectionMySql.query("DELETE FROM t_publication WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -66,7 +66,7 @@ Post.remove = (id, result) => {
 // Récupérer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 Post.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM t_publication WHERE id = ${customerId}`, (err, res) => {
+  connectionMySql.query(`SELECT * FROM t_publication WHERE id = ${customerId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
