@@ -1,7 +1,7 @@
 <template>
   <div  class="home">
-
-    <p>{{ publications }} t {{ pseudo }}</p>
+    <p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}
+    <p>{{ publications }}</p>
     <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
     <CreaPost @refresh="refresh"></CreaPost>
     <AffPosts :publications="publications"></AffPosts>
@@ -26,11 +26,6 @@ export default {
     return {
         publications: []
     }
-  },
-  props: {
-    pseudo:  {
-            type: String
-        },
   },
   mounted () {
     //this.refresh ()
