@@ -1,7 +1,11 @@
 <template>
   <div  class="home">
     <p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}
+    <p>{{ $store.state.publication }}</p>
     <p>{{ publications }}</p>
+
+    <button @click="changerTexte">changerTexte</button>
+
     <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
     <CreaPost @refresh="refresh"></CreaPost>
     <AffPosts :publications="publications"></AffPosts>
@@ -36,6 +40,11 @@ export default {
     refresh () {
       axios.get('http://localhost:3000/Post')
       .then(response => (this.publications = response.data))
+    },
+    changerTexte() {
+      axios.get('http://localhost:3000/Post')
+      .then(response => (this.$store.dispatch('changerTexte', response.data)))
+      //this.$store.dispatch('changerTexte', this.publications)
     }
   }
 }

@@ -5,6 +5,8 @@
         </div>
         <div class="corps">
             <img v-bind:src="image" width="200">
+            <p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}
+
             <p class="bordure">{{ texte }}</p>
             <p class="bordure">{{ date }}</p>
             
