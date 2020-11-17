@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav" v-bind:pseudo="pseudo">
-      <p> {{ pseudo }}</p>
-      <!--router-link to="{ path: '/', data: pseudo }">Home</router-link-->
+    <div id="nav">
       <router-link to="/">Home</router-link> |
+      <router-link to="/SignIn">Connection</router-link> | 
+      <router-link to="/SignUp">Inscription</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>

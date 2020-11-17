@@ -7,14 +7,13 @@
 
     <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
     <CreaPost/>
-    <AffPosts :key10="componentKey"/>
+    <AffPosts/>
 
   </div>
 </template>
 
 
 <script>
-//const axios = require('axios');
 
 import CreaPost from '@/components/CreaPost.vue'
 import AffPosts from '@/components/AffPosts.vue'
@@ -25,20 +24,12 @@ export default {
     CreaPost,
     AffPosts    
   },
-      data: function() {
-        return {
-            //renders2: 1,
-            componentKey: 1, // à 1 car il y aura forcément 1 rendu
-        }
-    },
   created() {
     this.$store.dispatch('requete_get_publication')
-    //this.$forceUpdate();
     },
   methods: {
     changerTexte() {
       this.$store.dispatch('requete_get_publication');
-      //this.$forceUpdate();
     }
   }
 }
