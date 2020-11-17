@@ -7,7 +7,7 @@
 
             <form v-on:submit.prevent="addNewPost">
                 <!--p>publications : {{ publications }}</p-->
-                <h3 class="titre">Création d'une publication</h3>
+                <h3 class="titre">Création d'une publication {{ renders }}</h3>
                 <div class="input">
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
@@ -16,6 +16,7 @@
                     <textarea name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
                 <button class="bouton" @click="renders++" >Publication</button>
+                <!--button class="bouton" @click="changerTexte" >Publication</button-->
             </form>
         </div>
     </div>
@@ -38,7 +39,6 @@ export default {
     data: function() {
         return {
             newrequete: '',
-            newimage: '/Users/pink01/Desktop/photoA.png',
             renders: 1 // à 1 car il y aura forcément 1 rendu
         }
     },
@@ -56,13 +56,11 @@ export default {
             .then(response => {
                 console.log("reponse : ");
                 console.dir(response);
-                /*this.publications.push({
-                    id: response.data.id,
-                    titre: response.data.texte,
-                    imageUrl: response.data.imageUrl
-                });*/
-                this.$emit('refresh');
-                this.newrequete = '';       
+
+                this.$store.dispatch('requete_get_publication')
+                
+                this.newrequete = '';
+                            this.$forceUpdate();      
             });         
         }
 

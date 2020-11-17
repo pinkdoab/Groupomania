@@ -1,21 +1,20 @@
 <template>
   <div  class="home">
     <p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}
-    <p>{{ $store.state.publication }}</p>
-    <p>{{ publications }}</p>
+    <p>publication NEW :{{ $store.state.publication }}</p>
 
     <button @click="changerTexte">changerTexte</button>
 
     <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
-    <CreaPost @refresh="refresh"></CreaPost>
-    <AffPosts :publications="publications"></AffPosts>
+    <CreaPost/>
+    <AffPosts :key10="componentKey"/>
 
   </div>
 </template>
 
 
 <script>
-const axios = require('axios');
+//const axios = require('axios');
 
 import CreaPost from '@/components/CreaPost.vue'
 import AffPosts from '@/components/AffPosts.vue'
@@ -24,26 +23,35 @@ export default {
   name: 'Home',
   components: {
     CreaPost,
-    AffPosts
+    AffPosts    
   },
-  data: function () {
-    return {
-        publications: []
-    }
-  },
-  mounted () {
+      data: function() {
+        return {
+            //renders2: 1,
+            componentKey: 1, // à 1 car il y aura forcément 1 rendu
+        }
+    },
+  created() {
+    this.$store.dispatch('requete_get_publication')
+    //axios.get('http://localhost:3000/Post')
+    //.then(response => (this.$store.dispatch('changerTexte', response.data)))
+    },
+  /*mounted () {
+    this.$store.dispatch('fetchNotes')
     //this.refresh ()
     axios.get('http://localhost:3000/Post')
-    .then(response => (this.publications = response.data))
-  },
+    //.then(response => (this.publications = response.data))
+    .then(response => (this.$store.dispatch('changerTexte', response.data)))
+  },*/
   methods: {
-    refresh () {
-      axios.get('http://localhost:3000/Post')
-      .then(response => (this.publications = response.data))
-    },
+    //refresh () {
+      //axios.get('http://localhost:3000/Post')
+      //.then(response => (this.publications = response.data))
+    //},
     changerTexte() {
-      axios.get('http://localhost:3000/Post')
-      .then(response => (this.$store.dispatch('changerTexte', response.data)))
+      this.$store.dispatch('requete_get_publication')
+      //axios.get('http://localhost:3000/Post')
+      //.then(response => (this.$store.dispatch('changerTexte', response.data)))
       //this.$store.dispatch('changerTexte', this.publications)
     }
   }
