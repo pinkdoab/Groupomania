@@ -4,7 +4,7 @@
     <div id="post-list-example">
         <p>posteNew</p>
         <li is="ItemPost"
-            v-for="(req) in $store.state.publication"
+            v-for="req in $store.state.publication"
             v-bind:key="req.id"
             v-bind:id="req.id"
             v-bind:texte="req.texte"
@@ -18,7 +18,6 @@
 </div>
 </template>
 
-
 <!------------------------------------------------------------------------>
 <script>
 import ItemPost from './ItemPost.vue'
@@ -30,7 +29,6 @@ export default {
     }
 }
 </script>
-
 
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">

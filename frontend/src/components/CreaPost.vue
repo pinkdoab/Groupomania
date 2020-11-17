@@ -7,7 +7,7 @@
 
             <form v-on:submit.prevent="addNewPost">
                 <!--p>publications : {{ publications }}</p-->
-                <h3 class="titre">Création d'une publication {{ renders }}</h3>
+                <h3 class="titre">Création d'une publication</h3>
                 <div class="input">
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
@@ -29,17 +29,10 @@ const axios = require('axios');
 
 export default {
     name: 'ListPosts2',
-    components: {
-    },
-    props: {
-        //publications: {
-        //    type: Array
-        //}
-    },
     data: function() {
         return {
             newrequete: '',
-            renders: 1 // à 1 car il y aura forcément 1 rendu
+            renders: 1
         }
     },
     methods: {
@@ -51,17 +44,15 @@ export default {
                 console.dir(imagefile.files[0])
                 formData.append("image", imagefile.files[0]);
 
-
             axios.post('http://localhost:3000/Post', formData)
             .then(response => {
                 console.log("reponse : ");
                 console.dir(response);
-
-                this.$store.dispatch('requete_get_publication')
                 
                 this.newrequete = '';
-                            this.$forceUpdate();      
-            });         
+                this.$store.dispatch('requete_get_publication');     
+            });
+            this.$forceUpdate();       
         }
 
     }

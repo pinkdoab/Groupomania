@@ -32,7 +32,6 @@ export default new Vuex.Store({
       .then( function(res) {
         context.commit('GET_PUBLICATION', res.data);
       })
-      //.then(response => (this.$store.dispatch('changerTexte', response.data)))
     }
   },
   modules: {

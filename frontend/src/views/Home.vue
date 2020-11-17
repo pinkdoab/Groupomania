@@ -33,26 +33,12 @@ export default {
     },
   created() {
     this.$store.dispatch('requete_get_publication')
-    //axios.get('http://localhost:3000/Post')
-    //.then(response => (this.$store.dispatch('changerTexte', response.data)))
+    //this.$forceUpdate();
     },
-  /*mounted () {
-    this.$store.dispatch('fetchNotes')
-    //this.refresh ()
-    axios.get('http://localhost:3000/Post')
-    //.then(response => (this.publications = response.data))
-    .then(response => (this.$store.dispatch('changerTexte', response.data)))
-  },*/
   methods: {
-    //refresh () {
-      //axios.get('http://localhost:3000/Post')
-      //.then(response => (this.publications = response.data))
-    //},
     changerTexte() {
-      this.$store.dispatch('requete_get_publication')
-      //axios.get('http://localhost:3000/Post')
-      //.then(response => (this.$store.dispatch('changerTexte', response.data)))
-      //this.$store.dispatch('changerTexte', this.publications)
+      this.$store.dispatch('requete_get_publication');
+      //this.$forceUpdate();
     }
   }
 }

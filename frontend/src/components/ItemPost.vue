@@ -36,10 +36,8 @@ export default {
             .delete(`http://localhost:3000/Post/${this.id}`)
             .then(response => {
                 console.log('response.data  : ',response.data); 
-                this.$store.dispatch('requete_get_publication');
-            this.$forceUpdate();                
+                this.$store.dispatch('requete_get_publication');              
             });
-            this.$store.dispatch('requete_get_publication');
             this.$forceUpdate();
         }
     }
