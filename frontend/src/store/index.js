@@ -8,7 +8,9 @@ export default new Vuex.Store({
     day: 29,
     month: 6,
     year: 1962,
-    publication: []
+    publication: [],
+    utilisateur: '',
+    token: ''
   },
   getters: {
     formattedDate: state => {

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Inscription à Groupomania</h1>
+    <h1>Inscription utilisateur à Groupomania</h1>
 
     <label for="util">Pseudo</label>
     <input id="util" type="text" v-model="pseudo"/>
@@ -9,9 +9,8 @@
     <label for="pass">Password</label>
     <input id="pass" type="text" v-model="password"/>
 
-    <button class="bouton" @click="connection">Connection</button>
+    <button class="bouton" @click="connection">Inscription</button>
 
-<p>pseudo : {{ pseudo }}  email : {{ email }}  password : {{ password }}</p>
   </div>
 </template>
 
@@ -19,7 +18,7 @@
 const axios = require('axios');
 
 export default {
-  name: 'About',
+  name: 'SignUp',
   data: function () {
     return {
       pseudo: '',
@@ -38,9 +37,9 @@ export default {
         .then(function (response) {
             console.log(response);
         })
-        .catch(function (error) {
+        /*.catch(function (error) {
             console.log(error);
-        });
+        });*/
         this.$router.push({name: 'Home'});
     }
   }

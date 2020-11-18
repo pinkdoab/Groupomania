@@ -46,13 +46,12 @@ export default {
 
             axios.post('http://localhost:3000/Post', formData)
             .then(response => {
-                console.log("reponse : ");
-                console.dir(response);
+                console.log('response de la requête création post : ',response.data);
                 
                 this.newrequete = '';
                 this.$store.dispatch('requete_get_publication');     
-            });
-            this.$forceUpdate();       
+            })
+            //this.$forceUpdate();       
         }
 
     }

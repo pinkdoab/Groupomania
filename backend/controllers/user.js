@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require("../services/requeteUser.js");
 
 
@@ -8,7 +9,7 @@ exports.signup = (req, res, next) => {
         const user = new User({
             u_nom: req.body.nom,
             u_email: req.body.email,
-            u_code_secret: hash
+            u_password: hash
         });
 
         // Sauvegarde du user dans la base de données
@@ -23,12 +24,14 @@ exports.signup = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
-
+// --------------------------------------------------------------------------
 exports.login = (req, res, next) => {
-    console.log('req.body')
+    console.log('req.body : ')
     console.dir(req.body);
 
     User.findById(req.body.email, (err, data) => {
+      //console.dir(err)
+      console.dir(data)
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
@@ -43,8 +46,8 @@ exports.login = (req, res, next) => {
         } else {
             console.log('data : ', data);
 
-            console.log('data.email : ', data.u_code_secret);
-            console.log('req.body : ', req.body.password);
+            console.log('data.u_code_secret : ', data.u_code_secret);
+            console.log('req.body.password : ', req.body.password);
 
             bcrypt.compare(req.body.password, data.u_code_secret)
             .then(valid => {
@@ -52,12 +55,17 @@ exports.login = (req, res, next) => {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
                 }
                 res.status(200).json({
-                //...data,
                 userId: data.u_id,
-                token: 'TOKEN'
-                });   
-            })                
+                token: jwt.sign(
+                  { userId: data.u_id },
+                  'RANDOM_TOKEN_SECRET',
+                  { expiresIn: '2 days' }
+                )
+                });  
+            })
+            //console.log('error : ', error)
             .catch(error => res.status(500).json({ error }));
+            //.catch(error => res.status(500).json({ error: 'probleme !' }));
         }
     });
 };

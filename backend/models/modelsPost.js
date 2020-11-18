@@ -1,4 +1,4 @@
-// constructeur pour les requetes (équivalence entre nom BdD et nom serveur)
+// constructeur pour les requetes (à gauche : nom BdD et à droite création variable du post)
 const Post = function(post) {
     this.p_texte = post.p_texte;
     this.p_image_url = post.p_image_url;

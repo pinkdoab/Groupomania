@@ -30,11 +30,8 @@ Post.create = (newPost, result) => {
       result(null, err);
       return;
     }
-    //result(null, res);
-    console.log("Création du post: ", { id: res.insertId, ...newPost });
+    //console.log("Création du post: ", { id: res.insertId, ...newPost });
     result(null, { id: res.insertId, ...newPost });
-    //console.log("Création du post: ", { id: res.insertId, texte: newPost.p_texte, imageUrl: newPost.p_image_url, date: newPost.p_date_creation, createur: newPost.createur});
-    //result(null, { id: res.insertId, texte: newPost.p_texte, imageUrl: newPost.p_image_url, date: newPost.p_date_creation, createur: newPost.p_user_createur});  // date: response.data.date, createur: response.data.createur
   });
 
 };

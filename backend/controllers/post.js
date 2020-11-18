@@ -48,14 +48,11 @@ exports.create = (req, res) => {
   }
   // La requête possède un req.file (pour filename non indéfini) ?
   if (!req.file) {
-    res.status(410).send({
-      message: "Le req.file ne peut pas être vide!"
+    res.status(404).send({
+      message: "Manque l'image !"
     });
   } else {
-    //console.log(req)
-    console.log('\nreq.body : ' + JSON.stringify(req.body));
-    console.log('\nreq.file')
-    console.dir(req.file);
+    console.log('\nreq.body de POST.create : ' + JSON.stringify(req.body));
 
     // Création d'un post
     const post = new Post({
@@ -70,19 +67,17 @@ exports.create = (req, res) => {
           message:
             err.message || "Une erreur s'est produite lors de la création du post"
         });
-      //else res.send(data);
+      else res.send(data);
     });
 
-
-
-    Post.getAll((err, data) => {
+    /*Post.getAll((err, data) => {
       if (err)
         res.status(501).send({
           message:
             err.message || "Une erreur s'est produite lors de la récupération des posts"
         });
       else res.send(data);
-    });
+    });*/
   //});
 
 
