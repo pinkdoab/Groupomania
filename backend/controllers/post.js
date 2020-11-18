@@ -66,23 +66,6 @@ exports.create = (req, res) => {
       });
     else res.send(data);
   });
-
-    /*Post.getAll((err, data) => {
-      if (err)
-        res.status(501).send({
-          message:
-            err.message || "Une erreur s'est produite lors de la récupération des posts"
-        });
-      else res.send(data);
-    });*/
-  //});
-
-
-
-
-
-
-  //}
 };
 
 
@@ -91,12 +74,15 @@ exports.create = (req, res) => {
 // ----------------------------------------------------------------------------------------
 exports.delete = (req, res) => {
   Post.findById(req.params.postId, (err, data, next) => {
+    console.log('data : ')
     console.dir(data);
-    const filename = data.p_image_url.split('/images/')[1];
-    console.log('data.imageUrl : ' + filename)
-    fs.unlink(`images/${filename}`, () => {
-      console.log("Suppression de l'image du serveur : " + filename)
-    });
+    if(data.p_image_url != 'aucune') {
+      const filename = data.p_image_url.split('/images/')[1];
+      console.log('data.imageUrl : ' + filename)
+      fs.unlink(`images/${filename}`, () => {
+        console.log("Suppression de l'image du serveur : " + filename)
+      });
+    }
   });
 
   Post.remove(req.params.postId, (err, data) => {

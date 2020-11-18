@@ -38,7 +38,7 @@ export default {
                 console.log('response.data  : ',response.data); 
                 this.$store.dispatch('requete_get_publication');              
             });
-            this.$forceUpdate();
+            //this.$forceUpdate();
         }
     }
 
