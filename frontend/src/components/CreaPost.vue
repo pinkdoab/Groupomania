@@ -1,22 +1,15 @@
 <template>
     <div>
-        
-<!--router-link to="/CreaPost">Page créa post</router-link-->
-
         <div id="post-list-example">
-
             <form v-on:submit.prevent="addNewPost">
-                <!--p>publications : {{ publications }}</p-->
                 <h3 class="titre">Création d'une publication</h3>
                 <div class="input">
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
                 <div>
-                    <!--textarea name="nom" v-model="newrequete" id="new-post" rows=4 cols=60></textarea-->
                     <textarea name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
-                <button class="bouton" @click="renders++" >Publication</button>
-                <!--button class="bouton" @click="changerTexte" >Publication</button-->
+                <button class="bouton">Publication</button>
             </form>
         </div>
     </div>
@@ -31,8 +24,7 @@ export default {
     name: 'ListPosts2',
     data: function() {
         return {
-            newrequete: '',
-            renders: 1
+            newrequete: ''
         }
     },
     methods: {
@@ -55,7 +47,6 @@ export default {
             })
             //this.$forceUpdate();       
         }
-
     }
 }
 </script>

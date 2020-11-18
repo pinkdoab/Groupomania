@@ -1,17 +1,13 @@
 <template>
   <div  class="home">
-    <p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}
-    <p>publication NEW :{{ $store.state.publication }}</p>
+    <p>publication : {{ $store.state.publication }}</p>
+    <p>utilisateur : {{ $store.state.utilisateur }}</p>
 
-    <button @click="changerTexte">changerTexte</button>
-
-    <!--CreaPost @refresh="refresh" :publications="publications" ></CreaPost-->
     <CreaPost/>
     <AffPosts/>
 
   </div>
 </template>
-
 
 <script>
 
@@ -27,11 +23,6 @@ export default {
   created() {
     this.$store.dispatch('requete_get_publication')
     },
-  methods: {
-    changerTexte() {
-      this.$store.dispatch('requete_get_publication');
-    }
-  }
 }
 </script>
 

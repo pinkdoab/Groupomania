@@ -26,12 +26,11 @@ exports.signup = (req, res, next) => {
 };
 // --------------------------------------------------------------------------
 exports.login = (req, res, next) => {
-    console.log('req.body : ')
-    console.dir(req.body);
+    console.log('req.body', req.body);
+    console.log('req.body.email', req.body.email);
 
     User.findById(req.body.email, (err, data) => {
-      //console.dir(err)
-      console.dir(data)
+      console.log('data findById : ', data)
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({

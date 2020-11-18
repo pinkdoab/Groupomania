@@ -9,8 +9,7 @@ export default new Vuex.Store({
     month: 6,
     year: 1962,
     publication: [],
-    utilisateur: '',
-    token: ''
+    utilisateur: 'inconnu'
   },
   getters: {
     formattedDate: state => {
@@ -18,17 +17,15 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    COPIE_NOM(state, payload) {
-      state.publication = payload
+    CHG_USER(state, payload) {
+      console.log('r3', payload)
+      state.utilisateur = payload
     },
     GET_PUBLICATION(state,data) {
       state.publication = data;
     },
   },
   actions: {
-    changerTexte(context, payload) {
-      context.commit("COPIE_NOM",payload)
-    },
     requete_get_publication(context) {
       axios.get('http://localhost:3000/Post')
       .then( function(res) {

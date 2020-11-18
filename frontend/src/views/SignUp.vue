@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Inscription utilisateur à Groupomania</h1>
+    <h1>Inscription de l'utilisateur</h1>
 
     <label for="util">Pseudo</label>
     <input id="util" type="text" v-model="pseudo"/>
