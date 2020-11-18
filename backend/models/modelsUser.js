@@ -1,7 +1,7 @@
 const User = function(user) {
-    this.u_nom = user.u_nom;   // à gauche : nom dans la BdD
+    this.u_pseudo = user.u_pseudo;   // à gauche : nom dans la BdD
     this.u_email = user.u_email;
-    this.u_code_secret = user.u_code_secret;
+    this.u_password = user.u_password;
   };
 
   module.exports = User;

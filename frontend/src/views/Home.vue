@@ -4,7 +4,7 @@
     <p>utilisateur : {{ $store.state.utilisateur }}</p>
 
     <CreaPost/>
-    <AffPosts/>
+    <ListPost/>
 
   </div>
 </template>
@@ -12,13 +12,13 @@
 <script>
 
 import CreaPost from '@/components/CreaPost.vue'
-import AffPosts from '@/components/AffPosts.vue'
+import ListPost from '@/components/ListPost.vue'
 
 export default {
   name: 'Home',
   components: {
     CreaPost,
-    AffPosts    
+    ListPost    
   },
   created() {
     this.$store.dispatch('requete_get_publication')

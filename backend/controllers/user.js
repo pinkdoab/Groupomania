@@ -7,7 +7,7 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({
-            u_nom: req.body.nom,
+            u_pseudo: req.body.nom,
             u_email: req.body.email,
             u_password: hash
         });
@@ -45,10 +45,10 @@ exports.login = (req, res, next) => {
         } else {
             console.log('data : ', data);
 
-            console.log('data.u_code_secret : ', data.u_code_secret);
+            console.log('data.u_password : ', data.u_password);
             console.log('req.body.password : ', req.body.password);
 
-            bcrypt.compare(req.body.password, data.u_code_secret)
+            bcrypt.compare(req.body.password, data.u_password)
             .then(valid => {
                 if (!valid) {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
