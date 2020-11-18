@@ -30,12 +30,11 @@ export default {
     props: ['texte','image','date','createur','id'],
     methods: {
         suppPost: function () {
-            console.log('Id : ', this.id)
 
             axios
             .delete(`http://localhost:3000/Post/${this.id}`)
             .then(response => {
-                console.log('response.data  : ',response.data); 
+                console.log('response requête delete : ',response.data.message); 
                 this.$store.dispatch('requete_get_publication');              
             });
             //this.$forceUpdate();

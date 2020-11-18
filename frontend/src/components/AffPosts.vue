@@ -1,7 +1,6 @@
 <template>
     <div>
         <div id="post-list-example">
-            <p>posteNew</p>
             <li is="ItemPost"
                 v-for="req in $store.state.publication"
                 v-bind:key="req.id"
