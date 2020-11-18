@@ -41,8 +41,10 @@ export default {
             const formData = new FormData();
                 formData.append('texte', this.newrequete);
                 var imagefile = document.querySelector('#avatar');
+                if (imagefile.files[0]){
                 console.dir(imagefile.files[0])
                 formData.append("image", imagefile.files[0]);
+                }
 
             axios.post('http://localhost:3000/Post', formData)
             .then(response => {

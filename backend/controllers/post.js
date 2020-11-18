@@ -47,28 +47,25 @@ exports.create = (req, res) => {
     });
   }
   // La requête possède un req.file (pour filename non indéfini) ?
-  if (!req.file) {
-    res.status(404).send({
-      message: "Manque l'image !"
-    });
-  } else {
-    console.log('\nreq.body de POST.create : ' + JSON.stringify(req.body));
-
-    // Création d'un post
-    const post = new Post({
-      p_texte: req.body.texte,
-      p_image_url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    });
-
-    // Sauvegarde du post dans la base de données
-    Post.create(post, (err, data) => {
-      if (err)
-        res.status(500).send({
-          message:
-            err.message || "Une erreur s'est produite lors de la création du post"
-        });
-      else res.send(data);
-    });
+  var image = 'aucune'
+  if (req.file) {
+    image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  }
+  // Création d'un post
+  const post = new Post({
+    p_texte: req.body.texte,
+    p_image_url: image
+  });
+  
+  // Sauvegarde du post dans la base de données
+  Post.create(post, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Une erreur s'est produite lors de la création du post"
+      });
+    else res.send(data);
+  });
 
     /*Post.getAll((err, data) => {
       if (err)
@@ -85,7 +82,7 @@ exports.create = (req, res) => {
 
 
 
-  }
+  //}
 };
 
 
