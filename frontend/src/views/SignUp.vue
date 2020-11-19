@@ -37,9 +37,9 @@ export default {
         .then(function (response) {
             console.log(response);
         })
-        /*.catch(function (error) {
+        .catch(function (error) {
             console.log(error);
-        });*/
+        });
         this.$router.push({name: 'Home'});
     }
   }

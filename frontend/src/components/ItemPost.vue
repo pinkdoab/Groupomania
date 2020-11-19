@@ -15,7 +15,7 @@
         </div>
         <div class ="pied">
             <!--button v-on:click="$emit('remove')">Remove</button-->
-            <button  @click="suppPost">Remove2</button>
+            <button @click="suppPost">Remove2</button>
         </div>
     </div>
 </template>

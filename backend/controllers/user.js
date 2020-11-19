@@ -26,18 +26,18 @@ exports.signup = (req, res, next) => {
 // --------------------------------------------------------------------------
 exports.login = (req, res, next) => {
     console.log('req.body', req.body);
-    console.log('req.body.pseudo', req.body.pseudo);
+    console.log('req.body.userId', req.body.userId);
 
-    User.findById(req.body.pseudo, (err, data) => {
+    User.findById(req.body.userId, (err, data) => {
       console.log('data findById : ', data)
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `user non trouvé avec pseudo : ${req.body.pseudo}.`
+              message: `user non trouvé avec userId : ${req.body.userId}.`
             });
           } else {
             res.status(500).send({
-              message: "erreur lors de la récupération du user avec pseudo " + req.body.pseudo
+              message: "erreur lors de la récupération du user avec userId " + req.body.userId
             });
           }
         } else {
@@ -52,7 +52,7 @@ exports.login = (req, res, next) => {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
                 }
                 res.status(200).json({
-                pseudo: data.u_pseudo,
+                  userId: data.u_id,
                 token: jwt.sign(
                   { userId: data.u_id },
                   'RANDOM_TOKEN_SECRET',

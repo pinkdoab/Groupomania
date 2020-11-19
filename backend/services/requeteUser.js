@@ -22,9 +22,9 @@ User.create = (newUser, result) => {
 // ----------------------------------------------------------------------------------------
 // Connection user
 // ----------------------------------------------------------------------------------------
-User.findById = (pseudo, result) => {
+User.findById = (userId, result) => {
 
-  connectionMySql.query(`SELECT * FROM t_user WHERE u_pseudo = '${pseudo}'`, (err, res) => {
+  connectionMySql.query(`SELECT * FROM t_user WHERE u_id = '${userId}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

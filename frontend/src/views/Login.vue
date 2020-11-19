@@ -2,12 +2,12 @@
   <div class="about">
     <h1>Connection de l'utilisateur</h1>
     <form>
-    <label for="util">Pseudo</label>
-    <input id="util" type="text" v-model="pseudo"/>
+    <label for="util">userId</label>
+    <input id="util" type="text" v-model="userId"/>
     <label for="pass">Password</label>
     <input id="pass" type="text" v-model="password"/>
 
-    <button class="bouton" @click="connection">Connection</button>
+    <button type="button" class="bouton" @click="connection">Connection</button>
     </form>
 
     <p>UserActif : {{ $store.state.UserActif }}</p>
@@ -22,7 +22,7 @@ export default {
   name: 'SignIn',
   data: function () {
     return {
-      pseudo: '',
+      userId: 0,
       password: ''
     }
   },
@@ -30,15 +30,16 @@ export default {
     connection: function () {
 
       axios.post('http://localhost:3000/auth/login/', {
-          pseudo: this.pseudo,
+          userId: this.userId,
           password: this.password,
       })
       .then(response => {
-        this.$store.commit('CHG_USER', response.data.pseudo)
+        this.$store.commit('CHG_USER', response.data.userId)
       })
       .catch(function (error) {
           console.log(error);
       });
+      this.$router.push({name: 'Home'});
     }
   }
 }
