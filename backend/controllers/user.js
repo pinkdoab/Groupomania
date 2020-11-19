@@ -16,10 +16,9 @@ exports.signup = (req, res, next) => {
         User.create(user, (err, data) => {
             if (err)
             res.status(500).send({
-                message:
-                err.message || "Une erreur s'est produite lors de la création du user"
+                message: err.message || "Une erreur s'est produite lors de la création du user"
             });
-            else res.send(data);
+            else res.status(200).send(data);
         });
     })
     .catch(error => res.status(500).json({ error }));
@@ -27,21 +26,20 @@ exports.signup = (req, res, next) => {
 // --------------------------------------------------------------------------
 exports.login = (req, res, next) => {
     console.log('req.body', req.body);
-    console.log('req.body.email', req.body.email);
+    console.log('req.body.pseudo', req.body.pseudo);
 
-    User.findById(req.body.email, (err, data) => {
+    User.findById(req.body.pseudo, (err, data) => {
       console.log('data findById : ', data)
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `user non trouvé avec email : ${req.body.email}.`
+              message: `user non trouvé avec pseudo : ${req.body.pseudo}.`
             });
           } else {
             res.status(500).send({
-              message: "erreur lors de la récupération du user avec email " + req.body.email
+              message: "erreur lors de la récupération du user avec pseudo " + req.body.pseudo
             });
           }
-        //} else res.send(data);
         } else {
             console.log('data : ', data);
 
@@ -54,7 +52,7 @@ exports.login = (req, res, next) => {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
                 }
                 res.status(200).json({
-                userId: data.u_id,
+                pseudo: data.u_pseudo,
                 token: jwt.sign(
                   { userId: data.u_id },
                   'RANDOM_TOKEN_SECRET',

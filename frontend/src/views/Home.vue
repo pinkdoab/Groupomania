@@ -1,7 +1,7 @@
 <template>
   <div  class="home">
     <p>publication : {{ $store.state.publication }}</p>
-    <p>utilisateur : {{ $store.state.utilisateur }}</p>
+    <p>UserActif : {{ $store.state.UserActif }}</p>
 
     <CreaPost/>
     <ListPost/>

@@ -11,8 +11,7 @@ Post.getAll = result => {
         console.log("error: ", err);
         result(null, err);
         return;
-      }
-  
+      }  
       console.log("post getAll: ", res);
       result(null, res);
     });

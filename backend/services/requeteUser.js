@@ -14,22 +14,17 @@ User.create = (newUser, result) => {
       }
       //result(null, res);
       console.log("Création du user: ", { id: res.insertId, ...newUser });
-      result(null, { id: res.insertId, ...newUser });
+      //result(null, { id: res.insertId, ...newUser });
+      result(null, {message: `La création du user ${newUser.u_pseudo} c'est bien passé`});
     });
 };
-/*-- Création
-CREATE USER 'login'@'hote' [IDENTIFIED BY 'mot_de_passe'];
-
--- Suppression
-DROP USER 'login'@'hote';
-*/
 
 // ----------------------------------------------------------------------------------------
 // Connection user
 // ----------------------------------------------------------------------------------------
-User.findById = (userEmail, result) => {
+User.findById = (pseudo, result) => {
 
-  connectionMySql.query(`SELECT * FROM t_user WHERE u_email = '${userEmail}'`, (err, res) => {
+  connectionMySql.query(`SELECT * FROM t_user WHERE u_pseudo = '${pseudo}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
