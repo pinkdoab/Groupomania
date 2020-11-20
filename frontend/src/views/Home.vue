@@ -2,8 +2,8 @@
   <div  class="home">
     <!--p>publication : {{ $store.state.publication }}</p-->
 
-    <DisplayUser/>
     <LoginUser/>
+    <DisplayUser/>
     <ListUser/>
     <CreaPost/>
     <ListPost/>

@@ -1,21 +1,17 @@
 <template>
-    <div class="post">
+    <div  v-if="(this.$store.state.UserDisplay === this.createurId) || (this.$store.state.UserDisplay === 0)" class="post">        <!-- affiche post suivant UserDisplay -->
+    <!--div class="post"-->
         <div class="entete">
             <!--p class="bordure">id : {{ id }}</p-->
-            <p class="bordure">créateurPseudo : {{ createurPseudo }}</p>
-            <p class="bordure">créateurId : {{ createurId }}</p>
-            <p class="bordure">dateCréation : {{ dateCreation }}</p>
+            <p class="bordure">{{ createurPseudo }}{{ dateCreation }}</p>
         </div>
         <div class="corps">
-            <img v-bind:src="image" width="200">
-            <!--p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}</p-->
-            
-            <p class="bordure">texte : {{ texte }}</p>
-
+            <img v-if="image !== 'aucune'" v-bind:src="image" width="200">           
+            <p class="bordure">{{ texte }}</p>
         </div>
         <div class ="pied">
             <!--button v-on:click="$emit('remove')">Remove</button-->
-            <button @click="suppPost">Remove2</button>
+            <button @click="suppPost">Supprimer</button>
         </div>
     </div>
 </template>
@@ -28,6 +24,10 @@ const axios = require('axios');
 export default {
     name: 'ItemPost',
     props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
+    created() {
+        console.log('création');
+
+    },
     methods: {
         suppPost: function () {
 

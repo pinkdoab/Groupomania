@@ -1,8 +1,9 @@
 <template>
-<div id="user-list">
+<div v-if="this.$store.state.UserLogin !== 0" id="user-list">
     <h3>ListUser</h3>
     <button  @click="AffUser(0)">tous</button>
-    <button  @click="AffUser(41)">Alpha</button>
+    <button  @click="AffUser(41)">Pink</button>
+    <button  @click="AffUser(44)">Alpha</button>
     <button  @click="AffUser(45)">Bêta</button>
     <button  @click="AffUser(46)">Gamma</button>
     <button  @click="AffUser(47)">Delta</button>
@@ -17,10 +18,8 @@
 export default {
     name: 'ListUser',
     methods: {
-        AffUser: function (zzz) {
-            console.log("zzz : ", zzz)
-            this.$store.commit('CHG_USERDISPLAY', zzz)
-            
+        AffUser: function (index) {
+            this.$store.commit('CHG_USERDISPLAY', index)            
         }
     }
 }

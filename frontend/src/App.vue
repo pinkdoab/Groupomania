@@ -4,7 +4,6 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Connection</router-link> | 
       <router-link to="/SignUp">Inscription</router-link> |
-      <!--router-link to="/about">About</router-link-->
     </div>
     <router-view/>
   </div>

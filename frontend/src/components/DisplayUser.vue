@@ -1,5 +1,5 @@
 <template>
-<div id="user-info">
+<div v-if="this.$store.state.UserLogin !== 0" id="user-info">
     <h3>DisplayUser</h3>
     <p>UserLogin : {{ $store.state.UserDisplay }}</p>
 </div>

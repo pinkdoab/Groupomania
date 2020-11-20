@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div v-if="this.$store.state.UserLogin !== 0">
         <div id="post-list-example">
             <form v-on:submit.prevent="addNewPost">
                 <h3 class="titre">Création d'une publication</h3>
-                                <h3 class="titre">{{ }}Création d'une publication</h3>
+
                 <div class="input">
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
@@ -11,6 +11,7 @@
                     <textarea name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
                 <button class="bouton">Publication</button>
+                <p>{{ avertissement }}</p>
             </form>
         </div>
     </div>
@@ -27,6 +28,7 @@ export default {
     data: function() {
         return {
             newrequete: '',
+            avertissement: ''
         }
     },
     computed: {
@@ -35,11 +37,16 @@ export default {
     methods: {
 
         addNewPost: function () {
-            console.log('$store.state.UserLogin : ',this.$store.state.UserLogin)
+            var imagefile = document.querySelector('#avatar');
+
+            if (this.$store.state.UserLogin == 0) {
+                this.avertissement = 'Attention : aucun login sélectionné';
+                return;
+                }
             const formData = new FormData();
             formData.append('texte', this.newrequete);
             formData.append('createur', this.$store.state.UserLogin);
-            var imagefile = document.querySelector('#avatar');
+            
             if (imagefile.files[0]){
                 formData.append('image', imagefile.files[0]);
             }
