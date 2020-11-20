@@ -1,9 +1,9 @@
 <template>
   <div  class="home">
     <!--p>publication : {{ $store.state.publication }}</p-->
-    <p>UserLogin : {{ $store.state.UserLogin }}</p>
-    <p>UserDisplay : {{ $store.state.UserDisplay }}</p>
 
+    <DisplayUser/>
+    <InfoUser/>
     <ListUser/>
     <CreaPost/>
     <ListPost/>
@@ -12,7 +12,8 @@
 </template>
 
 <script>
-
+import DisplayUser from '@/components/DisplayUser.vue'
+import InfoUser from '@/components/InfoUser.vue'
 import ListUser from '@/components/ListUser.vue'
 import CreaPost from '@/components/CreaPost.vue'
 import ListPost from '@/components/ListPost.vue'
@@ -20,6 +21,8 @@ import ListPost from '@/components/ListPost.vue'
 export default {
   name: 'Home',
   components: {
+    DisplayUser,
+    InfoUser,
     ListUser,
     CreaPost,
     ListPost    

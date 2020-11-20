@@ -31,6 +31,6 @@ export default {
 #user-list {
     width: 70%;
     margin: 10px auto;
-    background-color:rgb(114, 176, 27);
+    background-color:rgb(206, 252, 228);
 }
 </style>

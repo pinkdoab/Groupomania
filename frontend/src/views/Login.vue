@@ -2,8 +2,8 @@
   <div class="about">
     <h1>Connection de l'utilisateur</h1>
     <form>
-    <label for="util">userId</label>
-    <input id="util" type="text" v-model="userId"/>
+    <label for="util">Pseudo</label>
+    <input id="util" type="text" v-model="pseudo"/>
     <label for="pass">Password</label>
     <input id="pass" type="text" v-model="password"/>
 
@@ -22,7 +22,7 @@ export default {
   name: 'SignIn',
   data: function () {
     return {
-      userId: 0,
+      pseudo: '',
       password: ''
     }
   },
@@ -30,7 +30,7 @@ export default {
     connection: function () {
 
       axios.post('http://localhost:3000/auth/login/', {
-          userId: this.userId,
+          pseudo: this.pseudo,
           password: this.password,
       })
       .then(response => {

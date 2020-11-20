@@ -26,18 +26,18 @@ exports.signup = (req, res, next) => {
 // --------------------------------------------------------------------------
 exports.login = (req, res, next) => {
     console.log('req.body', req.body);
-    console.log('req.body.userId', req.body.userId);
+    console.log('req.body.pseudo', req.body.userId);
 
-    User.findById(req.body.userId, (err, data) => {
+    User.findById(req.body.pseudo, (err, data) => {
       console.log('data findById : ', data)
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `user non trouvé avec userId : ${req.body.userId}.`
+              message: `user non trouvé avec userId : ${req.body.pseudo}.`
             });
           } else {
             res.status(500).send({
-              message: "erreur lors de la récupération du user avec userId " + req.body.userId
+              message: "erreur lors de la récupération du user avec userId " + req.body.pseudo
             });
           }
         } else {
