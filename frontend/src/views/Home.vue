@@ -3,7 +3,7 @@
     <!--p>publication : {{ $store.state.publication }}</p-->
 
     <DisplayUser/>
-    <InfoUser/>
+    <LoginUser/>
     <ListUser/>
     <CreaPost/>
     <ListPost/>
@@ -13,7 +13,7 @@
 
 <script>
 import DisplayUser from '@/components/DisplayUser.vue'
-import InfoUser from '@/components/InfoUser.vue'
+import LoginUser from '@/components/LoginUser.vue'
 import ListUser from '@/components/ListUser.vue'
 import CreaPost from '@/components/CreaPost.vue'
 import ListPost from '@/components/ListPost.vue'
@@ -22,7 +22,7 @@ export default {
   name: 'Home',
   components: {
     DisplayUser,
-    InfoUser,
+    LoginUser,
     ListUser,
     CreaPost,
     ListPost    

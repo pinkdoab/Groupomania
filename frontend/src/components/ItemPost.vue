@@ -1,16 +1,16 @@
 <template>
     <div class="post">
         <div class="entete">
-            <p class="bordure">{{ createur }}</p>
+            <!--p class="bordure">id : {{ id }}</p-->
+            <p class="bordure">créateurPseudo : {{ createurPseudo }}</p>
+            <p class="bordure">créateurId : {{ createurId }}</p>
+            <p class="bordure">dateCréation : {{ dateCreation }}</p>
         </div>
         <div class="corps">
             <img v-bind:src="image" width="200">
-            <p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}
-
-            <p class="bordure">{{ texte }}</p>
-            <p class="bordure">{{ date }}</p>
-            <p class="bordure">{{ createur }}</p>
-            <p class="bordure">{{ id }}</p>
+            <!--p>{{ $store.state.day }}/{{ $store.state.month }}/{{ $store.state.year }}</p-->
+            
+            <p class="bordure">texte : {{ texte }}</p>
 
         </div>
         <div class ="pied">
@@ -27,7 +27,7 @@ const axios = require('axios');
 
 export default {
     name: 'ItemPost',
-    props: ['texte','image','date','createur','id'],
+    props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
     methods: {
         suppPost: function () {
 

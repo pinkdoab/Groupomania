@@ -7,8 +7,9 @@
                 v-bind:id="req.id"
                 v-bind:texte="req.texte"
                 v-bind:image="req.imageUrl"
-                v-bind:date="req.date"
-                v-bind:createur="req.createur"
+                v-bind:dateCreation="req.dateCreation"
+                v-bind:createurId="req.createurId"
+                v-bind:createurPseudo="req.createurPseudo"
             >
                 <ItemPost/>
             </li>

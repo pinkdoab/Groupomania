@@ -53,8 +53,10 @@ exports.create = (req, res) => {
   }
   // Création d'un post
   const post = new Post({
-    p_texte: req.body.texte,
-    p_image_url: image
+    texte: req.body.texte,
+    image_url: image,
+    createur: req.body.createur,
+    date_creation: new Date().toLocaleString()
   });
   
   // Sauvegarde du post dans la base de données

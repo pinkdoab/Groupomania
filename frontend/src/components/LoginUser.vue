@@ -1,6 +1,6 @@
 <template>
 <div id="user-info">
-    <h3>infoUser</h3>
+    <h3>LoginUser</h3>
     <p>UserLogin : {{ $store.state.UserLogin }}</p>
 </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 
 export default {
-    name: 'InfoUser'
+    name: 'LoginUser'
 }
 </script>
 

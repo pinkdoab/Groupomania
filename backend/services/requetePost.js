@@ -5,8 +5,8 @@ const Post = require("../models/modelsPost.js");
 // Récupérer tous les posts de la base de données
 // ----------------------------------------------------------------------------------------
 Post.getAll = result => {
-    //sql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date FROM t_publication", (err, res) => {
-    connectionMySql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS date, t_user.u_pseudo AS createur  FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
+  
+    connectionMySql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo, t_user.u_id AS createurId FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
