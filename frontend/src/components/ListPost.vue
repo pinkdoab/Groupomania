@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="post-list-example">
+        <div id="post-list">
             <li is="ItemPost"
                 v-for="req in $store.state.publication"
                 v-bind:key="req.id"
@@ -21,7 +21,7 @@
 import ItemPost from './ItemPost.vue'
 
 export default {
-    name: 'ListPosts',
+    name: 'ListPost',
     components: {
         ItemPost
     }
@@ -30,9 +30,9 @@ export default {
 
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
-#post-list-example {
+#post-list {
     width: 70%;
-    margin: auto;
-    background-color:rgb(193, 223, 43);
+    margin: 10px auto;
+    background-color:rgb(114, 176, 27);
 }
 </style>

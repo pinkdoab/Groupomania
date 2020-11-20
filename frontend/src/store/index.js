@@ -9,7 +9,8 @@ export default new Vuex.Store({
     month: 6,
     year: 1962,
     publication: [],
-    UserActif: 41
+    UserLogin: 0,
+    UserDisplay: 0
   },
   getters: {
     formattedDate: state => {
@@ -17,8 +18,11 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    CHG_USER(state, payload) {
-      state.UserActif = payload
+    CHG_USERLOGIN(state, payload) {
+      state.UserLogin = payload
+    },
+    CHG_USERDISPLAY(state, payload) {
+      state.UserDisplay = payload
     },
     GET_PUBLICATION(state,data) {
       state.publication = data;

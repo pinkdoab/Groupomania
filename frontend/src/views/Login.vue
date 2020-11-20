@@ -10,7 +10,7 @@
     <button type="button" class="bouton" @click="connection">Connection</button>
     </form>
 
-    <p>UserActif : {{ $store.state.UserActif }}</p>
+    <p>UserLogin : {{ $store.state.UserLogin }}</p>
 
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
           password: this.password,
       })
       .then(response => {
-        this.$store.commit('CHG_USER', response.data.userId)
+        this.$store.commit('CHG_USERLOGIN', response.data.userId)
       })
       .catch(function (error) {
           console.log(error);
