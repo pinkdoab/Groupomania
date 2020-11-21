@@ -6,7 +6,7 @@ const Post = require("../models/modelsPost.js");
 // ----------------------------------------------------------------------------------------
 Post.getAll = result => {
   
-    connectionMySql.query("SELECT id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo, t_user.u_id AS createurId FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
+    connectionMySql.query("SELECT p_id AS id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo, t_user.u_id AS createurId FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -40,7 +40,7 @@ Post.create = (newPost, result) => {
 // Supprimer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 Post.remove = (id, result) => {
-  connectionMySql.query("DELETE FROM t_publication WHERE id = ?", id, (err, res) => {
+  connectionMySql.query("DELETE FROM t_publication WHERE p_id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -62,7 +62,7 @@ Post.remove = (id, result) => {
 // Récupérer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 Post.findById = (customerId, result) => {
-  connectionMySql.query(`SELECT * FROM t_publication WHERE id = ${customerId}`, (err, res) => {
+  connectionMySql.query(`SELECT * FROM t_publication WHERE p_id = ${customerId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

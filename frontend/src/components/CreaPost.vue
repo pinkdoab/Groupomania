@@ -2,7 +2,8 @@
     <div v-if="this.$store.state.UserLogin !== 0">
         <div id="post-list-example">
             <form v-on:submit.prevent="addNewPost">
-                <h3 class="titre">Création d'une publication</h3>
+                <h3>CreaPost</h3>
+                <!--h3 class="titre">Création d'une publication</h3-->
 
                 <div class="input">
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
@@ -46,12 +47,15 @@ export default {
             const formData = new FormData();
             formData.append('texte', this.newrequete);
             formData.append('createur', this.$store.state.UserLogin);
-            
             if (imagefile.files[0]){
                 formData.append('image', imagefile.files[0]);
             }
-
-            axios.post('http://localhost:3000/Post', formData)
+            let axiosConfig = {
+                headers: {
+                    'Authorization': 'token fdgsfdghjgfg'
+                }
+            };
+            axios.post('http://localhost:3000/Post', formData, axiosConfig)
             .then(response => {
                 console.log('response de la requête création post : ',response.data);
                 
@@ -68,12 +72,12 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #post-list-example {
-    width: 70%;
+    //width: 70%;
     margin: auto;
     background-color:rgb(206, 252, 228);
-    border-width:1px;
-    border-style:solid;
-    border-color:black;
+    //border-width:1px;
+    //border-style:solid;
+    //border-color:black;
 }
 textarea {
     resize: none;

@@ -9,6 +9,7 @@ exports.signup = (req, res, next) => {
         const user = new User({
             u_pseudo: req.body.nom,
             u_email: req.body.email,
+            //u_derniere_connection: '1962-06-29 20:06:09',
             u_password: hash
         });
 

@@ -1,12 +1,15 @@
 <template>
   <div  class="home">
     <!--p>publication : {{ $store.state.publication }}</p-->
-
-    <LoginUser/>
-    <DisplayUser/>
-    <ListUser/>
-    <CreaPost/>
-    <ListPost/>
+    <div>
+      <LoginUser/>
+      <DisplayUser/>
+      <ListUser/>
+      <CreaPost/>
+    </div>
+    <div class="gauche">
+      <ListPost/>
+    </div>
 
   </div>
 </template>
@@ -36,8 +39,12 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 .home {
-    width: 50vw;
-    margin: auto;
-    background-color:rgb(193, 223, 43);
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  background-color:rgb(193, 223, 43);
+}
+.gauche {
+  width: 30%;
 }
 </style>

@@ -5,11 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    day: 29,
-    month: 6,
-    year: 1962,
-    publication: [],
     UserLogin: 0,
+    token: null,
+    publication: [],
     UserDisplay: 0
   },
   getters: {
@@ -20,6 +18,9 @@ export default new Vuex.Store({
   mutations: {
     CHG_USERLOGIN(state, payload) {
       state.UserLogin = payload
+    },
+    CHG_TOKEN(state, payload) {
+      state.token = payload
     },
     CHG_USERDISPLAY(state, payload) {
       state.UserDisplay = payload

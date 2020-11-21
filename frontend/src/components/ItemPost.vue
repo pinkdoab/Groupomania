@@ -1,6 +1,7 @@
 <template>
     <div  v-if="(this.$store.state.UserDisplay === this.createurId) || (this.$store.state.UserDisplay === 0)" class="post">        <!-- affiche post suivant UserDisplay -->
     <!--div class="post"-->
+            <h3>ItemPost</h3>
         <div class="entete">
             <!--p class="bordure">id : {{ id }}</p-->
             <p class="bordure">{{ createurPseudo }}{{ dateCreation }}</p>
@@ -24,10 +25,6 @@ const axios = require('axios');
 export default {
     name: 'ItemPost',
     props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
-    created() {
-        console.log('création');
-
-    },
     methods: {
         suppPost: function () {
 
@@ -78,7 +75,7 @@ img {
     margin: auto;
     padding: 5px;
     background-color:white;
-    width: 97%;
+    //width: 97%;
     //height: 70px;
     //border-width:1px;
     //border-style:solid;

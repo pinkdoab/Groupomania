@@ -34,7 +34,8 @@ export default {
           password: this.password,
       })
       .then(response => {
-        this.$store.commit('CHG_USERLOGIN', response.data.userId)
+        this.$store.commit('CHG_USERLOGIN', response.data.userId);
+        //this.$store.commit('CHG_TOKEN', response.data.token)
       })
       .catch(function (error) {
           console.log(error);

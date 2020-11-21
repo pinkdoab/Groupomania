@@ -28,11 +28,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   //background-color:rgb(193, 223, 43);
-  height: 100vh;
+  //height: 100vh;
 }
 
 #nav {
-  width: 50vw;
+  //width: 50vw;
   margin: auto;
   background-color:rgb(137, 216, 247);
   color: #42b983;
