@@ -1,13 +1,13 @@
 <template>
   <div  class="home">
     <!--p>publication : {{ $store.state.publication }}</p-->
-    <div>
+    <div class="gauche">
       <LoginUser/>
       <DisplayUser/>
       <ListUser/>
       <CreaPost/>
     </div>
-    <div class="gauche">
+    <div class="droite">
       <ListPost/>
     </div>
 
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import DisplayUser from '@/components/DisplayUser.vue'
-import LoginUser from '@/components/LoginUser.vue'
-import ListUser from '@/components/ListUser.vue'
-import CreaPost from '@/components/CreaPost.vue'
-import ListPost from '@/components/ListPost.vue'
+import DisplayUser from '@/components/user/DisplayUser.vue'
+import LoginUser from '@/components/user/LoginUser.vue'
+import ListUser from '@/components/user/ListUser.vue'
+import CreaPost from '@/components/post/CreaPost.vue'
+import ListPost from '@/components/post/ListPost.vue'
 
 export default {
   name: 'Home',
@@ -45,6 +45,10 @@ export default {
   background-color:rgb(193, 223, 43);
 }
 .gauche {
-  width: 30%;
+  width: 300px;
+  margin-right: 10px;
+}
+.droite {
+  width: 400px;
 }
 </style>

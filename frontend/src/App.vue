@@ -26,22 +26,22 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #005730;
   //background-color:rgb(193, 223, 43);
   //height: 100vh;
 }
 
 #nav {
-  //width: 50vw;
+  width: 60vw;
   margin: auto;
-  background-color:rgb(137, 216, 247);
+    background-color:rgb(206, 252, 228);
   color: #42b983;
   a {
     font-weight: bold;
     color: #47c943;
 
     &.router-link-exact-active {
-      color: #236547;
+      color: #005730;
     }
   }
 }

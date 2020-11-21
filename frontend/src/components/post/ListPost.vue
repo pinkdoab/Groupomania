@@ -2,7 +2,7 @@
     <div v-if="this.$store.state.UserLogin !== 0">
 
         <div id="post-list">
-                            <h3>ListPost</h3>
+            <h3>ListPost</h3>
             <li is="ItemPost"
                 v-for="req in $store.state.publication"
                 v-bind:key="req.id"
@@ -34,7 +34,6 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #post-list {
-    width: 90%;
     margin: 10px auto;
     background-color:rgb(206, 252, 228);
 }
