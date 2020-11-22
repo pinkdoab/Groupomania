@@ -32,13 +32,13 @@ export default {
 }
 
 #nav {
-  width: 60vw;
+  width: 50vw;
   margin: auto;
     background-color:rgb(206, 252, 228);
-  color: #42b983;
+  //color: #42b983;
   a {
     font-weight: bold;
-    color: #47c943;
+    color: #32cd2d;
 
     &.router-link-exact-active {
       color: #005730;

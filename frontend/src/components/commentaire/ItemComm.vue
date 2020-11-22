@@ -1,41 +1,29 @@
 <template>
-    <div  v-if="(this.$store.state.UserDisplay === this.createurId) || (this.$store.state.UserDisplay === 0)" class="post">        <!-- affiche post suivant UserDisplay -->
-    <!--div class="post"-->
-            <h3>ItemPost</h3>
-        <div class="entete">
-            <!--p class="bordure">id : {{ id }}</p-->
-            <p class="bordure">{{ createurPseudo }}{{ dateCreation }}</p>
-        </div>
-        <div class="corps">
-            <img v-if="image !== 'aucune'" v-bind:src="image" width="200">           
-            <p class="bordure">{{ texte }}</p>
-            <ListComm v-bind:PostId="id"/>
-        </div>
-        <div class ="pied">
-            <!--button v-on:click="$emit('remove')">Remove</button-->
-            <button @click="suppPost">{{createurId}}Supprimer</button>
-        </div>
+    <div v-if="this.PostId === this.publication" class="comm">        <!-- affiche post suivant UserDisplay -->
+    
+        <h3>ItemComm</h3>
+        <!--h6>createurId : {{ PostId }}</h6-->
+        <!--p>{{ id }}</p-->
+        <p>{{ texte }}</p>
+        <p>{{ dateCreation }}</p>
+        <p>{{ publication }}</p>
+
     </div>
 </template>
 
 
 <!------------------------------------------------------------------------>
 <script>
-const axios = require('axios');
-import ListComm from '@/components/commentaire/ListComm.vue'
+//const axios = require('axios');
+//import ListComm from '@/components/commentaire/ListComm.vue'
 
 export default {
-    name: 'ItemPost',
+    name: 'ItemComm',
     components: {
-        ListComm
+        //ListComm
     },
-    //data: function () {
-    //return {
-      //test: 'frfggg'
-    //}
-  //},
-    props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
-    methods: {
+    props: ['id','texte','dateCreation','publication','createurId','PostId'],
+    /*methods: {
         suppPost: function () {
 
             axios
@@ -47,7 +35,7 @@ export default {
             });
             //this.$forceUpdate();
         }
-    }
+    }*/
 
 }
 </script>
@@ -55,8 +43,9 @@ export default {
 
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
-.post {
-    margin: 20px 0px 0px 0px;
+.comm {
+    width: 90%;
+    margin: auto;
     padding: 0px 0px;
     display: flex;
     flex-direction: column;
@@ -64,6 +53,10 @@ export default {
     border-width:1px;
     border-style:solid;
     border-color:black;
+}
+p {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 .entete {
     background-color:rgb(241, 243, 108);

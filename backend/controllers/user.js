@@ -1,16 +1,16 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require("../services/requeteUser.js");
+const User = require("../repository/requeteUser.js");
 
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({
-            u_pseudo: req.body.nom,
-            u_email: req.body.email,
-            //u_derniere_connection: '1962-06-29 20:06:09',
-            u_password: hash
+            pseudo: req.body.nom,
+            email: req.body.email,
+            //derniere_connection: '1962-06-29 20:06:09',
+            password: hash
         });
 
         // Sauvegarde du user dans la base de données

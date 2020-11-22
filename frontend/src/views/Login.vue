@@ -16,7 +16,7 @@
 </template>
 
 <script>
-const axios = require('axios');
+//const axios = require('axios');
 
 export default {
   name: 'SignIn',
@@ -29,6 +29,9 @@ export default {
   methods: {
     connection: function () {
 
+      this.$store.commit('CHG_USERLOGIN', 1 );
+      this.$router.push({name: 'Home'});
+/*
       axios.post('http://localhost:3000/auth/login/', {
           pseudo: this.pseudo,
           password: this.password,
@@ -41,7 +44,8 @@ export default {
           console.log(error);
       });
       this.$router.push({name: 'Home'});
-    }
+*/
+    }    
   }
 }
 </script>

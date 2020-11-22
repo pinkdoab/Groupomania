@@ -7,8 +7,9 @@ export default new Vuex.Store({
   state: {
     UserLogin: 0,
     token: null,
+    UserDisplay: 0,
     publication: [],
-    UserDisplay: 0
+    commentaire: []
   },
   getters: {
     formattedDate: state => {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     GET_PUBLICATION(state,data) {
       state.publication = data;
     },
+    GET_COMMENTAIRE(state,data) {
+      state.commentaire = data;
+    },
   },
   actions: {
     requete_get_publication(context) {
@@ -35,6 +39,21 @@ export default new Vuex.Store({
       .then( function(res) {
         context.commit('GET_PUBLICATION', res.data);
       })
+    },
+    requete_get_post_comm(context) {
+      
+      function get_publication() {
+        return  axios.get('http://localhost:3000/Post')
+      }       
+      function get_commentaire() {
+        return axios.get('http://localhost:3000/comm')
+      }
+
+      Promise.all([get_publication(), get_commentaire()])
+      .then(function (results) {
+        context.commit('GET_PUBLICATION', results[0].data);
+        context.commit('GET_COMMENTAIRE', results[1].data);
+      });
     }
   },
   modules: {

@@ -60,7 +60,8 @@ export default {
                 console.log('response de la requête création post : ',response.data);
                 
                 this.newrequete = '';
-                this.$store.dispatch('requete_get_publication');     
+                //this.$store.dispatch('requete_get_publication');
+                this.$store.dispatch('requete_get_post_comm'); 
             })
             //this.$forceUpdate();       
         }

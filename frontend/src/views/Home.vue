@@ -1,6 +1,7 @@
 <template>
   <div  class="home">
-    <!--p>publication : {{ $store.state.publication }}</p-->
+    <p>commentaire : {{ $store.state.commentaire }}</p>
+    <p>publication : {{ $store.state.publication }}</p>
     <div class="gauche">
       <LoginUser/>
       <DisplayUser/>
@@ -31,7 +32,8 @@ export default {
     ListPost    
   },
   created() {
-    this.$store.dispatch('requete_get_publication')
+    //this.$store.dispatch('requete_get_publication');
+    this.$store.dispatch('requete_get_post_comm');    
     },
 }
 </script>
@@ -43,6 +45,10 @@ export default {
   justify-content: center;
   margin: auto;
   background-color:rgb(193, 223, 43);
+}
+p {
+  width: 50px;
+  font-size: 6px;
 }
 .gauche {
   width: 300px;
