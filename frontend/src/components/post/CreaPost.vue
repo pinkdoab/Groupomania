@@ -12,7 +12,7 @@
                     <textarea name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
                 <button class="bouton">Publication</button>
-                <p>{{ avertissement }}</p>
+                <!--p>{{ avertissement }}</p-->
             </form>
         </div>
     </div>
@@ -21,29 +21,29 @@
 
 <!------------------------------------------------------------------------>
 <script>
-import { mapState } from 'vuex' 
+//import { mapState } from 'vuex' 
 const axios = require('axios');
 
 export default {
-    name: 'ListPosts2',
+    name: 'CreaPost',
     data: function() {
         return {
             newrequete: '',
-            avertissement: ''
+            //avertissement: ''
         }
     },
-    computed: {
-        ...mapState(['UserLogin'])
-    },
+    //computed: {
+    //    ...mapState(['UserLogin'])
+    //},
     methods: {
 
         addNewPost: function () {
             var imagefile = document.querySelector('#avatar');
 
-            if (this.$store.state.UserLogin == 0) {
+            /*if (this.$store.state.UserLogin == 0) {
                 this.avertissement = 'Attention : aucun login sélectionné';
                 return;
-                }
+                }*/
             const formData = new FormData();
             formData.append('texte', this.newrequete);
             formData.append('createur', this.$store.state.UserLogin);

@@ -2,6 +2,7 @@
     <div v-if="this.$store.state.UserLogin !== 0">
         <div id="comm-list">
             <h3>ListComm</h3>
+            <CreaComm v-bind:PostId="PostId"/>
             <li is="ItemComm"
                 v-for="req in $store.state.commentaire"
                 v-bind:key="req.c_id"
@@ -20,11 +21,13 @@
 <!------------------------------------------------------------------------>
 <script>
 import ItemComm from './ItemComm.vue'
+import CreaComm from './CreaComm.vue'
 
 export default {
     name: 'ListComm',
     components: {
-        ItemComm
+        ItemComm,
+        CreaComm
     },
     props: ['PostId']
 }
