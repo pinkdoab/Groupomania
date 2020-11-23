@@ -1,9 +1,7 @@
 <template>
     <div  v-if="(this.$store.state.UserDisplay === this.createurId) || (this.$store.state.UserDisplay === 0)" class="post">        <!-- affiche post suivant UserDisplay -->
-    <!--div class="post"-->
-            <h3>ItemPost</h3>
+        <h3>ItemPost</h3>
         <div class="entete">
-            <!--p class="bordure">id : {{ id }}</p-->
             <p class="bordure">{{ createurPseudo }}{{ dateCreation }}</p>
         </div>
         <div class="corps">
@@ -12,8 +10,7 @@
             <ListComm v-bind:PostId="id"/>
         </div>
         <div class ="pied">
-            <!--button v-on:click="$emit('remove')">Remove</button-->
-            <button @click="suppPost">{{createurId}}Supprimer</button>
+            <button @click="suppPost">Supprimer publication</button>
         </div>
     </div>
 </template>
@@ -29,11 +26,6 @@ export default {
     components: {
         ListComm
     },
-    //data: function () {
-    //return {
-      //test: 'frfggg'
-    //}
-  //},
     props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
     methods: {
         suppPost: function () {
@@ -95,4 +87,5 @@ img {
 .pied {
     margin-bottom: 10px;
 }
+h3 { color:rgb(104, 206, 153)}
 </style>

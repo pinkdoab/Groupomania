@@ -16,4 +16,43 @@ Comm.getAll = result => {
       result(null, res);
     });
   };
+
+// ----------------------------------------------------------------------------------------
+// Créer et enregistrer un nouveau commentaire
+// ----------------------------------------------------------------------------------------
+Comm.create = (newComm, result) => {
+
+  connectionMySql.query("INSERT INTO t_commentaire SET ?", newComm, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    result(null, { id: res.insertId, ...newComm });
+  });
+
+};  
+
+// ----------------------------------------------------------------------------------------
+// Supprimer un commentaire avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
+Comm.remove = (id, result) => {
+  connectionMySql.query("DELETE FROM t_commentaire WHERE c_id = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found Customer with the id
+      result({ kind: "not_found" }, null);
+      return;
+    }
+
+    console.log("Suppression du commentaire avec id: ", id);
+    result(null, res);
+  });
+};
+
 module.exports = Comm;

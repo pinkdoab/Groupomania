@@ -1,33 +1,33 @@
 <template>
     <div v-if="this.PostId === this.publication" class="comm">        <!-- affiche post suivant UserDisplay -->
-    
-        <h3>ItemComm</h3>
-        <!--h6>createurId : {{ PostId }}</h6-->
-        <!--p>{{ id }}</p-->
-        <p>{{ texte }}</p>
-        <p>{{ dateCreation }}</p>
-        <p>{{ publication }}</p>
-
+        <div>
+            <h3>ItemComm</h3>
+            <!--h6>createurId : {{ PostId }}</h6-->
+            <!--p>{{ id }}</p-->
+            <p>{{ texte }}</p>
+            <!--p>{{ dateCreation }}</p>
+            <p>{{ publication }}</p-->
+        </div>
+        <div class ="pied">
+            <button @click="suppComm">Supprimer commentaire</button>
+        </div>
     </div>
+    
 </template>
 
 
 <!------------------------------------------------------------------------>
 <script>
-//const axios = require('axios');
-//import ListComm from '@/components/commentaire/ListComm.vue'
+const axios = require('axios');
 
 export default {
     name: 'ItemComm',
-    components: {
-        //ListComm
-    },
     props: ['id','texte','dateCreation','publication','createurId','PostId'],
-    /*methods: {
-        suppPost: function () {
+    methods: {
+        suppComm: function () {
 
             axios
-            .delete(`http://localhost:3000/Post/${this.id}`)
+            .delete(`http://localhost:3000/comm/${this.id}`)
             .then(response => {
                 console.log('response requête delete : ',response.data.message); 
                 //this.$store.dispatch('requete_get_publication');
@@ -35,7 +35,7 @@ export default {
             });
             //this.$forceUpdate();
         }
-    }*/
+    }
 
 }
 </script>
@@ -58,6 +58,7 @@ p {
     margin-top: 0px;
     margin-bottom: 0px;
 }
+h3 { color:rgb(104, 206, 153)}
 .entete {
     background-color:rgb(241, 243, 108);
 }
