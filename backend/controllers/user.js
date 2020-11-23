@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
     console.log('req.body', req.body);
     console.log('req.body.pseudo', req.body.userId);
 
-    User.findById(req.body.pseudo, (err, data) => {
+    User.findByPseudo(req.body.pseudo, (err, data) => {
       console.log('data findById : ', data)
         if (err) {
           if (err.kind === "not_found") {
@@ -66,4 +66,35 @@ exports.login = (req, res, next) => {
             //.catch(error => res.status(500).json({ error: 'probleme !' }));
         }
     });
+};
+// ----------------------------------------------------------------------------------------
+// Récupérer tous les users de la base de données
+// ----------------------------------------------------------------------------------------
+exports.findAll = (req, res) => {
+  User.getAll((err, data) => {
+    if (err)
+      res.status(501).send({
+        message:
+          err.message || "Une erreur s'est produite lors de la récupération des users"
+      });
+    else res.send(data);
+  });
+};
+// ----------------------------------------------------------------------------------------
+// Récupérer un simple user avec userId
+// ----------------------------------------------------------------------------------------
+exports.findOne = (req, res) => {
+  User.findById(req.params.userId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `user non trouvé avec id ${req.params.userId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "erreur lors de la récupération du user avec id " + req.params.userId
+        });
+      }
+    } else res.send(data);
+  });
 };

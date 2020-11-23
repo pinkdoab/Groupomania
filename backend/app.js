@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.use('/comm', CommRoutes);
 app.use('/post', PostRoutes);
-app.use('/auth', UserRoutes);
+app.use('/user', UserRoutes);
 
 app.use('/images', express.static(path.join(__dirname, 'images')));         // requete http://localhost:3000/images/photoA_1605106010.jpg
 

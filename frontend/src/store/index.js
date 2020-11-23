@@ -35,7 +35,7 @@ export default new Vuex.Store({
   },
   actions: {
     requete_get_publication(context) {
-      axios.get('http://localhost:3000/Post')
+      axios.get('http://localhost:3000/post')
       .then( function(res) {
         context.commit('GET_PUBLICATION', res.data);
       })
@@ -43,7 +43,7 @@ export default new Vuex.Store({
     requete_get_post_comm(context) {
       
       function get_publication() {
-        return  axios.get('http://localhost:3000/Post')
+        return  axios.get('http://localhost:3000/post')
       }       
       function get_commentaire() {
         return axios.get('http://localhost:3000/comm')

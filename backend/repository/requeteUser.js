@@ -1,6 +1,7 @@
 const connectionMySql = require("../models/db.js");
 const User = require("../models/modelsUser.js");
 
+
 // ----------------------------------------------------------------------------------------
 // Créer un nouveau user
 // ----------------------------------------------------------------------------------------
@@ -19,10 +20,11 @@ User.create = (newUser, result) => {
     });
 };
 
+
 // ----------------------------------------------------------------------------------------
 // Connection user
 // ----------------------------------------------------------------------------------------
-User.findById = (pseudo, result) => {
+User.findByPseudo = (pseudo, result) => {
 
   connectionMySql.query(`SELECT * FROM t_user WHERE u_pseudo = '${pseudo}'`, (err, res) => {
     if (err) {
@@ -42,5 +44,43 @@ User.findById = (pseudo, result) => {
   });
 };
 
+
+// ----------------------------------------------------------------------------------------
+// Récupérer tous les users de la base de données
+// ----------------------------------------------------------------------------------------
+User.getAll = result => {
+  
+  connectionMySql.query("SELECT u_id AS userId, u_pseudo AS pseudo FROM t_user;", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }  
+    console.log("user getAll: ", res);
+    result(null, res);
+  });
+};
+
+// ----------------------------------------------------------------------------------------
+// Récupérer un user avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
+User.findById = (userId, result) => {
+  connectionMySql.query(`SELECT * FROM t_user WHERE u_id = ${userId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found customer: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
 
 module.exports = User;

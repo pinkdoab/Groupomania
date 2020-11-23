@@ -29,7 +29,7 @@ export default {
   methods: {
     connection: function () {
 
-        axios.post('http://localhost:3000/auth/signup/', {
+        axios.post('http://localhost:3000/user/signup/', {
             nom: this.pseudo,
             email: this.email,
             password: this.password,
