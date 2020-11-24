@@ -2,7 +2,7 @@
 <div  id="user-info">
     <h3>LoginUser</h3>
     <p>UserLogin : {{ $store.state.UserLogin }}</p>
-    <p>token : {{ $store.state.token }}</p>
+    <!--p>token : {{ $store.state.token }}</p-->
 </div>
 </template>
 

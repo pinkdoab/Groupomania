@@ -34,6 +34,7 @@ export default {
             axios.post('http://localhost:3000/Comm',  {
                 texte: this.newrequete,
                 publication: this.PostId,
+                createur: this.$store.state.UserLogin
             },{
                 headers: headers
             })

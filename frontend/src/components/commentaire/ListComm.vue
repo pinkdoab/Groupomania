@@ -10,6 +10,7 @@
                 v-bind:texte="req.c_texte"
                 v-bind:dateCreation="req.c_date_creation"
                 v-bind:publication="req.c_publication"
+                v-bind:createur="req.c_createur"
                 v-bind:PostId="PostId"
             >
                 <ItemComm/>

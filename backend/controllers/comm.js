@@ -28,6 +28,7 @@ exports.create = (req, res) => {
   // Création d'un post
   const comm = new Comm({
     texte: req.body.texte,
+    createur: req.body.createur,
     date_creation: new Date().toLocaleString(),
     publication: req.body.publication
   });

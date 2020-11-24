@@ -2,14 +2,15 @@
     <div v-if="this.PostId === this.publication" class="comm">        <!-- affiche post suivant UserDisplay -->
         <div>
             <h3>ItemComm</h3>
-            <!--h6>createurId : {{ PostId }}</h6-->
+            <p>createurId : {{ PostId }}</p>
+            <p>createur : {{ createur }}</p>
             <!--p>{{ id }}</p-->
             <p>{{ texte }}</p>
             <!--p>{{ dateCreation }}</p>
             <p>{{ publication }}</p-->
         </div>
         <div class ="pied">
-            <button @click="suppComm">Supprimer commentaire</button>
+            <button v-if="this.$store.state.UserLogin === this.createur" @click="suppComm">Supprimer commentaire</button>
         </div>
     </div>
     
@@ -22,7 +23,7 @@ const axios = require('axios');
 
 export default {
     name: 'ItemComm',
-    props: ['id','texte','dateCreation','publication','createurId','PostId'],
+    props: ['id','texte','dateCreation','publication','createurId','PostId','createur'],
     methods: {
         suppComm: function () {
 

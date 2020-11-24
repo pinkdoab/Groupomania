@@ -9,7 +9,7 @@
       <input class="element" id="pseudo" type="text" v-model="pseudo"/>
 
       <h4 class="texte">Password</h4>
-      <input class="element"  type="text" v-model="password"/>
+      <input class="element" id="psaaword" type="text" v-model="password"/>
 
       <button type="button" class="element bouton" @click="connection">Connection</button>
     </form>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-//const axios = require('axios');
+const axios = require('axios');
 
 export default {
   name: 'SignIn',
@@ -34,10 +34,10 @@ export default {
   methods: {
     connection: function () {
 
-      this.$store.commit('CHG_USERLOGIN', 1 );
-      this.$store.commit('CHG_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwNjIxODM2OCwiZXhwIjoxNjA2MzkxMTY4fQ.Uo4vSLBIyO67qSLhYeEV82jtb35fD_SfbDEj_CDCodc')
+      //this.$store.commit('CHG_USERLOGIN', 1 );
+      //this.$store.commit('CHG_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwNjIxODM2OCwiZXhwIjoxNjA2MzkxMTY4fQ.Uo4vSLBIyO67qSLhYeEV82jtb35fD_SfbDEj_CDCodc')
       //this.$router.push({name: 'Home'});
-/*
+
       axios.post('http://localhost:3000/user/login/', {
           pseudo: this.pseudo,
           password: this.password,
@@ -50,7 +50,7 @@ export default {
           console.log(error);
       });
       this.$router.push({name: 'Home'});
-*/
+
     }    
   }
 }

@@ -10,7 +10,9 @@
             <ListComm v-bind:PostId="id"/>
         </div>
         <div class ="pied">
-            <button @click="suppPost">Supprimer publication</button>
+            <!--p>this.$store.state.UserLogin  {{this.$store.state.UserLogin}}</p-->
+            <!--p>createurId  {{createurId}}</p-->
+            <button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">Supprimer publication</button>
         </div>
     </div>
 </template>
