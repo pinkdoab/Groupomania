@@ -41,14 +41,19 @@ export default new Vuex.Store({
       })
     },
     requete_get_post_comm(context) {
-      
+      //console.log('token : ', `token ${this.state.token}`)
+
+      let axiosConfig = {
+        headers: {
+          'Authorization': `token ${this.state.token}` 
+        }
+      };
       function get_publication() {
-        return  axios.get('http://localhost:3000/post')
+        return  axios.get('http://localhost:3000/post', axiosConfig)
       }       
       function get_commentaire() {
-        return axios.get('http://localhost:3000/comm')
+        return axios.get('http://localhost:3000/comm', axiosConfig)
       }
-
       Promise.all([get_publication(), get_commentaire()])
       .then(function (results) {
         context.commit('GET_PUBLICATION', results[0].data);
@@ -59,3 +64,7 @@ export default new Vuex.Store({
   modules: {
   }
 })
+/*             axios.post('http://localhost:3000/Comm', {
+                texte: this.newrequete,
+                publication: this.PostId,
+            })*/

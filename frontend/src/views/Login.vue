@@ -15,6 +15,7 @@
     </form>
 
     <p>UserLogin : {{ $store.state.UserLogin }}</p>
+    <p>UserToken : {{ $store.state.token }}</p>
   </div>
 
 </template>
@@ -34,6 +35,7 @@ export default {
     connection: function () {
 
       this.$store.commit('CHG_USERLOGIN', 1 );
+      this.$store.commit('CHG_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwNjIxODM2OCwiZXhwIjoxNjA2MzkxMTY4fQ.Uo4vSLBIyO67qSLhYeEV82jtb35fD_SfbDEj_CDCodc')
       //this.$router.push({name: 'Home'});
 /*
       axios.post('http://localhost:3000/user/login/', {
@@ -42,7 +44,7 @@ export default {
       })
       .then(response => {
         this.$store.commit('CHG_USERLOGIN', response.data.userId);
-        //this.$store.commit('CHG_TOKEN', response.data.token)
+        this.$store.commit('CHG_TOKEN', response.data.token)
       })
       .catch(function (error) {
           console.log(error);

@@ -30,9 +30,12 @@ export default {
 
         addNewComm: function () {
 
-            axios.post('http://localhost:3000/Comm', {
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.post('http://localhost:3000/Comm',  {
                 texte: this.newrequete,
                 publication: this.PostId,
+            },{
+                headers: headers
             })
 
             .then(response => {

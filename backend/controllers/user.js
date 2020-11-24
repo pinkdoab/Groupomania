@@ -44,8 +44,8 @@ exports.login = (req, res, next) => {
         } else {
             console.log('data : ', data);
 
-            console.log('data.u_password : ', data.u_password);
-            console.log('req.body.password : ', req.body.password);
+            //console.log('data.u_password : ', data.u_password);
+            //console.log('req.body.password : ', req.body.password);
 
             bcrypt.compare(req.body.password, data.u_password)
             .then(valid => {

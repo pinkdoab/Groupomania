@@ -26,8 +26,10 @@ export default {
     methods: {
         suppComm: function () {
 
-            axios
-            .delete(`http://localhost:3000/comm/${this.id}`)
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.delete(`http://localhost:3000/comm/${this.id}`,{
+                headers: headers
+            })
             .then(response => {
                 console.log('response requête delete : ',response.data.message); 
                 //this.$store.dispatch('requete_get_publication');

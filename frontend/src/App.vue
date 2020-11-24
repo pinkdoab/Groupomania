@@ -27,7 +27,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('assets/fond2.png');
+  //background-image: url('assets/fond2.png');
   background-size: cover;
   font-size: 1em;
 
@@ -40,7 +40,7 @@ export default {
 
   text-align: center;
   color: #005730;
-  //background-color:rgb(193, 223, 43);
+  background-color:rgb(193, 223, 43);
 
 }
 

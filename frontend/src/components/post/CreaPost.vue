@@ -50,12 +50,11 @@ export default {
             if (imagefile.files[0]){
                 formData.append('image', imagefile.files[0]);
             }
-            let axiosConfig = {
-                headers: {
-                    'Authorization': 'token fdgsfdghjgfg'
-                }
-            };
-            axios.post('http://localhost:3000/Post', formData, axiosConfig)
+            
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.post('http://localhost:3000/Post', formData,{
+                headers: headers
+            })
             .then(response => {
                 console.log('response de la requête création post : ',response.data);
                 
