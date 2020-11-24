@@ -1,8 +1,11 @@
 <template>
     <div  v-if="(this.$store.state.UserDisplay === this.createurId) || (this.$store.state.UserDisplay === 0)" class="post">        <!-- affiche post suivant UserDisplay -->
-        <h3>ItemPost</h3>
+        <!--h3>ItemPost</h3-->
         <div class="entete">
-            <p class="bordure">{{ createurPseudo }}{{ dateCreation }}</p>
+            <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
+            <button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost" class="btn"><i class="fa fa-trash"></i></button>
+            <!--p>{{ dateCreation }}</p-->
+            <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">D</button-->
         </div>
         <div class="corps">
             <img v-if="image !== 'aucune'" v-bind:src="image" width="200">           
@@ -12,7 +15,7 @@
         <div class ="pied">
             <!--p>this.$store.state.UserLogin  {{this.$store.state.UserLogin}}</p-->
             <!--p>createurId  {{createurId}}</p-->
-            <button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">Supprimer publication</button>
+            <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">Supprimer publication</button-->
         </div>
     </div>
 </template>
@@ -28,6 +31,18 @@ export default {
     components: {
         ListComm
     },
+    data: function() {
+        return {
+        }
+    },
+    computed: {
+        // un accesseur (getter) calculé
+        conversionDate: function () {
+            const dateFormatee = new Date(this.dateCreation)
+            return dateFormatee.toLocaleString();
+        },       
+    },
+
     props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
     methods: {
         suppPost: function () {
@@ -62,7 +77,20 @@ export default {
     border-color:black;
 }
 .entete {
-    background-color:rgb(241, 243, 108);
+    margin: 3px;
+    display: flex;
+    justify-content: space-between;
+    p {
+        margin: 0px;
+        font-size: .8em;
+        span {
+            margin-left: 2px;
+            margin-right: 5px;
+            font-weight:bold;
+            font-size: 2em;
+            vertical-align: -1px;
+        }
+    }
 }
 .corps {
     margin: 0px 0px;
@@ -92,4 +120,20 @@ img {
     margin-bottom: 10px;
 }
 h3 { color:rgb(104, 206, 153)}
+
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(255, 0, 0);
+}
 </style>

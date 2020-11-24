@@ -2,6 +2,7 @@
   <div  class="home">
     <!--p>commentaire : {{ $store.state.commentaire }}</p-->
     <!--p>publication : {{ $store.state.publication }}</p-->
+    <!--p>commentaire : {{ $store.state.token }}</p-->
     <div class="gauche">
       <LoginUser/>
       <DisplayUser/>
@@ -32,9 +33,10 @@ export default {
     ListPost    
   },
   created() {
-    //this.$store.dispatch('requete_get_publication');
-    this.$store.dispatch('requete_get_post_comm');    
-    },
+    if (this.$store.state.token !== null){
+      this.$store.dispatch('requete_get_post_comm'); 
+    }
+  }
 }
 </script>
 
@@ -51,10 +53,10 @@ p {
   font-size: 6px;
 }
 .gauche {
-  width: 300px;
+  width: 25%;
   margin-right: 10px;
 }
 .droite {
-  width: 400px;
+  width: 65%;
 }
 </style>

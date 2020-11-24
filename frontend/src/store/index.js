@@ -40,8 +40,8 @@ export default new Vuex.Store({
         context.commit('GET_PUBLICATION', res.data);
       })
     },
+
     requete_get_post_comm(context) {
-      //console.log('token : ', `token ${this.state.token}`)
 
       let axiosConfig = {
         headers: {

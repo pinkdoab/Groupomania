@@ -1,7 +1,7 @@
 <template>
     <div v-if="this.$store.state.UserLogin !== 0">
         <div id="comm-list">
-            <h3>ListComm</h3>
+            <!--h3>ListComm</h3-->
             <CreaComm v-bind:PostId="PostId"/>
             <li is="ItemComm"
                 v-for="req in $store.state.commentaire"
@@ -39,7 +39,7 @@ export default {
 #comm-list {
     margin: 10px auto;
 
-    background-color:rgb(206, 252, 228);
+    //background-color:rgb(206, 252, 228);
 }
 h3 { color:rgb(104, 206, 153)}
 </style>

@@ -1,16 +1,16 @@
 <template>
     <div v-if="this.PostId === this.publication" class="comm">        <!-- affiche post suivant UserDisplay -->
         <div>
-            <h3>ItemComm</h3>
-            <p>createurId : {{ PostId }}</p>
-            <p>createur : {{ createur }}</p>
+            <!--h3>ItemComm</h3-->
+            <!--p>createurId : {{ PostId }}</p-->
+            <!--p>createur : {{ createur }}</p-->
             <!--p>{{ id }}</p-->
             <p>{{ texte }}</p>
             <!--p>{{ dateCreation }}</p>
             <p>{{ publication }}</p-->
         </div>
         <div class ="pied">
-            <button v-if="this.$store.state.UserLogin === this.createur" @click="suppComm">Supprimer commentaire</button>
+            <button v-if="this.$store.state.UserLogin === this.createur" @click="suppComm">D</button>
         </div>
     </div>
     

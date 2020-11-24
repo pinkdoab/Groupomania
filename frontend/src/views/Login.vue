@@ -2,7 +2,7 @@
 
   <div class="containerLogin">
     <p>logo</p>
-    <h2>Connection chez Groupomania</h2>
+    <h2>Connection</h2>
     <form class="formulaire">
 
       <h4 class="texte">Pseudo</h4>
@@ -14,8 +14,8 @@
       <button type="button" class="element bouton" @click="connection">Connection</button>
     </form>
 
-    <p>UserLogin : {{ $store.state.UserLogin }}</p>
-    <p>UserToken : {{ $store.state.token }}</p>
+    <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
+    <!--p>UserToken : {{ $store.state.token }}</p-->
   </div>
 
 </template>
@@ -44,12 +44,14 @@ export default {
       })
       .then(response => {
         this.$store.commit('CHG_USERLOGIN', response.data.userId);
-        this.$store.commit('CHG_TOKEN', response.data.token)
+        this.$store.commit('CHG_TOKEN', response.data.token);
+        this.$router.push({name: 'Home'});
       })
       .catch(function (error) {
           console.log(error);
       });
-      this.$router.push({name: 'Home'});
+      //this.$store.dispatch('requete_get_post_comm');
+      //this.$router.push({name: 'Home'});
 
     }    
   }

@@ -2,8 +2,8 @@
     <div v-if="this.$store.state.UserLogin !== 0">
         <div id="comm-list-example">
             <form v-on:submit.prevent="addNewComm">
-                <h3>CreaComm</h3>
-                <p>publication : {{ PostId }} </p>
+                <!--h3>CreaComm</h3-->
+                <!--p>publication : {{ PostId }} </p-->
                 <div>
                     <textarea name="nom" v-model="newrequete" id="new-comm"></textarea>
                 </div>
@@ -58,7 +58,7 @@ export default {
 #comm-list-example {
     //width: 70%;
     margin: auto;
-    background-color:rgb(206, 252, 228);
+    //background-color:rgb(206, 252, 228);
     //border-width:1px;
     //border-style:solid;
     //border-color:black;

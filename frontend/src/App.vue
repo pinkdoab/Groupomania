@@ -31,8 +31,8 @@ export default {
   background-size: cover;
   font-size: 1em;
 
-  width: 80%;
-  max-width: 50em;
+  width: 100%;
+  max-width: 60em;
   min-width: 40em;
   height: 100vh;
 
