@@ -35,14 +35,14 @@ export default {
   created() {
     const token = localStorage.getItem("groupomania_token")
     const userId = localStorage.getItem("groupomania_userId")
+    const userDisplay = localStorage.getItem("groupomania_userDisplay")
     if (token) {
         this.$store.commit('SET_USERLOGIN', userId);
         this.$store.commit('SET_TOKEN', token);
+        this.$store.commit('SET_USERDISPLAY', userDisplay);
     }
 
     if (this.$store.state.token !== null){
-    //if (this.$store.isAuthenticated){
-      //console.log('this.isAuthenticated : ', this.store.getters.isAuthenticated)
       this.$store.dispatch('requete_get_post_comm'); 
     }
   }

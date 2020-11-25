@@ -1,9 +1,10 @@
 <template>
-    <div  v-if="(this.$store.state.UserDisplay === this.createurId) || (this.$store.state.UserDisplay === 0)" class="post">        <!-- affiche post suivant UserDisplay -->
+    <div  v-if="(this.$store.state.UserDisplay == this.createurId) || (this.$store.state.UserDisplay == 0)" class="post">        <!-- affiche post suivant UserDisplay -->
         <!--h3>ItemPost</h3-->
         <div class="entete">
             <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
-            <button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost" class="btn"><i class="fa fa-trash"></i></button>
+            <!--p>test : {{this.$store.state.UserLogin}} {{this.createurId}}</p-->
+            <button v-if="this.$store.state.UserLogin == this.createurId" @click="suppPost" class="btn"><i class="fa fa-trash"></i></button>
             <!--p>{{ dateCreation }}</p-->
             <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">D</button-->
         </div>

@@ -45,6 +45,7 @@ export default {
       .then(response => {
         this.$store.commit('SET_USERLOGIN', response.data.userId);
         this.$store.commit('SET_TOKEN', response.data.token);
+        this.$store.commit('SET_USERDISPLAY', response.data.userId);
         this.$router.push({name: 'Home'});
       })
       .catch(function (error) {

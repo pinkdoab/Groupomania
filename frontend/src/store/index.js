@@ -25,16 +25,21 @@ export default new Vuex.Store({
       state.token = payload
       localStorage.setItem("groupomania_token", payload)
     },
-    CLEAR_TOKEN(state) {
-      state.token = null
-      localStorage.removeItem("groupomania_token")
+    SET_USERDISPLAY(state, payload) {
+      state.UserDisplay = payload
+      localStorage.setItem("groupomania_userDisplay", payload)
     },
     CLEAR_USERLOGIN(state) {
       state.UserLogin = null
       localStorage.removeItem("groupomania_userId")
     },
-    SET_USERDISPLAY(state, payload) {
-      state.UserDisplay = payload
+    CLEAR_TOKEN(state) {
+      state.token = null
+      localStorage.removeItem("groupomania_token")
+    },
+    CLEAR_USERDISPLAY(state) {
+      state.UserDisplay = null
+      localStorage.removeItem("groupomania_userDisplay")
     },
     SET_PUBLICATION(state,data) {
       state.publication = data;
