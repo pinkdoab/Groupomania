@@ -7,9 +7,9 @@
       <LoginUser/>
       <DisplayUser/>
       <ListUser/>
-      <CreaPost/>
     </div>
     <div class="droite">
+      <CreaPost/>
       <ListPost/>
     </div>
 

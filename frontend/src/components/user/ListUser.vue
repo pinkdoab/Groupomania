@@ -2,25 +2,57 @@
 <div v-if="this.$store.state.UserLogin !== 0" id="user-list">
     <h3>ListUser</h3>
     <button  @click="AffUser(0)">tous</button>
-    <button  @click="AffUser(1)">Pink</button>
-    <button  @click="AffUser(2)">Alpha</button>
-    <button  @click="AffUser(3)">Bêta</button>
-    <button  @click="AffUser(4)">Gamma</button>
-    <button  @click="AffUser(5)">Delta</button>
-    
+    <button  @click="AffUser(12)">Alpha</button>
+    <button  @click="AffUser(13)">Bêta</button>
+    <button  @click="AffUser(14)">Gamma</button>
+    <button  @click="AffUser(15)">Delta</button>
+<div>    
+<label for="pet-select">Choose a user :</label>
+
+<select name="pets" id="pet-select"  v-model="selected" >
+<option value="">--Please choose an option--</option>
+  <option v-for="user in listeUser" v-bind:key="user.id" v-bind:value="user.userId">
+    {{ user.pseudo }}
+  </option>
+</select>
+<span>Sélectionné : {{ selected }}</span>
+
+
+
+
+</div>
+
+
 </div>
 </template>
 
 <!------------------------------------------------------------------------>
 <script>
+const axios = require('axios');
 //import ItemPost from './ItemPost.vue'
 
 export default {
     name: 'ListUser',
+    data: function() {
+        return {
+            listeUser: [],
+            selected: ''
+        }
+    },
     methods: {
         AffUser: function (index) {
             this.$store.commit('SET_USERDISPLAY', index)            
-        }
+        },
+    },
+    created() {
+        const headers = {'Authorization': `token ${this.$store.state.token}`}
+        axios.get("http://localhost:3000/user",{
+            headers: headers
+        })
+        .then(response => {
+            console.log('response requête listeUser : ',response.data);
+            this.listeUser = response.data;
+        });
     }
 }
 </script>

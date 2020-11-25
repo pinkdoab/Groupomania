@@ -9,8 +9,9 @@ exports.signup = (req, res, next) => {
         const user = new User({
             pseudo: req.body.nom,
             email: req.body.email,
-            //derniere_connection: '1962-06-29 20:06:09',
-            password: hash
+            password: hash,
+            date_creation: new Date().toLocaleString(),
+            date_derniere_activite: new Date().toLocaleString()
         });
 
         // Sauvegarde du user dans la base de données
@@ -52,6 +53,9 @@ exports.login = (req, res, next) => {
                 if (!valid) {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
                 }
+
+
+
                 res.status(200).json({
                   userId: data.u_id,
                 token: jwt.sign(

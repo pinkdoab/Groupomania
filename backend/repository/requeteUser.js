@@ -65,7 +65,7 @@ User.getAll = result => {
 // Récupérer un user avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 User.findById = (userId, result) => {
-  connectionMySql.query(`SELECT * FROM t_user WHERE u_id = ${userId}`, (err, res) => {
+  connectionMySql.query(`SELECT u_id AS id, u_pseudo AS pseudo, u_email AS email, u_date_derniere_activite AS date_derniere_activite, u_date_creation AS date_creation FROM t_user WHERE u_id = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

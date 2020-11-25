@@ -1,7 +1,11 @@
 <template>
 <div  id="user-info">
-    <h3>LoginUser</h3>
-    <p>UserLogin : {{ $store.state.UserLogin }}</p>
+    <!--h3>LoginUser</h3-->
+    <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
+    <p>Bonjour {{ pseudo }}</p>
+    <p>Votre email : {{ email }}</p>
+    <p>Créer le {{ conversionDateCreation }}</p>
+    <p>Dernière activite le {{ conversionDateActivite }}</p>
     <!--p>token : {{ $store.state.token }}</p-->
 </div>
 </template>
@@ -9,9 +13,42 @@
 
 <!------------------------------------------------------------------------>
 <script>
+const axios = require('axios');
 
 export default {
-    name: 'LoginUser'
+    name: 'LoginUser',
+    data: function() {
+        return {
+            pseudo: '',
+            email: '',
+            dateCreation: '',
+            dateDerniereActivite: ''
+        }
+    },
+    computed: {
+        // un accesseur (getter) calculé
+        conversionDateCreation: function () {
+            const dateFormatee = new Date(this.dateCreation)
+            return dateFormatee.toLocaleString();
+        },
+        conversionDateActivite: function () {
+            const dateFormatee = new Date(this.dateDerniereActivite)
+            return dateFormatee.toLocaleString();
+        },
+    },
+    created() {
+        const headers = {'Authorization': `token ${this.$store.state.token}`}
+        axios.get(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
+            headers: headers
+        })
+        .then(response => {
+            console.log('response requête infoUserLogin : ',response.data);
+            this.pseudo = response.data.pseudo;
+            this.email = response.data.email;
+            this.dateCreation = response.data.date_creation;
+            this.dateDerniereActivite = response.data.date_derniere_activite;
+        });
+    }
 }
 </script>
 
