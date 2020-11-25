@@ -43,8 +43,8 @@ export default {
           password: this.password,
       })
       .then(response => {
-        this.$store.commit('CHG_USERLOGIN', response.data.userId);
-        this.$store.commit('CHG_TOKEN', response.data.token);
+        this.$store.commit('SET_USERLOGIN', response.data.userId);
+        this.$store.commit('SET_TOKEN', response.data.token);
         this.$router.push({name: 'Home'});
       })
       .catch(function (error) {

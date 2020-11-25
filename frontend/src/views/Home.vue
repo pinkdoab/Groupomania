@@ -33,7 +33,16 @@ export default {
     ListPost    
   },
   created() {
+    const token = localStorage.getItem("groupomania_token")
+    const userId = localStorage.getItem("groupomania_userId")
+    if (token) {
+        this.$store.commit('SET_USERLOGIN', userId);
+        this.$store.commit('SET_TOKEN', token);
+    }
+
     if (this.$store.state.token !== null){
+    //if (this.$store.isAuthenticated){
+      //console.log('this.isAuthenticated : ', this.store.getters.isAuthenticated)
       this.$store.dispatch('requete_get_post_comm'); 
     }
   }

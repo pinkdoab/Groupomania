@@ -11,25 +11,35 @@ export default new Vuex.Store({
     publication: [],
     commentaire: []
   },
-  getters: {
-    formattedDate: state => {
-        return `${state.day}-${state.month}-${state.year}`
+  /*getters: {
+    isAuthenticated(state) {
+      return state.token != null
     }
-  },
+  },*/
   mutations: {
-    CHG_USERLOGIN(state, payload) {
+    SET_USERLOGIN(state, payload) {
       state.UserLogin = payload
+      localStorage.setItem("groupomania_userId", payload)
     },
-    CHG_TOKEN(state, payload) {
+    SET_TOKEN(state, payload) {
       state.token = payload
+      localStorage.setItem("groupomania_token", payload)
     },
-    CHG_USERDISPLAY(state, payload) {
+    CLEAR_TOKEN(state) {
+      state.token = null
+      localStorage.removeItem("groupomania_token")
+    },
+    CLEAR_USERLOGIN(state) {
+      state.UserLogin = null
+      localStorage.removeItem("groupomania_userId")
+    },
+    SET_USERDISPLAY(state, payload) {
       state.UserDisplay = payload
     },
-    GET_PUBLICATION(state,data) {
+    SET_PUBLICATION(state,data) {
       state.publication = data;
     },
-    GET_COMMENTAIRE(state,data) {
+    SET_COMMENTAIRE(state,data) {
       state.commentaire = data;
     },
   },
@@ -37,7 +47,7 @@ export default new Vuex.Store({
     requete_get_publication(context) {
       axios.get('http://localhost:3000/post')
       .then( function(res) {
-        context.commit('GET_PUBLICATION', res.data);
+        context.commit('SET_PUBLICATION', res.data);
       })
     },
 
@@ -56,8 +66,8 @@ export default new Vuex.Store({
       }
       Promise.all([get_publication(), get_commentaire()])
       .then(function (results) {
-        context.commit('GET_PUBLICATION', results[0].data);
-        context.commit('GET_COMMENTAIRE', results[1].data);
+        context.commit('SET_PUBLICATION', results[0].data);
+        context.commit('SET_COMMENTAIRE', results[1].data);
       });
     }
   },

@@ -19,7 +19,7 @@ export default {
     name: 'ListUser',
     methods: {
         AffUser: function (index) {
-            this.$store.commit('CHG_USERDISPLAY', index)            
+            this.$store.commit('SET_USERDISPLAY', index)            
         }
     }
 }
