@@ -83,4 +83,26 @@ User.findById = (userId, result) => {
   });
 };
 
+// ----------------------------------------------------------------------------------------
+// Supprimer un user avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
+User.remove = (id, result) => {
+  connectionMySql.query("DELETE FROM t_user WHERE u_id = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found Customer with the id
+      result({ kind: "not_found" }, null);
+      return;
+    }
+
+    console.log("Suppression du user avec id: ", id);
+    result(null, res);
+  });
+};
+
 module.exports = User;

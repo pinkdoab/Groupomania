@@ -1,11 +1,11 @@
 <template>
-  <div  class="home">
+  <div v-if="this.$store.state.UserLogin != 0" class="home">
     <!--p>commentaire : {{ $store.state.commentaire }}</p-->
     <!--p>publication : {{ $store.state.publication }}</p-->
     <!--p>commentaire : {{ $store.state.token }}</p-->
     <div class="gauche">
       <LoginUser/>
-      <DisplayUser/>
+      <!--DisplayUser/-->
       <ListUser/>
     </div>
     <div class="droite">
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import DisplayUser from '@/components/user/DisplayUser.vue'
+//import DisplayUser from '@/components/user/DisplayUser.vue'
 import LoginUser from '@/components/user/LoginUser.vue'
 import ListUser from '@/components/user/ListUser.vue'
 import CreaPost from '@/components/post/CreaPost.vue'
@@ -26,7 +26,7 @@ import ListPost from '@/components/post/ListPost.vue'
 export default {
   name: 'Home',
   components: {
-    DisplayUser,
+    //DisplayUser,
     LoginUser,
     ListUser,
     CreaPost,

@@ -102,3 +102,22 @@ exports.findOne = (req, res) => {
     } else res.send(data);
   });
 };
+
+// ----------------------------------------------------------------------------------------
+// Supprimer un user avec un Id spécifié dans la demande
+// ----------------------------------------------------------------------------------------
+exports.delete = (req, res) => {
+  User.remove(req.params.userId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `user non trouvé avec un Id ${req.params.userId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Impossible de supprimer user avec un Id " + req.params.userId
+        });
+      }
+    } else res.send({ message: `user est bien supprimé !` });
+  });
+};

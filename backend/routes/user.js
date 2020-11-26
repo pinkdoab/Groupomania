@@ -16,4 +16,7 @@ router.get("/", auth, userCtrl.findAll);
 // Récupérer un userId
 router.get("/:userId", auth, userCtrl.findOne);
 
+// Supprimer un user avec userId
+router.delete("/:userId", auth, userCtrl.delete);
+
 module.exports = router;

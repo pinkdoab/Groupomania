@@ -19,15 +19,15 @@ export default new Vuex.Store({
   mutations: {
     SET_USERLOGIN(state, payload) {
       state.UserLogin = payload
-      localStorage.setItem("groupomania_userId", payload)
+      //localStorage.setItem("groupomania_userId", payload)
     },
     SET_TOKEN(state, payload) {
       state.token = payload
-      localStorage.setItem("groupomania_token", payload)
+      //localStorage.setItem("groupomania_token", payload)
     },
     SET_USERDISPLAY(state, payload) {
       state.UserDisplay = payload
-      localStorage.setItem("groupomania_userDisplay", payload)
+      //localStorage.setItem("groupomania_userDisplay", payload)
     },
     CLEAR_USERLOGIN(state) {
       state.UserLogin = null
@@ -49,6 +49,16 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    setLocalStockage() {
+      localStorage.setItem("groupomania_userId",this.state.UserLogin);
+      localStorage.setItem("groupomania_token",this.state.token);
+      localStorage.setItem("groupomania_userDisplay",this.state.UserDisplay)
+    },
+    clearLocalStockage() {
+      localStorage.removeItem("groupomania_userId");
+      localStorage.removeItem("groupomania_token");
+      localStorage.removeItem("groupomania_userDisplay")
+    },
     requete_get_publication(context) {
       axios.get('http://localhost:3000/post')
       .then( function(res) {
@@ -57,24 +67,25 @@ export default new Vuex.Store({
     },
 
     requete_get_post_comm(context) {
-
-      let axiosConfig = {
-        headers: {
-          'Authorization': `token ${this.state.token}` 
+      //if (this.$store.state.token !== null) {
+        let axiosConfig = {
+          headers: {
+            'Authorization': `token ${this.state.token}` 
+          }
+        };
+        function get_publication() {
+          return  axios.get('http://localhost:3000/post', axiosConfig)
+        }       
+        function get_commentaire() {
+          return axios.get('http://localhost:3000/comm', axiosConfig)
         }
-      };
-      function get_publication() {
-        return  axios.get('http://localhost:3000/post', axiosConfig)
-      }       
-      function get_commentaire() {
-        return axios.get('http://localhost:3000/comm', axiosConfig)
-      }
-      Promise.all([get_publication(), get_commentaire()])
-      .then(function (results) {
-        context.commit('SET_PUBLICATION', results[0].data);
-        context.commit('SET_COMMENTAIRE', results[1].data);
-      });
-    }
+        Promise.all([get_publication(), get_commentaire()])
+        .then(function (results) {
+          context.commit('SET_PUBLICATION', results[0].data);
+          context.commit('SET_COMMENTAIRE', results[1].data);
+        });
+    //}
+  }
   },
   modules: {
   }

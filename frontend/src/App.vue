@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Connection</router-link> | 
       <router-link to="/SignUp">Inscription</router-link> |
+      <button class="bouton" @click="deconnexion" >Déconnexion</button> 
     </div>
     <div class="corps">
       <router-view/>
@@ -18,9 +19,20 @@ export default {
     return {
       pseudo: 'inconnu'
     }
-  }, 
+  },
+  methods: {
+    deconnexion: function () {
+      this.$store.commit('CLEAR_USERLOGIN');
+      this.$store.commit('CLEAR_TOKEN');
+      this.$store.commit('CLEAR_USERDISPLAY');
+      this.$store.commit('SET_USERLOGIN',0);
+      this.$store.commit('SET_TOKEN', null);
+      this.$store.commit('SET_USERDISPLAY',0);
+    }
+  } 
 }
 </script>
+
 
 <style lang="scss">
 #app {

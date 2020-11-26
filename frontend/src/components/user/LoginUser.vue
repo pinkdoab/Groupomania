@@ -1,5 +1,5 @@
 <template>
-<div  id="user-info">
+<div v-if="this.$store.state.UserLogin !== 0" id="user-info">
     <!--h3>LoginUser</h3-->
     <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
     <p>Bonjour {{ pseudo }}</p>
@@ -7,6 +7,7 @@
     <p>Créer le {{ conversionDateCreation }}</p>
     <p>Dernière activite le {{ conversionDateActivite }}</p>
     <!--p>token : {{ $store.state.token }}</p-->
+    <button class="bouton" @click="suppressionUser" >Supprimer votre compte</button>
 </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
     name: 'LoginUser',
     data: function() {
         return {
-            pseudo: '',
+            pseudo: 'inconnu',
             email: '',
             dateCreation: '',
             dateDerniereActivite: ''
@@ -37,17 +38,39 @@ export default {
         },
     },
     created() {
-        const headers = {'Authorization': `token ${this.$store.state.token}`}
-        axios.get(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
-            headers: headers
-        })
-        .then(response => {
-            console.log('response requête infoUserLogin : ',response.data);
-            this.pseudo = response.data.pseudo;
-            this.email = response.data.email;
-            this.dateCreation = response.data.date_creation;
-            this.dateDerniereActivite = response.data.date_derniere_activite;
-        });
+        if (this.$store.state.token !== null) {
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.get(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
+                headers: headers
+            })
+            .then(response => {
+                console.log('response requête infoUserLogin : ',response.data);
+                this.pseudo = response.data.pseudo;
+                this.email = response.data.email;
+                this.dateCreation = response.data.date_creation;
+               this.dateDerniereActivite = response.data.date_derniere_activite;
+            });
+        }
+    },
+    methods: {
+        suppressionUser: function () {
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.delete(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
+                headers: headers
+            })
+            .then(response => {
+                console.log('response requête suppression : ',response.data);
+
+
+                        /*this.$store.commit('CLEAR_USERLOGIN');
+                        this.$store.commit('CLEAR_TOKEN');
+                        this.$store.commit('CLEAR_USERDISPLAY');*/
+                        this.$store.commit('SET_USERLOGIN',0);
+                        this.$store.commit('SET_TOKEN', null);
+                        this.$store.commit('SET_USERDISPLAY',0);
+                        this.$store.dispatch('clearLocalStockage');
+            })
+        }
     }
 }
 </script>

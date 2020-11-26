@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.$store.state.UserLogin !== 0">
+    <div v-if="this.$store.state.UserLogin != 0">
         <div id="post-list-example">
             <form v-on:submit.prevent="addNewPost">
                 <h3>CreaPost</h3>
