@@ -29,7 +29,7 @@ Post.create = (newPost, result) => {
       result(null, err);
       return;
     }
-    //console.log("Création du post: ", { id: res.insertId, ...newPost });
+    console.log("Création du post: ", { id: res.insertId, ...newPost });
     result(null, { id: res.insertId, ...newPost });
   });
 

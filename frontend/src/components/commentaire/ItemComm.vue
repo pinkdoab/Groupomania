@@ -120,9 +120,9 @@ img {
 }
 .btn {
 
-  background-color: DodgerBlue;
+  //background-color: rgb(105, 114, 123);
   border: none;
-  color: white;
+  color: black;
   border-radius: 4px;
   padding: 2px 5px;
   font-size: 12px;
