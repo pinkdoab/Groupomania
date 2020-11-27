@@ -76,6 +76,7 @@ export default {
     border-width:1px;
     border-style:solid;
     border-color:black;
+    border-radius: 4px;
 }
 .entete {
     margin: 3px;

@@ -6,7 +6,8 @@ const Comm = require("../models/modelsComm.js");
 // ----------------------------------------------------------------------------------------
 Comm.getAll = result => {
   
-    connectionMySql.query("SELECT * FROM t_commentaire;", (err, res) => {
+    //connectionMySql.query("SELECT * FROM t_commentaire;", (err, res) => {
+    connectionMySql.query("SELECT c_id, c_texte, c_date_creation, c_publication , c_createur, t_user.u_pseudo AS createurPseudo FROM t_commentaire INNER JOIN t_user ON c_createur = u_id;", (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);

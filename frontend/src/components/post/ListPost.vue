@@ -35,7 +35,7 @@ export default {
 <style scoped lang="scss">
 #post-list {
     margin: 10px auto;
-    background-color:rgb(206, 252, 228);
+    //background-color:rgb(206, 252, 228);
 }
 h3 { color:rgb(104, 206, 153)}
 </style>

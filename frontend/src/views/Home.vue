@@ -55,7 +55,9 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto;
-  background-color:rgb(193, 223, 43);
+  //background-color:rgb(43, 157, 223);
+  //background-image: url('/Users/pink01/Desktop/P7/Capture d’écran 2020-11-23 à 17.47.43.png');
+  //background-image: url('../assets/fond2.png');
 }
 p {
   width: 50px;
