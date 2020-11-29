@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.$store.state.UserLogin != 0" class="home">
-    <!--p>commentaire : {{ $store.state.commentaire }}</p-->
+    <p>commentaire : {{ $store.state.commentaire }}</p>
     <!--p>publication : {{ $store.state.publication }}</p-->
     <!--p>commentaire : {{ $store.state.token }}</p-->
     <div class="gauche">

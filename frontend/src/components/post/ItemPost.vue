@@ -9,11 +9,20 @@
             <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">D</button-->
         </div>
         <div class="corps">
-            <img v-if="image !== 'aucune'" v-bind:src="image" width="200">           
+            <img v-if="image !== 'aucune'" v-bind:src="image" width="200">
+            <span>
+                <!--button class="btn"><i class="fa fa-trash"></i></button-->
+                <button class="btn" @click="avisMoins" >moins</button>
+                {{ avisFavorable }}
+                <!--button class="btn"><i class="fa fa-trash"></i></button-->
+                <button class="btn" @click="avisPlus" >plus</button>
+                {{ avisDefavorable }}
+            </span>
             <p class="bordure">{{ texte }}</p>
             <ListComm v-bind:PostId="id"/>
         </div>
         <div class ="pied">
+
             <!--p>this.$store.state.UserLogin  {{this.$store.state.UserLogin}}</p-->
             <!--p>createurId  {{createurId}}</p-->
             <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">Supprimer publication</button-->
@@ -43,11 +52,10 @@ export default {
             return dateFormatee.toLocaleString();
         },       
     },
-
-    props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
+    //props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
+    props: ['id','texte','image','dateCreation','createurId','createurPseudo','avisFavorable','avisDefavorable'],
     methods: {
         suppPost: function () {
-
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.delete(`http://localhost:3000/Post/${this.id}`,{
                 headers: headers
@@ -57,8 +65,33 @@ export default {
                 //this.$store.dispatch('requete_get_publication');
                 this.$store.dispatch('requete_get_post_comm');              
             });
-            //this.$forceUpdate();
-        }
+        },
+        avisMoins: function () {
+            /*const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.post(`http://localhost:3000/like/`, {
+                commId: this.id,
+                userId: this.createurId,
+                avis: -1
+            },{
+                headers: headers
+            })
+            .then(response => {
+                console.log('response requête moins : ',response.data.message);                            
+            });*/
+        },
+        avisPlus: function () {/*
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
+            axios.post(`http://localhost:3000/like/`, {
+                commId: this.id,
+                userId: this.createurId,
+                avis: 1
+            },{
+                headers: headers
+            })
+            .then(response => {
+                console.log('response requête plus : ',response.data.message);                            
+            });*/
+        }               
     }
 
 }

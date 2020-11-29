@@ -44,7 +44,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('assets/fond2.png');
+  //background-image: url('assets/fond2.png');
   background-size: cover;
   //filter: blur(5px);
   font-size: 1em;
@@ -60,7 +60,7 @@ export default {
 
   text-align: center;
   color: #005730;
-  //background-color:rgb(61, 43, 223);
+  background-color:rgb(125, 185, 249);
 
 }
 

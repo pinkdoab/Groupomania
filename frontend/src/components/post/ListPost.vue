@@ -12,6 +12,8 @@
                 v-bind:dateCreation="req.dateCreation"
                 v-bind:createurId="req.createurId"
                 v-bind:createurPseudo="req.createurPseudo"
+                v-bind:avisFavorable="req.nbAvisFavorable"
+                v-bind:avisDefavorable="req.nbAvisDefavorable"
             >
                 <ItemPost/>
             </li>

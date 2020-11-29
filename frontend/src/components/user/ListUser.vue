@@ -8,13 +8,14 @@
     <button  @click="AffUser(15)">Delta</button-->
    
     <label for="user-select">Utilisateur(s) à afficher :</label>
-    <select name="user" id="user-select"  v-model="selected">
-        <option value="">--Choisissez un utilisateur--</option>
+    <select name="user" id="user-select"  v-model="selected" @change="AffUser2">
+        <option value="" disabled >--Choisissez un utilisateur--</option>
         <option value="0">Tous</option>
         <option v-for="user in listeUser" v-bind:key="user.id" v-bind:value="user.userId">{{ user.pseudo }}</option>
     </select>
+    <!--p>{{ selected }}</p-->
     <!--span>Sélectionné : {{ selected }}</span-->
-    <button @click="AffUser2">Afficher</button>
+    <!--button @click="AffUser2">Afficher</button-->
 
 </div>
 </template>
@@ -41,6 +42,7 @@ export default {
         }
     },
     created() {
+
         if (this.$store.state.token !== null) {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.get("http://localhost:3000/user",{
