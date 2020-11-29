@@ -44,23 +44,20 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //background-image: url('assets/fond2.png');
-  background-size: cover;
-  //filter: blur(5px);
+
   font-size: 1em;
 
   //width: 100%;
-  //max-width: 60em;
+  max-width: 60em;
   //min-width: 40em;
-  height: 100vh;
 
-  //margin: auto;
+  margin: auto;
 
 
 
   text-align: center;
   color: #005730;
-  background-color:rgb(125, 185, 249);
+  background-color:rgb(154, 200, 250);
 
 }
 
@@ -68,7 +65,7 @@ export default {
   width: 100%;
 
   margin: auto;
-    background-color:rgb(206, 252, 228);
+    background-color:rgb(121, 109, 252);
   a {
     font-weight: bold;
     color: #32cd2d;
@@ -81,7 +78,7 @@ export default {
 .main {
   display: flex;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
   flex-direction: column;
   min-height: 100vh;
 

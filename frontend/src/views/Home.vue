@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.$store.state.UserLogin != 0" class="home">
-    <p>commentaire : {{ $store.state.commentaire }}</p>
+    <!--p>commentaire : {{ $store.state.commentaire }}</p-->
     <!--p>publication : {{ $store.state.publication }}</p-->
     <!--p>commentaire : {{ $store.state.token }}</p-->
     <div class="gauche">
@@ -54,7 +54,7 @@ export default {
 .home {
   display: flex;
   justify-content: center;
-  margin: auto;
+  //margin: auto;
   //background-color:rgb(43, 157, 223);
   //background-image: url('/Users/pink01/Desktop/P7/Capture d’écran 2020-11-23 à 17.47.43.png');
   //background-image: url('../assets/fond2.png');

@@ -9,7 +9,7 @@
    
     <label for="user-select">Utilisateur(s) à afficher :</label>
     <select name="user" id="user-select"  v-model="selected" @change="AffUser2">
-        <option value="" disabled >--Choisissez un utilisateur--</option>
+        <!--option value="0" disabled >--Choisissez un utilisateur--</option-->
         <option value="0">Tous</option>
         <option v-for="user in listeUser" v-bind:key="user.id" v-bind:value="user.userId">{{ user.pseudo }}</option>
     </select>
@@ -30,7 +30,7 @@ export default {
     data: function() {
         return {
             listeUser: [],
-            selected: ''
+            selected: '0'
         }
     },
     methods: {
@@ -38,12 +38,14 @@ export default {
             this.$store.commit('SET_USERDISPLAY', index)            
         },
         AffUser2: function () {
-            this.$store.commit('SET_USERDISPLAY', this.selected)            
+            this.$store.commit('SET_USERDISPLAY', this.selected)
+            localStorage.setItem("groupomania_userDisplay",this.selected)      
         }
     },
     created() {
 
         if (this.$store.state.token !== null) {
+            this.selected = this.$store.state.UserDisplay
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.get("http://localhost:3000/user",{
                 headers: headers

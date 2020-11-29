@@ -13,10 +13,11 @@
             <span>
                 <!--button class="btn"><i class="fa fa-trash"></i></button-->
                 <button class="btn" @click="avisMoins" >moins</button>
-                {{ avisFavorable }}
+                {{ avisDefavorable }}
                 <!--button class="btn"><i class="fa fa-trash"></i></button-->
                 <button class="btn" @click="avisPlus" >plus</button>
-                {{ avisDefavorable }}
+                {{ avisFavorable }}
+                <!--id: {{id}} createurId: {{createurId}} UserLogin: {{this.$store.state.UserLogin}}-->
             </span>
             <p class="bordure">{{ texte }}</p>
             <ListComm v-bind:PostId="id"/>
@@ -67,31 +68,33 @@ export default {
             });
         },
         avisMoins: function () {
-            /*const headers = {'Authorization': `token ${this.$store.state.token}`}
+            const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.post(`http://localhost:3000/like/`, {
                 commId: this.id,
-                userId: this.createurId,
+                userId: parseInt(this.$store.state.UserLogin, 10),
                 avis: -1
             },{
                 headers: headers
             })
             .then(response => {
-                console.log('response requête moins : ',response.data.message);                            
-            });*/
+                console.log('response requête moins : ',response.data.message);
+                this.$store.dispatch('requete_get_post_comm');                             
+            });
         },
-        avisPlus: function () {/*
+        avisPlus: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.post(`http://localhost:3000/like/`, {
                 commId: this.id,
-                userId: this.createurId,
+                userId: parseInt(this.$store.state.UserLogin, 10),
                 avis: 1
             },{
                 headers: headers
             })
             .then(response => {
-                console.log('response requête plus : ',response.data.message);                            
-            });*/
-        }               
+                console.log('response requête plus : ',response.data.message);
+                this.$store.dispatch('requete_get_post_comm');                             
+            });
+        }              
     }
 
 }

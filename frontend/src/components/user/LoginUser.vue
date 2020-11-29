@@ -2,10 +2,12 @@
 <div v-if="this.$store.state.UserLogin !== 0" id="user-info">
     <!--h3>LoginUser</h3-->
     <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
-    <p>Bonjour {{ pseudo }}</p>
+    <p>Bonjour <span class= "pseudo">{{ pseudo }}</span></p>
     <p>Votre email : {{ email }}</p>
-    <p>Créer le {{ conversionDateCreation }}</p>
-    <p>Dernière activite le {{ conversionDateActivite }}</p>
+    <p>Compte activé le :</p>
+    <p>{{ conversionDateCreation }}</p>
+    <p>Dernière activite le :</p>
+    <p>{{ conversionDateActivite }}</p>
     <!--p>token : {{ $store.state.token }}</p-->
     <button class="bouton" @click="suppressionUser" >Supprimer votre compte</button>
 </div>
@@ -60,15 +62,10 @@ export default {
             })
             .then(response => {
                 console.log('response requête suppression : ',response.data);
-
-
-                        /*this.$store.commit('CLEAR_USERLOGIN');
-                        this.$store.commit('CLEAR_TOKEN');
-                        this.$store.commit('CLEAR_USERDISPLAY');*/
-                        this.$store.commit('SET_USERLOGIN',0);
-                        this.$store.commit('SET_TOKEN', null);
-                        this.$store.commit('SET_USERDISPLAY',0);
-                        this.$store.dispatch('clearLocalStockage');
+                this.$store.commit('SET_USERLOGIN',0);
+                this.$store.commit('SET_TOKEN', null);
+                this.$store.commit('SET_USERDISPLAY',0);
+                this.$store.dispatch('clearLocalStockage');
             })
         }
     }
@@ -83,4 +80,8 @@ export default {
     background-color:rgb(206, 252, 228);
 }
 h3 { color:rgb(104, 206, 153)}
+.pseudo {
+    font-size: 1.2em;
+    font-weight: bold;
+}
 </style>
