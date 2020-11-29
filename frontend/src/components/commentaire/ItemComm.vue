@@ -98,6 +98,7 @@ img {
     //border-color:black;
 }
 .entete {
+    background-color:rgb(242, 248, 252);
     //margin: 3px;
     display: flex;
     justify-content: space-between;

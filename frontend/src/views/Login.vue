@@ -43,14 +43,15 @@ export default {
           password: this.password,
       })
       .then(response => {
+        console.log('reponse', response);
         this.$store.commit('SET_USERLOGIN', response.data.userId);
         this.$store.commit('SET_TOKEN', response.data.token);
         this.$store.commit('SET_USERDISPLAY', response.data.userId);
         this.$store.dispatch('setLocalStockage')
-        this.$router.push({name: 'Home'});
+        //this.$router.push({name: 'Home'});
       })
-      .catch(function (error) {
-          console.log(error);
+      .catch(function (response) {
+          console.log('reponse', response);
       });
       //this.$store.dispatch('requete_get_post_comm');
       //this.$router.push({name: 'Home'});
@@ -64,7 +65,7 @@ export default {
 
 .containerLogin {
   //background-image: url('../assets/fond2.png');
-  margin:  0em auto;
+  margin:  5em auto;
   width: 26em;
   height: 24em;
   background-color:white;

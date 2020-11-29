@@ -4,10 +4,11 @@
             <form v-on:submit.prevent="addNewComm">
                 <!--h3>CreaComm</h3-->
                 <!--p>publication : {{ PostId }} </p-->
-                <div>
-                    <textarea name="nom2" v-model="newrequete" ></textarea>
+                <div class="text">
+                    <div class="gauche"><textarea name="nom2" v-model="newrequete" placeholder="New comment..."></textarea></div>
+                    <div class="droite"><button class="bouton">Post</button></div>
                 </div>
-                <button class="bouton">Commentaire</button>
+                <!--button class="bouton">Post comment</button-->
             </form>
         </div>
     </div>
@@ -63,9 +64,23 @@ export default {
     //border-style:solid;
     //border-color:black;
 }
+.text {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    //margin: auto;
+    width: 100%;
+}
 textarea {
-    resize: none;
-    width: 95%;
+    resize: vertical;
+    width: 100%;
+}
+.gauche {
+    flex: 12;
+}
+.droite {
+    flex: 1;
+    margin: auto 0px auto 10px;
 }
 .titre {
     margin-top: 0;

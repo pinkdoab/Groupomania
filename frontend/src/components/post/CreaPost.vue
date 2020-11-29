@@ -9,7 +9,7 @@
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
                 <div>
-                    <textarea name="nom" v-model="newrequete" id="new-post"></textarea>
+                    <textarea class="bordure" name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
                 <button class="bouton">Publication</button>
                 <!--p>{{ avertissement }}</p-->
@@ -72,16 +72,30 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #post-list-example {
-    //width: 70%;
+    width: 95%;
     margin: auto;
-    background-color:rgb(206, 252, 228);
-    //border-width:1px;
-    //border-style:solid;
-    //border-color:black;
+    background-color:white;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius: 4px;
 }
 textarea {
     resize: none;
     width: 95%;
+}
+.bordure {
+    text-align: justify;
+    margin-top: 0px;
+    margin: 0px 15px 5px 15px;
+    padding: 5px;
+    background-color:rgb(242, 248, 252);
+    //width: 97%;
+    //height: 70px;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(202, 216, 216);
+    border-radius: 4px;
 }
 .titre {
     margin-top: 0;

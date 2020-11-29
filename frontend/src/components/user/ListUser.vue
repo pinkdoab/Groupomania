@@ -62,9 +62,16 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #user-list {
+    //position: fixed;
+    //top: 25em;
+    width: 90%;
     //width: 70%;
     margin: 10px auto;
-    background-color:rgb(206, 252, 228);
+    background-color:white;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius: 4px;
 }
 h3 { color:rgb(104, 206, 153)}
 </style>

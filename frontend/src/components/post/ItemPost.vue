@@ -10,19 +10,21 @@
         </div>
         <div class="corps">
             <img v-if="image !== 'aucune'" v-bind:src="image" width="200">
+            
+            <p class="bordure">{{ texte }}</p>
             <span>
                 <!--button class="btn"><i class="fa fa-trash"></i></button-->
-                <button class="btn" @click="avisMoins" >moins</button>
+                <button class="btnrouge" @click="avisMoins" >-</button>
                 {{ avisDefavorable }}
                 <!--button class="btn"><i class="fa fa-trash"></i></button-->
-                <button class="btn" @click="avisPlus" >plus</button>
+                <button class="btnvert" @click="avisPlus" >+</button>
                 {{ avisFavorable }}
                 <!--id: {{id}} createurId: {{createurId}} UserLogin: {{this.$store.state.UserLogin}}-->
             </span>
-            <p class="bordure">{{ texte }}</p>
-            <ListComm v-bind:PostId="id"/>
+            <button class="btn2" @click="affComm" >Affiche commentaire</button>               
         </div>
-        <div class ="pied">
+        <div v-if="affCommentaire === 'oui'" class ="pied">
+ <ListComm v-bind:PostId="id"/>
 
             <!--p>this.$store.state.UserLogin  {{this.$store.state.UserLogin}}</p-->
             <!--p>createurId  {{createurId}}</p-->
@@ -44,6 +46,7 @@ export default {
     },
     data: function() {
         return {
+            affCommentaire: 'non'
         }
     },
     computed: {
@@ -56,6 +59,11 @@ export default {
     //props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
     props: ['id','texte','image','dateCreation','createurId','createurPseudo','avisFavorable','avisDefavorable'],
     methods: {
+        affComm: function () {
+           if (this.affCommentaire === 'oui') {
+               this.affCommentaire = 'non'
+           } else this.affCommentaire = 'oui';
+        },
         suppPost: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.delete(`http://localhost:3000/Post/${this.id}`,{
@@ -104,8 +112,9 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 .post {
-    margin: 20px 0px 0px 0px;
+    margin: 1em auto;
     padding: 0px 0px;
+    //width: 60em;
     display: flex;
     flex-direction: column;
     background-color:white;
@@ -145,14 +154,15 @@ img {
 .bordure {
     text-align: justify;
     margin-top: 0px;
-    margin: auto;
+    margin: 0px 15px 5px 15px;
     padding: 5px;
-    background-color:white;
+    background-color:rgb(242, 248, 252);
     //width: 97%;
     //height: 70px;
-    //border-width:1px;
-    //border-style:solid;
-    //border-color:black;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(202, 216, 216);
+    border-radius: 4px;
 }
 .pied {
     margin-bottom: 10px;
@@ -160,18 +170,44 @@ img {
 h3 { color:rgb(104, 206, 153)}
 
 
+.btnrouge {
+  background-color: rgb(255, 71, 30);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 0px 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.btnvert {
+  background-color: rgb(35, 162, 10);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 0px 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
 .btn {
-  background-color: DodgerBlue;
+  background-color: rgb(26, 49, 252);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 0px 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(255, 0, 0);
+}
+.btn2 {
+  background-color: rgb(126, 191, 255);
   border: none;
   color: white;
   border-radius: 4px;
   padding: 4px 8px;
-  font-size: 22px;
+  font-size: 10px;
   cursor: pointer;
-}
-
-/* Darker background on mouse-over */
-.btn:hover {
-  background-color: rgb(255, 0, 0);
 }
 </style>

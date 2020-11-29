@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <div class="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Connection</router-link> | 
-      <router-link to="/SignUp">Inscription</router-link> |
-      <button class="bouton" @click="deconnexion" >Déconnexion</button> 
+      <div class="menu">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/login">Connection</router-link> | 
+        <router-link to="/SignUp">Inscription</router-link> |
+        <button class="bouton" @click="deconnexion" >Déconnexion</button>
+      </div>
     </div>
     <div class="main">
       <router-view/>
@@ -47,8 +49,8 @@ export default {
 
   font-size: 1em;
 
-  //width: 100%;
-  max-width: 60em;
+  width: 60em;
+  //max-width: 60em;
   //min-width: 40em;
 
   margin: auto;
@@ -57,25 +59,41 @@ export default {
 
   text-align: center;
   color: #005730;
-  background-color:rgb(154, 200, 250);
-
+  background-color:rgb(108, 130, 157);
+  background-image: linear-gradient(to bottom, rgba(230, 236, 239, 0.386), rgba(125, 125, 249, 0.5));
+  background-image: url('./assets/fond4.png');
+  //filter: blur(4px);
+  background-size: 100%;
+  //opacity:0.50;
 }
 
 .nav {
-  width: 100%;
-
+position: fixed;
+top: 0px;
+  width: 60em;
+  height: 5.5em;
+  background-image: url('./assets/menu.png');
+    background-size: 100%;
   margin: auto;
-    background-color:rgb(121, 109, 252);
+  display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    //background-color:rgb(121, 109, 252);
   a {
     font-weight: bold;
-    color: #32cd2d;
+    text-decoration:none;
+    font-size: 1.3em;
+    color: white;
     &.router-link-exact-active {
-      color: #005730;
+      color: rgb(14, 236, 77);
     }
   }
 }
-
+.menu {
+  margin-right: 2em;
+}
 .main {
+  margin-top: 2em;
   display: flex;
   align-items: center;
   //justify-content: center;

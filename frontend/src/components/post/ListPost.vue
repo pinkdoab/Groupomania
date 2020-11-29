@@ -36,8 +36,10 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #post-list {
-    margin: 10px auto;
+    width: 95%;
+    margin: auto;
     //background-color:rgb(206, 252, 228);
 }
+
 h3 { color:rgb(104, 206, 153)}
 </style>

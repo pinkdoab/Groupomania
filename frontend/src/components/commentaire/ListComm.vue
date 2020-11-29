@@ -1,6 +1,6 @@
 <template>
     <div v-if="this.$store.state.UserLogin !== 0">
-        <div id="comm-list">
+        <div class="bordure" id="comm-list">
             <!--h3>ListComm</h3-->
             <CreaComm v-bind:PostId="PostId"/>
             <li is="ItemComm"
@@ -39,8 +39,23 @@ export default {
 <style scoped lang="scss">
 #comm-list {
     margin: 10px auto;
+    width: 95%;
 
     //background-color:rgb(206, 252, 228);
+}
+.bordure {
+    width: 95%;
+    text-align: justify;
+    margin-top: 0px;
+    margin: 0px 15px 5px 15px;
+    padding: 5px;
+    background-color:rgb(242, 248, 252);
+    //width: 97%;
+    //height: 70px;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(202, 216, 216);
+    border-radius: 4px;
 }
 h3 { color:rgb(104, 206, 153)}
 </style>

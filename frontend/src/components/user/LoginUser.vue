@@ -9,7 +9,7 @@
     <p>Dernière activite le :</p>
     <p>{{ conversionDateActivite }}</p>
     <!--p>token : {{ $store.state.token }}</p-->
-    <button class="bouton" @click="suppressionUser" >Supprimer votre compte</button>
+    <button class="btn" @click="suppressionUser" ><i class="fa fa-trash"></i></button>
 </div>
 </template>
 
@@ -47,11 +47,17 @@ export default {
             })
             .then(response => {
                 console.log('response requête infoUserLogin : ',response.data);
+                console.log(response.message);
                 this.pseudo = response.data.pseudo;
                 this.email = response.data.email;
                 this.dateCreation = response.data.date_creation;
-               this.dateDerniereActivite = response.data.date_derniere_activite;
-            });
+                this.dateDerniereActivite = response.data.date_derniere_activite;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log('error : ',error);
+            })
+
         }
     },
     methods: {
@@ -76,12 +82,32 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #user-info {
-    margin: 10px auto;
-    background-color:rgb(206, 252, 228);
+    //position: fixed;
+    //top: 3em;
+    width: 90%;
+    margin: auto;
+    background-color:white;
+    border-width:1px;
+    border-style:solid;
+    border-color:black;
+    border-radius: 4px;
 }
 h3 { color:rgb(104, 206, 153)}
 .pseudo {
-    font-size: 1.2em;
+    font-size: 1.8em;
     font-weight: bold;
+}
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: .8em;
+  cursor: pointer;
+}
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(255, 0, 0);
 }
 </style>

@@ -34,9 +34,12 @@ exports.login = (req, res, next) => {
       console.log('data findById : ', data)
         if (err) {
           if (err.kind === "not_found") {
+            //res.status(404).json({ message: 'Objet supprimé !'})
+            //throw 'Objet suppriméééé !';
             res.status(404).send({
               message: `user non trouvé avec userId : ${req.body.pseudo}.`
             });
+             
           } else {
             res.status(500).send({
               message: "erreur lors de la récupération du user avec userId " + req.body.pseudo

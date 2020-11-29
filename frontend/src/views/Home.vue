@@ -52,6 +52,8 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 .home {
+  margin-top: 5em;
+  width: 100%;
   display: flex;
   justify-content: center;
   //margin: auto;
@@ -60,14 +62,16 @@ export default {
   //background-image: url('../assets/fond2.png');
 }
 p {
-  width: 50px;
+  width: 100px;
   font-size: 6px;
 }
 .gauche {
-  width: 25%;
-  margin-right: 10px;
+  flex: 1;
+  //width: 35%;
+  //margin-right: 10px;
 }
 .droite {
-  width: 65%;
+    flex: 3;
+  //width: 70%;
 }
 </style>
