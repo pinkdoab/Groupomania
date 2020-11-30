@@ -11,25 +11,24 @@ export default new Vuex.Store({
     publication: [],
     commentaire: []
   },
-  /*getters: {
-    isAuthenticated(state) {
-      return state.token != null
-    }
-  },*/
   mutations: {
     SET_USERLOGIN(state, payload) {
       state.UserLogin = payload
-      //localStorage.setItem("groupomania_userId", payload)
     },
     SET_TOKEN(state, payload) {
       state.token = payload
-      //localStorage.setItem("groupomania_token", payload)
     },
     SET_USERDISPLAY(state, payload) {
       state.UserDisplay = payload
-      //localStorage.setItem("groupomania_userDisplay", payload)
     },
-    CLEAR_USERLOGIN(state) {
+    SET_PUBLICATION(state,data) {
+      state.publication = data;
+    },
+    SET_COMMENTAIRE(state,data) {
+      state.commentaire = data;
+    }
+
+    /*CLEAR_USERLOGIN(state) {
       state.UserLogin = null
       localStorage.removeItem("groupomania_userId")
     },
@@ -40,13 +39,8 @@ export default new Vuex.Store({
     CLEAR_USERDISPLAY(state) {
       state.UserDisplay = null
       localStorage.removeItem("groupomania_userDisplay")
-    },
-    SET_PUBLICATION(state,data) {
-      state.publication = data;
-    },
-    SET_COMMENTAIRE(state,data) {
-      state.commentaire = data;
-    },
+    },*/
+
   },
   actions: {
     setLocalStockage() {

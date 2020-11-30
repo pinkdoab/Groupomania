@@ -25,21 +25,18 @@ User.create = (newUser, result) => {
 // Connection user
 // ----------------------------------------------------------------------------------------
 User.findByPseudo = (pseudo, result) => {
-
+  console.log('***** Début User.findByPseudo *****');
   connectionMySql.query(`SELECT * FROM t_user WHERE u_pseudo = '${pseudo}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-
     if (res.length) {
       console.log("user trouvé : ", res[0]);
       result(null, res[0]);
       return;
     }
-
-    // not found user with the id
     result({ kind: "not_found" }, null);
   });
 };
@@ -52,11 +49,12 @@ User.getAll = result => {
   
   connectionMySql.query("SELECT u_id AS userId, u_pseudo AS pseudo FROM t_user;", (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      console.log('ERROR User.getAll', err);
       result(null, err);
       return;
-    }  
-    console.log("user getAll: ", res);
+    }
+    console.log('OK User.getAll');
+    //console.log("user getAll: ", res);
     result(null, res);
   });
 };

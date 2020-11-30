@@ -33,25 +33,26 @@ export default {
   },
   methods: {
     connection: function () {
-
-      //this.$store.commit('CHG_USERLOGIN', 1 );
-      //this.$store.commit('CHG_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwNjIxODM2OCwiZXhwIjoxNjA2MzkxMTY4fQ.Uo4vSLBIyO67qSLhYeEV82jtb35fD_SfbDEj_CDCodc')
-      //this.$router.push({name: 'Home'});
-
       axios.post('http://localhost:3000/user/login/', {
-          pseudo: this.pseudo,
-          password: this.password,
+        pseudo: this.pseudo,
+        password: this.password,
       })
       .then(response => {
-        console.log('reponse', response);
+        console.log('\n\nrequête url : ', response.config.url);
+        console.log('requête method : ', response.config.method);
+        console.log('requête data : ', response.config.data);
+        console.log('réponse status : ', response.status);
+        console.log('réponse data : ', response.data);
+
         this.$store.commit('SET_USERLOGIN', response.data.userId);
         this.$store.commit('SET_TOKEN', response.data.token);
         this.$store.commit('SET_USERDISPLAY', response.data.userId);
         this.$store.dispatch('setLocalStockage')
-        //this.$router.push({name: 'Home'});
       })
-      .catch(function (response) {
-          console.log('reponse', response);
+      .catch(error => {
+        if (error.response.status == 401) {
+          console.log('error.message : ', error.response.data.message)
+        }
       });
       //this.$store.dispatch('requete_get_post_comm');
       //this.$router.push({name: 'Home'});

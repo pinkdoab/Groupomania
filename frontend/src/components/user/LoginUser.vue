@@ -46,6 +46,9 @@ export default {
                 headers: headers
             })
             .then(response => {
+                if (response.status == 401) {
+                        console.log('response.message : ', response.message)
+                }
                 console.log('response requête infoUserLogin : ',response.data);
                 console.log(response.message);
                 this.pseudo = response.data.pseudo;
@@ -53,9 +56,8 @@ export default {
                 this.dateCreation = response.data.date_creation;
                 this.dateDerniereActivite = response.data.date_derniere_activite;
             })
-            .catch(function (error) {
-                // handle error
-                console.log('error : ',error);
+            .catch(error => {
+                console.log('error.message : ',error.message);
             })
 
         }

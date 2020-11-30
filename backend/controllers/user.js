@@ -27,52 +27,37 @@ exports.signup = (req, res, next) => {
 };
 // --------------------------------------------------------------------------
 exports.login = (req, res, next) => {
-    console.log('req.body', req.body);
-    console.log('req.body.pseudo', req.body.userId);
+  console.log('\n***** Début exports.login *****');
+  console.log('req.body : ', req.body);
 
-    User.findByPseudo(req.body.pseudo, (err, data) => {
-      console.log('data findById : ', data)
-        if (err) {
-          if (err.kind === "not_found") {
-            //res.status(404).json({ message: 'Objet supprimé !'})
-            //throw 'Objet suppriméééé !';
-            res.status(404).send({
-              message: `user non trouvé avec userId : ${req.body.pseudo}.`
-            });
-             
-          } else {
-            res.status(500).send({
-              message: "erreur lors de la récupération du user avec userId " + req.body.pseudo
-            });
-          }
-        } else {
-            console.log('data : ', data);
-
-            //console.log('data.u_password : ', data.u_password);
-            //console.log('req.body.password : ', req.body.password);
-
-            bcrypt.compare(req.body.password, data.u_password)
-            .then(valid => {
-                if (!valid) {
-                return res.status(401).json({ error: 'Mot de passe incorrect !' });
-                }
-
-
-
-                res.status(200).json({
-                  userId: data.u_id,
-                token: jwt.sign(
-                  { userId: data.u_id },
-                  'RANDOM_TOKEN_SECRET',
-                  { expiresIn: '2 days' }
-                )
-                });  
-            })
-            //console.log('error : ', error)
-            .catch(error => res.status(500).json({ error }));
-            //.catch(error => res.status(500).json({ error: 'probleme !' }));
+  User.findByPseudo(req.body.pseudo, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        console.log(`user non trouvé avec userId : ${req.body.pseudo}.`)
+        res.status(401).send({ message: `user non trouvé avec userId : ${req.body.pseudo}.` });          
+      } else {
+        console.log(`erreur lors de la récupération du user avec userId " ${req.body.pseudo}.`)
+        res.status(500).send({ message: `erreur lors de la récupération du user avec userId " ${req.body.pseudo}.` });
+      }
+    } else {
+      bcrypt.compare(req.body.password, data.u_password)
+      .then(valid => {
+        if (!valid) {
+          console.log('Mot de passe incorrect !')
+          return res.status(401).json({ error: 'Mot de passe incorrect !' });
         }
-    });
+        res.status(200).json({
+          userId: data.u_id,
+          token: jwt.sign(
+            { userId: data.u_id },
+            'RANDOM_TOKEN_SECRET',
+            { expiresIn: '2 days' }
+          )
+        });  
+      })
+      .catch(error => res.status(500).json({ error }));
+    }
+  });
 };
 // ----------------------------------------------------------------------------------------
 // Récupérer tous les users de la base de données

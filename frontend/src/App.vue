@@ -24,12 +24,13 @@ export default {
   },
   methods: {
     deconnexion: function () {
-      this.$store.commit('CLEAR_USERLOGIN');
-      this.$store.commit('CLEAR_TOKEN');
-      this.$store.commit('CLEAR_USERDISPLAY');
+      //this.$store.commit('CLEAR_USERLOGIN');
+      //this.$store.commit('CLEAR_TOKEN');
+      //this.$store.commit('CLEAR_USERDISPLAY');
       this.$store.commit('SET_USERLOGIN',0);
       this.$store.commit('SET_TOKEN', null);
       this.$store.commit('SET_USERDISPLAY',0);
+      this.$store.dispatch('clearLocalStockage')
     }
   } 
 }
