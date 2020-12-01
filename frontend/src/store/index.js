@@ -53,12 +53,12 @@ export default new Vuex.Store({
       localStorage.removeItem("groupomania_token");
       localStorage.removeItem("groupomania_userDisplay")
     },
-    requete_get_publication(context) {
+    /*requete_get_publication(context) {
       axios.get('http://localhost:3000/post')
       .then( function(res) {
         context.commit('SET_PUBLICATION', res.data);
       })
-    },
+    },*/
 
     requete_get_post_comm(context) {
       //if (this.$store.state.token !== null) {

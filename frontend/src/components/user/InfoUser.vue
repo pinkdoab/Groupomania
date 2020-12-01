@@ -19,7 +19,7 @@
 const axios = require('axios');
 
 export default {
-    name: 'LoginUser',
+    name: 'InfoUser',
     data: function() {
         return {
             pseudo: 'inconnu',

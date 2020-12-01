@@ -4,9 +4,9 @@
     <!--p>publication : {{ $store.state.publication }}</p-->
     <!--p>commentaire : {{ $store.state.token }}</p-->
     <div class="gauche">
-      <LoginUser/>
+      <InfoUser/>
       <!--DisplayUser/-->
-      <ListUser/>
+      <ChgUser/>
     </div>
     <div class="droite">
       <CreaPost/>
@@ -18,8 +18,8 @@
 
 <script>
 //import DisplayUser from '@/components/user/DisplayUser.vue'
-import LoginUser from '@/components/user/LoginUser.vue'
-import ListUser from '@/components/user/ListUser.vue'
+import InfoUser from '@/components/user/InfoUser.vue'
+import ChgUser from '@/components/user/ChgUser.vue'
 import CreaPost from '@/components/post/CreaPost.vue'
 import ListPost from '@/components/post/ListPost.vue'
 
@@ -27,8 +27,8 @@ export default {
   name: 'Home',
   components: {
     //DisplayUser,
-    LoginUser,
-    ListUser,
+    InfoUser,
+    ChgUser,
     CreaPost,
     ListPost    
   },

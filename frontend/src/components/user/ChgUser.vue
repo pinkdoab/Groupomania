@@ -1,21 +1,11 @@
 <template>
 <div v-if="this.$store.state.UserLogin !== 0" id="user-list">
-    <!--h3>ListUser</h3>
-    <button  @click="AffUser(0)">tous</button>
-    <button  @click="AffUser(12)">Alpha</button>
-    <button  @click="AffUser(13)">Bêta</button>
-    <button  @click="AffUser(14)">Gamma</button>
-    <button  @click="AffUser(15)">Delta</button-->
    
     <label for="user-select">Utilisateur(s) à afficher :</label>
-    <select name="user" id="user-select"  v-model="selected" @change="AffUser2">
-        <!--option value="0" disabled >--Choisissez un utilisateur--</option-->
+    <select name="user" id="user-select"  v-model="selected" @change="AffUser">
         <option value="0">Tous</option>
         <option v-for="user in listeUser" v-bind:key="user.id" v-bind:value="user.userId">{{ user.pseudo }}</option>
     </select>
-    <!--p>{{ selected }}</p-->
-    <!--span>Sélectionné : {{ selected }}</span-->
-    <!--button @click="AffUser2">Afficher</button-->
 
 </div>
 </template>
@@ -26,7 +16,7 @@ const axios = require('axios');
 //import ItemPost from './ItemPost.vue'
 
 export default {
-    name: 'ListUser',
+    name: 'ChgUser',
     data: function() {
         return {
             listeUser: [],
@@ -34,10 +24,7 @@ export default {
         }
     },
     methods: {
-        AffUser: function (index) {
-            this.$store.commit('SET_USERDISPLAY', index)            
-        },
-        AffUser2: function () {
+        AffUser: function () {
             this.$store.commit('SET_USERDISPLAY', this.selected)
             localStorage.setItem("groupomania_userDisplay",this.selected)      
         }
