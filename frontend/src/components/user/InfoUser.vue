@@ -3,15 +3,19 @@
     <!--h3>LoginUser</h3-->
     <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
     <p>Bonjour <span class= "pseudo">{{ pseudo }}</span></p>
-    <p>Votre email : {{ email }}</p>
+    <p>{{ email }}</p>
     <p>Compte activé le :</p>
     <p>{{ conversionDateCreation }}</p>
     <p>Dernière activite le :</p>
     <p>{{ conversionDateActivite }}</p>
-    <p>{{ this.$store.state.stat }}</p>
-    <p>{{ this.$store.state.stat[0].post }}{{ this.$store.state.stat[0].pseudo }}</p>
-    <p>{{ this.$store.state.stat[1].post }}{{ this.$store.state.stat[1].pseudo }}</p>
-
+    <!--p>{{ this.$store.state.stat }}</p-->
+    <li 
+        v-for="item in $store.state.stat"
+        v-bind:key="item.id"
+    >
+    <span>{{item.pseudo}} {{item.post}} </span>
+    <p> {{item.Date}} </p>
+    </li>
 
     <!--p>token : {{ $store.state.token }}</p-->
     <button class="btn" @click="suppressionUser" ><i class="fa fa-trash"></i></button>
@@ -34,7 +38,6 @@ export default {
         }
     },
     computed: {
-        // un accesseur (getter) calculé
         conversionDateCreation: function () {
             const dateFormatee = new Date(this.dateCreation)
             return dateFormatee.toLocaleString();
@@ -111,6 +114,9 @@ export default {
     border-style:solid;
     border-color:black;
     border-radius: 4px;
+}
+p {
+    margin: 0 0 .5em 0;
 }
 h3 { color:rgb(104, 206, 153)}
 .pseudo {
