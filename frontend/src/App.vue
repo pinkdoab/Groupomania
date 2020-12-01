@@ -15,6 +15,8 @@
 </template>
 
 <script>
+const axios = require('axios');
+
 export default {
   name: 'App',
   data: function () {
@@ -24,15 +26,30 @@ export default {
   },
   methods: {
     deconnexion: function () {
-      //this.$store.commit('CLEAR_USERLOGIN');
-      //this.$store.commit('CLEAR_TOKEN');
-      //this.$store.commit('CLEAR_USERDISPLAY');
+      console.log('this.$store.state.UserLogin ' ,this.$store.state.UserLogin)
+      console.log('this.$store.state.token ' ,this.$store.state.token)
+      const headers = {'Authorization': `token ${this.$store.state.token}`}
+      axios.put(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
+          headers: headers
+        },
+        {commId: this.id
+        })
+      .then(response => {
+        console.log('OK', response)
+              //this.$store.dispatch('requete_get_post_comm'); 
+
+      })
+      .catch(response => {
+        console.log('KO', response)
+      }) 
+
       this.$store.commit('SET_USERLOGIN',0);
       this.$store.commit('SET_TOKEN', null);
       this.$store.commit('SET_USERDISPLAY',0);
       this.$store.dispatch('clearLocalStockage')
-    }
-  } 
+ 
+    } 
+  }
 }
 </script>
 

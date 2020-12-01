@@ -19,4 +19,7 @@ router.get("/:userId", auth, userCtrl.findOne);
 // Supprimer un user avec userId
 router.delete("/:userId", auth, userCtrl.delete);
 
+// Change la date de la derniere connection du userId
+router.put("/:userId", auth, userCtrl.update);
+
 module.exports = router;
