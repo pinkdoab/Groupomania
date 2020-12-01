@@ -33,18 +33,18 @@ exports.login = (req, res, next) => {
   User.findByPseudo(req.body.pseudo, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
-        console.log(`user non trouvé avec userId : ${req.body.pseudo}.`)
-        res.status(401).send({ message: `user non trouvé avec userId : ${req.body.pseudo}.` });          
+        console.log(`Pseudo non trouvé avec userId : ${req.body.pseudo}`)
+        res.status(401).send({ messagePseudo: `Pseudo ${req.body.pseudo} non trouvé ` });          
       } else {
-        console.log(`erreur lors de la récupération du user avec userId " ${req.body.pseudo}.`)
-        res.status(500).send({ message: `erreur lors de la récupération du user avec userId " ${req.body.pseudo}.` });
+        console.log(`erreur lors de la récupération du user avec userId " ${req.body.pseudo}`)
+        res.status(500).send({ messagePseudo: `Erreur lors de la récupération du pseudo " ${req.body.pseudo}` });
       }
     } else {
       bcrypt.compare(req.body.password, data.u_password)
       .then(valid => {
         if (!valid) {
-          console.log('Mot de passe incorrect !')
-          return res.status(401).json({ error: 'Mot de passe incorrect !' });
+          console.log(`Password incorrect pour pseudo ${req.body.pseudo}`)
+          return res.status(401).json({ messagePassword: 'Password incorrect !' });
         }
         res.status(200).json({
           userId: data.u_id,

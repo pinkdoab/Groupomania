@@ -6,10 +6,12 @@
     <form class="formulaire">
 
       <h4 class="texte">Pseudo</h4>
-      <input class="element" id="pseudo" type="text" v-model="pseudo"/>
+      <input class="element" id="pseudo" type="text" v-model="pseudo" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10"  autofocus/>
+      <p>{{ errorPseudo }}</p>
 
       <h4 class="texte">Password</h4>
-      <input class="element" id="psaaword" type="text" v-model="password"/>
+      <input class="element" id="password" type="text" v-model="password" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10"/>
+      <p>{{ errorPassword }}</p>
 
       <button type="button" class="element bouton" @click="connection">Connection</button>
     </form>
@@ -28,11 +30,16 @@ export default {
   data: function () {
     return {
       pseudo: '',
-      password: ''
+      errorPseudo: '',
+      password: '',
+      errorPassword: ''
     }
   },
   methods: {
     connection: function () {
+      this.errorPseudo = ''
+      this.errorPassword = ''
+
       axios.post('http://localhost:3000/user/login/', {
         pseudo: this.pseudo,
         password: this.password,
@@ -47,15 +54,19 @@ export default {
         this.$store.commit('SET_USERLOGIN', response.data.userId);
         this.$store.commit('SET_TOKEN', response.data.token);
         this.$store.commit('SET_USERDISPLAY', response.data.userId);
-        this.$store.dispatch('setLocalStockage')
+        this.$store.dispatch('setLocalStockage');
+        this.$router.push({name: 'Home'});
       })
       .catch(error => {
         if (error.response.status == 401) {
-          console.log('error.message : ', error.response.data.message)
+          console.log('messagePseudo : ', error.response.data.messagePseudo)
+          this.errorPseudo = error.response.data.messagePseudo
+          this.pseudo= ''
+          console.log('messagePassword : ', error.response.data.messagePassword)
+          this.errorPassword = error.response.data.messagePassword
+          this.password= ''
         }
       });
-      //this.$store.dispatch('requete_get_post_comm');
-      //this.$router.push({name: 'Home'});
 
     }    
   }
@@ -81,6 +92,13 @@ export default {
     border-width:1px;
     border-style:solid;
     border-color:rgb(202, 216, 216);
+
+      input:invalid {
+        border: 2px dashed red;
+      }
+      input:valid {
+        //border: 2px solid rgb(148, 220, 39);
+    }
 
     .element {
       margin: auto;
