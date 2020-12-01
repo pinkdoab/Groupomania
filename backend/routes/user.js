@@ -20,6 +20,6 @@ router.get("/:userId", auth, userCtrl.findOne);
 router.delete("/:userId", auth, userCtrl.delete);
 
 // Change la date de la derniere connection du userId
-router.put("/:userId", auth, userCtrl.update);
+router.put("/:userId", userCtrl.update);
 
 module.exports = router;

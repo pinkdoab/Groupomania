@@ -32,8 +32,8 @@ export default {
         const headers = {'Authorization': `token ${this.$store.state.token}`}
         axios.put(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
             headers: headers
-          },
-          {commId: this.id
+          },{
+            userId: this.$store.state.UserLogin
           })
         .then(response => {
           console.log('OK', response)

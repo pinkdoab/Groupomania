@@ -8,6 +8,7 @@ export default new Vuex.Store({
     UserLogin: 0,
     token: null,
     UserDisplay: 0,
+    stat: [],
     publication: [],
     commentaire: []
   },
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     SET_COMMENTAIRE(state,data) {
       state.commentaire = data;
+    },
+    SET_STAT(state,data) {
+      state.stat = data;
     }
 
     /*CLEAR_USERLOGIN(state) {

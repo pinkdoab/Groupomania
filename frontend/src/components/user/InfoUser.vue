@@ -8,6 +8,11 @@
     <p>{{ conversionDateCreation }}</p>
     <p>Dernière activite le :</p>
     <p>{{ conversionDateActivite }}</p>
+    <p>{{ this.$store.state.stat }}</p>
+    <p>{{ this.$store.state.stat[0].post }}{{ this.$store.state.stat[0].pseudo }}</p>
+    <p>{{ this.$store.state.stat[1].post }}{{ this.$store.state.stat[1].pseudo }}</p>
+
+
     <!--p>token : {{ $store.state.token }}</p-->
     <button class="btn" @click="suppressionUser" ><i class="fa fa-trash"></i></button>
 </div>
@@ -59,6 +64,19 @@ export default {
             .catch(error => {
                 console.log('error.message : ',error.message);
             })
+
+            //axios.get("http://localhost:3000/stat",{
+            axios.get(`http://localhost:3000/stat/${this.$store.state.UserLogin}`,{
+                headers: headers
+            })
+            .then(response => {
+                console.log('response.data : ',response.data)
+                this.$store.commit('SET_STAT', response.data);
+            })
+            .catch(error => {
+                console.log('error.message : ',error.message);
+            })
+
 
         }
     },

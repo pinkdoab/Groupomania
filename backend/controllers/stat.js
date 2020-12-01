@@ -4,8 +4,7 @@ const Stat = require("../repository/requeteStat.js");
 // Statistique aprés dernière connexion
 // ----------------------------------------------------------------------------------------
 exports.stat = (req, res) => {
-    console.log("rrrrrr")
-    Stat.postRecent((err, data) => {
+    Stat.postRecent(req.params.userId, (err, data) => {
       if (err)
         res.status(501).send({
           message:

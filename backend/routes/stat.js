@@ -5,6 +5,6 @@ const statCtrl = require("../controllers/stat.js");
 const auth = require('../middleware/auth');
 
 // Nb de nouveaux posts depuis la dernière connexion 
-router.get('/', auth, statCtrl.stat);
+router.get('/:userId', auth, statCtrl.stat);
 
 module.exports = router;
