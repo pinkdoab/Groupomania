@@ -102,9 +102,10 @@ User.remove = (id, result) => {
     result(null, res);
   });
 };
-
+// ----------------------------------------------------------------------------------------
+// 
+// ----------------------------------------------------------------------------------------
 User.updateConnexion = (userId, result) => {
-  console.log ("eeeeeeeeeeeee")
   connectionMySql.query("UPDATE t_user SET u_date_derniere_activite = NOW() WHERE u_id= ?", userId, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -115,5 +116,7 @@ User.updateConnexion = (userId, result) => {
   console.log("Changement date de deconnection : ", userId);
   result(null, null);
 };
+
+
 
 module.exports = User;

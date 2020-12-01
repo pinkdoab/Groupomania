@@ -7,6 +7,7 @@ const CommRoutes = require('./routes/comm');
 const PostRoutes = require('./routes/post');
 const UserRoutes = require('./routes/user');
 const LikeRoutes = require('./routes/like');
+const StatRoutes = require('./routes/stat');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -22,7 +23,7 @@ app.use('/comm', CommRoutes);
 app.use('/post', PostRoutes);
 app.use('/user', UserRoutes);
 app.use('/like', LikeRoutes);
-
+app.use('/stat', StatRoutes);
 
 app.use('/images', express.static(path.join(__dirname, 'images')));         // requete http://localhost:3000/images/photoA_1605106010.jpg
 
