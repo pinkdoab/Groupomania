@@ -8,6 +8,7 @@ export default new Vuex.Store({
     UserLogin: 0,
     token: null,
     UserDisplay: 0,
+    moderateur: 'non',
     stat: [],
     publication: [],
     commentaire: []
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     SET_STAT(state,data) {
       state.stat = data;
+    },
+    SET_MODERATEUR(state,data) {
+      state.moderateur = data;
     }
 
     /*CLEAR_USERLOGIN(state) {

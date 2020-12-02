@@ -4,7 +4,7 @@
             <!--h3>ItemComm</h3-->
             <!--p>createurId : {{ PostId }}</p-->
             <span>Posted by <span class="pseudo">{{ createurPseudo }}</span>le {{ conversionDate }} 
-                <button v-if="this.$store.state.UserLogin == this.createur" @click="suppComm" class="btn"><i class="fa fa-trash"></i></button>
+                <button v-if="(this.$store.state.UserLogin == this.createur) || (this.$store.state.moderateur == 'oui')" @click="suppComm" class="btn"><i class="fa fa-trash"></i></button>
             </span>
             <!--p>{{ id }}</p-->
 

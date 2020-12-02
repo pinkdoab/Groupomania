@@ -47,7 +47,7 @@ User.findByPseudo = (pseudo, result) => {
 // ----------------------------------------------------------------------------------------
 User.getAll = result => {
   
-  connectionMySql.query("SELECT u_id AS userId, u_pseudo AS pseudo FROM t_user;", (err, res) => {
+  connectionMySql.query("SELECT u_id AS userId, u_pseudo AS pseudo, u_moderateur AS moderateur FROM t_user;", (err, res) => {
     if (err) {
       console.log('ERROR User.getAll', err);
       result(null, err);
@@ -63,7 +63,7 @@ User.getAll = result => {
 // Récupérer un user avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 User.findById = (userId, result) => {
-  connectionMySql.query(`SELECT u_id AS id, u_pseudo AS pseudo, u_email AS email, u_date_derniere_activite AS date_derniere_activite, u_date_creation AS date_creation FROM t_user WHERE u_id = ${userId}`, (err, res) => {
+  connectionMySql.query(`SELECT u_id AS id, u_pseudo AS pseudo, u_email AS email, u_date_derniere_activite AS date_derniere_activite, u_date_creation AS date_creation, u_moderateur AS moderateur FROM t_user WHERE u_id = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

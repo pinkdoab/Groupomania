@@ -8,6 +8,7 @@
     <p>{{ conversionDateCreation }}</p>
     <p>Dernière activite le :</p>
     <p>{{ conversionDateActivite }}</p>
+    <p>Modérateur : {{ moderateur }}</p>
     <!--p>{{ this.$store.state.stat }}</p-->
     <li 
         v-for="item in $store.state.stat"
@@ -34,7 +35,8 @@ export default {
             pseudo: 'inconnu',
             email: '',
             dateCreation: '',
-            dateDerniereActivite: ''
+            dateDerniereActivite: '',
+            moderateur: 'non'
         }
     },
     computed: {
@@ -63,6 +65,9 @@ export default {
                 this.email = response.data.email;
                 this.dateCreation = response.data.date_creation;
                 this.dateDerniereActivite = response.data.date_derniere_activite;
+                this.moderateur = response.data.moderateur;
+
+                this.$store.commit('SET_MODERATEUR', response.data.moderateur);
             })
             .catch(error => {
                 console.log('error.message : ',error.message);

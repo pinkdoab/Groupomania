@@ -3,8 +3,9 @@
         <!--h3>ItemPost</h3-->
         <div class="entete">
             <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
+            {{this.$store.state.moderateur}}
             <!--p>test : {{this.$store.state.UserLogin}} {{this.createurId}}</p-->
-            <button v-if="this.$store.state.UserLogin == this.createurId" @click="suppPost" class="btn"><i class="fa fa-trash"></i></button>
+            <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="btn"><i class="fa fa-trash"></i></button>
             <!--p>{{ dateCreation }}</p-->
             <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">D</button-->
         </div>
