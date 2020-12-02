@@ -1,25 +1,30 @@
 <template>
-
-  <div class="containerLogin">
-    <p>logo</p>
-    <h2>Connection</h2>
+  <div class="container">
+    <!--h1>Réseau social interne</h1-->
+    <!--img class="logo"
+     src="../assets/logoseul_groupomania.png"
+     alt="Grapefruit slice atop a pile of other slices"-->
+    <h1>Identification</h1>
     <form class="formulaire">
+      <label class="label" for="pseudo">
+        <p>Pseudo</p>
+        <div>
+            <input id="pseudo" name="pseudo" type="text" v-model="pseudo" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10" v-focus autofocus>
+            <p class="erreur">{{ errorPseudo }}</p>
+        </div>
+      </label> 
 
-      <h4 class="texte">Pseudo</h4>
-      <input class="element" id="pseudo" type="text" v-model="pseudo" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10"  autofocus/>
-      <p>{{ errorPseudo }}</p>
+      <label class="label" for="password">
+        <p>Password</p>
+        <div>
+            <input id="password" name="password" type="text" v-model="password" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10">
+            <p class="erreur">{{ errorPassword }}</p>
+        </div>
+      </label> 
 
-      <h4 class="texte">Password</h4>
-      <input class="element" id="password" type="text" v-model="password" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10"/>
-      <p>{{ errorPassword }}</p>
-
-      <button type="button" class="element bouton" @click="connection">Connection</button>
+      <button type="button" class="bouton" value="connection" @click="connection" >Connection</button>
     </form>
-
-    <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
-    <!--p>UserToken : {{ $store.state.token }}</p-->
   </div>
-
 </template>
 
 <script>
@@ -35,6 +40,13 @@ export default {
       errorPassword: ''
     }
   },
+  directives: {
+  focus: {
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+},
   methods: {
     connection: function () {
       this.errorPseudo = ''
@@ -55,19 +67,16 @@ export default {
         this.$store.commit('SET_TOKEN', response.data.token);
         this.$store.commit('SET_USERDISPLAY', response.data.userId);
         this.$store.dispatch('setLocalStockage');
-        this.$router.push({name: 'Home'});
+        //this.$router.push({name: 'Home'});
       })
       .catch(error => {
         if (error.response.status == 401) {
-          console.log('messagePseudo : ', error.response.data.messagePseudo)
-          this.errorPseudo = error.response.data.messagePseudo
           this.pseudo= ''
-          console.log('messagePassword : ', error.response.data.messagePassword)
-          this.errorPassword = error.response.data.messagePassword
+          this.errorPseudo = error.response.data.messagePseudo
           this.password= ''
+          this.errorPassword = error.response.data.messagePassword
         }
       });
-
     }    
   }
 }
@@ -75,56 +84,82 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 
-.containerLogin {
+.container {
   //background-image: url('../assets/fond2.png');
-  margin:  5em auto;
+  margin:  6em auto;
+  padding: 2em;
   width: 26em;
-  height: 24em;
   background-color:white;
   border-radius: 8px;
-
+  box-shadow: 1px 1px 12px rgb(51, 49, 89);
+  h1,h2 {
+    margin: 0;
+  }
+  .logo {
+     width: 4em;
+  }
   .formulaire {
-    margin: auto;
-    padding: 0em 1em 1em 1em;
-    width: 70%;
+    margin-top: 2em;
+    padding: 1em;
     background-color:rgb(240, 245, 245);
     border-radius: 8px;
     border-width:1px;
     border-style:solid;
     border-color:rgb(202, 216, 216);
-
-      input:invalid {
-        border: 2px dashed red;
-      }
-      input:valid {
-        //border: 2px solid rgb(148, 220, 39);
-    }
-
-    .element {
-      margin: auto;
-      text-align:center;
-      //padding: 0em;
-      width: 100%;
-      height: 1.7em;
-      padding: 0;
+    box-shadow: 3px 3px 6px #aaa;
+    .label {
+      margin: left;
       font-size: 1.2em;
-      border-radius: 5px;
-      border-width:1px;
-      border-style:solid;
-      border-color:rgb(202, 216, 216);
-    }
-    .bouton {
-      margin-top: 1.5em;
-      background-color: rgb(51, 191, 74);
-      font-size: 1em;
-      font-weight: bold;
-      color: white;
-      
-    }
-    h4 {
       text-align: left;
-      margin-bottom: .2em;
+      div {
+        margin-bottom: 1em;
+      }
+      input {
+        font-size: 1.2em;
+        width: 100%;
+        border-radius: 5px;
+        border-width:1px;
+        border-style:solid;
+        border-color:rgb(202, 216, 216);
+        &:invalid {
+          border: 2px solid red;
+        }
+        //&:valid {
+          //border: 2px solid rgb(148, 220, 39);
+        //}
+      }      
+      p {
+        margin: 0;
+        font-weight: bold;
+      }
+      .erreur {
+        font-size: .8em;
+        font-weight:inherit;
+        color:red;
+      }
+    }    
+    .bouton {
+      padding:6px 0 6px 0;
+      font:bold 16px Arial;
+      background:rgb(9, 153, 9);
+      color:#fff;
+      border-radius:4px;
+      width:100px;
+      border:none;
+      &:hover {
+      background: rgb(37, 139, 37);
     }
+    }
+    
+    .bouton12 {
+	padding:6px 0 6px 0;
+	font:bold 16px Arial;
+	background:rgb(9, 153, 9);
+	color:#fff;
+	border-radius:4px;
+	width:100px;
+	border:none;
+}  
   } 
 }
 </style>

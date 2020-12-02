@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <div class="menu">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/login">Connection</router-link> | 
-        <router-link to="/SignUp">Inscription</router-link> |
-        <button class="bouton" @click="deconnexion" >Déconnexion</button>
+    <div class="fond">
+      <div class="nav">
+        <div class="menu">
+          <router-link to="/">Home</router-link> |
+          <router-link to="/login">Connection</router-link> | 
+          <router-link to="/SignUp">Inscription</router-link> |
+          <button class="bouton" @click="deconnexion" >Déconnexion</button>
+        </div>
       </div>
-    </div>
-    <div class="main">
-      <router-view/>
+      <div class="main">
+        <router-view/>
+      </div>
     </div>
   </div>
 </template>
@@ -79,13 +81,32 @@ export default {
 
   text-align: center;
   color: #005730;
-  background-color:rgb(108, 130, 157);
-  background-image: linear-gradient(to bottom, rgba(230, 236, 239, 0.386), rgba(125, 125, 249, 0.5));
-  background-image: url('./assets/fond4.png');
+  //background-color:rgb(108, 130, 157);
+  //background-image: linear-gradient(to bottom, rgba(230, 236, 239, 0.386), rgba(125, 125, 249, 0.5));
+  //background-image: url('./assets/fond4.png');
   //filter: blur(4px);
   background-size: 100%;
   //opacity:0.50;
 }
+
+.fond {
+  //background-color:rgb(248, 14, 240);
+  //background-image: url('./assets/fond2.png');
+}
+.fond::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  background: url('./assets/fond4.png');
+  //filter: blur(10px);
+  opacity:0.90;
+background-size: cover;
+}
+
 
 .nav {
 position: fixed;

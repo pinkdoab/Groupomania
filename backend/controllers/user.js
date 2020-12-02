@@ -16,11 +16,10 @@ exports.signup = (req, res, next) => {
 
         // Sauvegarde du user dans la base de données
         User.create(user, (err, data) => {
-            if (err)
-            res.status(500).send({
-                message: err.message || "Une erreur s'est produite lors de la création du user"
-            });
-            else res.status(200).send(data);
+            if (err) {          
+              res.status(500).send({ message: err.message || "Une erreur s'est produite lors de la création du user"});
+
+             } else res.status(200).send(data);
         });
     })
     .catch(error => res.status(500).json({ error }));

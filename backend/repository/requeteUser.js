@@ -9,11 +9,10 @@ User.create = (newUser, result) => {
 
   connectionMySql.query("INSERT INTO t_user SET ?", newUser, (err, res) => {
       if (err) {
-        console.log("error: ", err);
-        result(null, err);
+        //console.log("error: ", err);
+        result(err, null);
         return;
       }
-      //result(null, res);
       console.log("Création du user: ", { id: res.insertId, ...newUser });
       //result(null, { id: res.insertId, ...newUser });
       result(null, {message: `La création du user ${newUser.u_pseudo} c'est bien passé`});

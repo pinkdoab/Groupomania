@@ -5,7 +5,7 @@
             <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
             {{this.$store.state.moderateur}}
             <!--p>test : {{this.$store.state.UserLogin}} {{this.createurId}}</p-->
-            <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="btn"><i class="fa fa-trash"></i></button>
+            <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="btn"><i class="fa fa-trash"></i><i class="fas fa-thumbs-up"></i><i class="fas fa-thumbs-down"></i><i class="far fa-trash-alt"></i><i class="fas fa-power-off"></i><i class="fas fa-angle-up"></i><i class="fas fa-angle-down"></i><i class="fas fa-bell"></i><i class="fas fa-caret-square-down"></i><i class="fas fa-caret-square-up"></i><i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></button>
             <!--p>{{ dateCreation }}</p-->
             <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">D</button-->
         </div>
