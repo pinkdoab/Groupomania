@@ -85,8 +85,8 @@ export default {
             },{
                 headers: headers
             })
-            .then(response => {
-                console.log('response requête moins : ',response.data.message);
+            .then( () => {
+                console.log('Avis négatif');
                 this.$store.dispatch('requete_get_post_comm');                             
             });
         },
@@ -99,8 +99,8 @@ export default {
             },{
                 headers: headers
             })
-            .then(response => {
-                console.log('response requête plus : ',response.data.message);
+            .then( () => {
+                console.log('Avis positif');
                 this.$store.dispatch('requete_get_post_comm');                             
             });
         }              
