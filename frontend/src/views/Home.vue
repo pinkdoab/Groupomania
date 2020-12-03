@@ -30,7 +30,7 @@ export default {
     InfoUser,
     ChgUser,
     CreaPost,
-    ListPost    
+    ListPost
   },
   created() {
     const token = localStorage.getItem("groupomania_token")

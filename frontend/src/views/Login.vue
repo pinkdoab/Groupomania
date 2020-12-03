@@ -67,7 +67,7 @@ export default {
         this.$store.commit('SET_TOKEN', response.data.token);
         this.$store.commit('SET_USERDISPLAY', response.data.userId);
         this.$store.dispatch('setLocalStockage');
-        //this.$router.push({name: 'Home'});
+        this.$router.push({name: 'Home'});
       })
       .catch(error => {
         if (error.response.status == 401) {

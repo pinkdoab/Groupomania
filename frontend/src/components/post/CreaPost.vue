@@ -6,13 +6,16 @@
                 <!--h3 class="titre">Création d'une publication</h3-->
 
                 <div class="input">
-                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">
+                    <!--input type="file" @change="previewImage" accept="image/*"-->                   
+                </div>
+                <div class="image-preview" v-if="imageData.length > 0">
+                    <img class="preview" :src="imageData">
                 </div>
                 <div>
                     <textarea class="bordure" name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
                 <button class="bouton">Publication</button>
-                <!--p>{{ avertissement }}</p-->
             </form>
         </div>
     </div>
@@ -29,14 +32,23 @@ export default {
     data: function() {
         return {
             newrequete: '',
-            //avertissement: ''
+            imageData: '',
+            texte: ''
         }
     },
-    //computed: {
-    //    ...mapState(['UserLogin'])
-    //},
     methods: {
-
+         previewImage: function(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imageData = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                this.imageData= ''
+            }
+        },
         addNewPost: function () {
             var imagefile = document.querySelector('#avatar');
 
@@ -60,7 +72,8 @@ export default {
                 
                 this.newrequete = '';
                 //this.$store.dispatch('requete_get_publication');
-                this.$store.dispatch('requete_get_post_comm'); 
+                this.$store.dispatch('requete_get_post_comm');
+                this.imageData= '' 
             })
             //this.$forceUpdate();       
         }
@@ -96,6 +109,9 @@ textarea {
     border-style:solid;
     border-color:rgb(202, 216, 216);
     border-radius: 4px;
+}
+img {
+    width: 100%;
 }
 .titre {
     margin-top: 0;

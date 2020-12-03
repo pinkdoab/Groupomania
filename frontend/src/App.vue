@@ -83,11 +83,6 @@ export default {
   //color: #005730;
   //background-size: 100%;
 }
-
-.fond {
-  //background-color:rgb(248, 14, 240);
-  //background-image: url('./assets/fond2.png');
-}
 #app::before {
   content: '';
   position: fixed;
@@ -99,22 +94,21 @@ export default {
   background: url('./assets/fond4.png');
   //filter: blur(10px);
   opacity:0.90;
-background-size: cover;
+  background-size: cover;
 }
 
-
 .nav {
-position: fixed;
-top: 0px;
+  position: fixed;
+  top: 0px;
   width: 60em;
   height: 5.5em;
   background-image: url('./assets/menu.png');
-    background-size: 100%;
+  background-size: 100%;
   margin: auto;
   display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    //background-color:rgb(121, 109, 252);
+  justify-content: flex-end;
+  align-items: center;
+  //background-color:rgb(121, 109, 252);
   a {
     font-weight: bold;
     text-decoration:none;
@@ -124,9 +118,15 @@ top: 0px;
       color: rgb(14, 236, 77);
     }
   }
-}
-.menu {
+  .menu {
   margin-right: 2em;
+  .bouton {
+    font-size: 1.2em;
+    background: transparent;
+    color:white;
+    border: none;
+  }
+  }
 }
 .main {
   margin-top: 2em;
@@ -135,8 +135,6 @@ top: 0px;
   //justify-content: center;
   flex-direction: column;
   min-height: 100vh;
-
-
   background: url('/assets/fond2.png');
 }
 </style>
