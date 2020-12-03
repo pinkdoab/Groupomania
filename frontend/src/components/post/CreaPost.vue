@@ -1,13 +1,11 @@
 <template>
     <div v-if="this.$store.state.UserLogin != 0">
-        <div id="post-list-example">
-            <form v-on:submit.prevent="addNewPost">
-                <h3>CreaPost</h3>
-                <!--h3 class="titre">Création d'une publication</h3-->
+        <button v-if="this.affichageCreaPost == 'non'" class="bouton btn1" @click="affichage" >Votre nouvelle publication...</button>
+        <div v-if="this.affichageCreaPost == 'oui'" id="post-list-example">
 
+            <form  v-on:submit.prevent="addNewPost">
                 <div class="input">
-                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">
-                    <!--input type="file" @change="previewImage" accept="image/*"-->                   
+                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">                  
                 </div>
                 <div class="image-preview" v-if="imageData.length > 0">
                     <img class="preview" :src="imageData">
@@ -15,7 +13,10 @@
                 <div>
                     <textarea class="bordure" name="nom" v-model="newrequete" id="new-post"></textarea>
                 </div>
-                <button class="bouton">Publication</button>
+                <div class="boutonEmplacement">
+                    <button class="boutonVert">Publier</button>
+                    <button class="boutonRouge" @click="affichage" >effacer</button>
+                </div>
             </form>
         </div>
     </div>
@@ -33,7 +34,8 @@ export default {
         return {
             newrequete: '',
             imageData: '',
-            texte: ''
+            texte: '',
+            affichageCreaPost: 'oui'
         }
     },
     methods: {
@@ -48,6 +50,9 @@ export default {
             } else {
                 this.imageData= ''
             }
+        },
+        affichage: function () {
+            this.affichageCreaPost =='oui' ? this.affichageCreaPost ='non' : this.affichageCreaPost ='oui';
         },
         addNewPost: function () {
             var imagefile = document.querySelector('#avatar');
@@ -73,7 +78,8 @@ export default {
                 this.newrequete = '';
                 //this.$store.dispatch('requete_get_publication');
                 this.$store.dispatch('requete_get_post_comm');
-                this.imageData= '' 
+                this.imageData= '';
+                this.affichageCreaPost ='non'
             })
             //this.$forceUpdate();       
         }
@@ -87,6 +93,8 @@ export default {
 #post-list-example {
     width: 95%;
     margin: auto;
+    margin-top: 0em;
+    margin-bottom: 5em;
     background-color:white;
     border-width:1px;
     border-style:solid;
@@ -123,4 +131,37 @@ img {
     margin: 10px;
 }
 h3 { color:rgb(104, 206, 153)}
+
+.btn1 {
+    background-color:green;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+.boutonRouge {
+    margin: 0 0 .5em .5em;
+    background-color:red;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+.boutonVert {
+    margin: 0 .5em .5em 0;
+    background-color:green;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
 </style>

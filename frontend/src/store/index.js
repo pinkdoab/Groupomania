@@ -9,8 +9,8 @@ export default new Vuex.Store({
     token: null,
     UserDisplay: 0,
     moderateur: 'non',
-    imageVisu: '',
-    texteVisu: '',
+    //imageVisu: '',
+    //texteVisu: '',
     stat: [],
     publication: [],
     commentaire: []
@@ -37,14 +37,14 @@ export default new Vuex.Store({
     SET_MODERATEUR(state,data) {
       state.moderateur = data;
     },
-    SET_IMAGEVISU(state,data) {
+    /*SET_IMAGEVISU(state,data) {
       state.imageVisu = data;
     },
     SET_TEXTEVISU(state,data) {
       state.texteVisu = data;
     }
 
-    /*CLEAR_USERLOGIN(state) {
+    CLEAR_USERLOGIN(state) {
       state.UserLogin = null
       localStorage.removeItem("groupomania_userId")
     },

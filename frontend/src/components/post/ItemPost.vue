@@ -109,7 +109,7 @@ export default {
 <style scoped lang="scss">
 
 .post {
-    margin: 1em auto;
+    margin: 0em auto 1em;
     padding: 0px 0px;
     //width: 60em;
     display: flex;

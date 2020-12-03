@@ -5,19 +5,16 @@
     <!--p>commentaire : {{ $store.state.token }}</p-->
     <div class="gauche">
       <InfoUser/>
-      <!--DisplayUser/-->
       <ChgUser/>
     </div>
     <div class="droite">
       <CreaPost/>
       <ListPost/>
     </div>
-
   </div>
 </template>
 
 <script>
-//import DisplayUser from '@/components/user/DisplayUser.vue'
 import InfoUser from '@/components/user/InfoUser.vue'
 import ChgUser from '@/components/user/ChgUser.vue'
 import CreaPost from '@/components/post/CreaPost.vue'
@@ -26,7 +23,6 @@ import ListPost from '@/components/post/ListPost.vue'
 export default {
   name: 'Home',
   components: {
-    //DisplayUser,
     InfoUser,
     ChgUser,
     CreaPost,
@@ -56,10 +52,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  //margin: auto;
-  //background-color:rgb(43, 157, 223);
-  //background-image: url('/Users/pink01/Desktop/P7/Capture d’écran 2020-11-23 à 17.47.43.png');
-  //background-image: url('../assets/fond2.png');
 }
 p {
   width: 100px;
@@ -67,11 +59,14 @@ p {
 }
 .gauche {
   flex: 1;
-  //width: 35%;
-  //margin-right: 10px;
 }
 .droite {
     flex: 3;
-  //width: 70%;
+}
+@media screen and (max-width: 700px) {
+  .home {
+  display: block;
+  width: 100%;
+  }
 }
 </style>

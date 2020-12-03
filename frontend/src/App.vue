@@ -1,19 +1,20 @@
 <template>
   <div id="app">
-    <!--div class="fond"-->
       <div class="nav">
         <div class="menu">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/login">Connection</router-link> | 
-          <router-link to="/SignUp">Inscription</router-link> |
-          <button class="bouton" @click="deconnexion" ><i class="fas fa-power-off"></i></button>
+          <div><img class="logo" src="./assets/logo_groupomania.png"></div>
+          <div class="sous_menu">
+            <div><router-link to="/">Home</router-link></div>
+            <div><router-link to="/login">Connection</router-link></div> 
+            <div><router-link to="/SignUp">Inscription</router-link></div>
+            <div><button class="bouton" @click="deconnexion" ><i class="fas fa-power-off"></i></button></div>
+          </div>
         </div>
       </div>
       <div class="main">
         <router-view/>
       </div>
     </div>
-  <!--/div-->
 </template>
 
 <script>
@@ -70,19 +71,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   font-size: 1em;
-
-  //width: 60em;
   max-width: 60em;
-  //min-width: 40em;
-
-  margin: auto;
-
-
+  margin: 0 auto;
 
   text-align: center; // A VOIR.................
-  //color: #005730;
-  //background-size: 100%;
+
 }
+
 #app::before {
   content: '';
   position: fixed;
@@ -100,15 +95,16 @@ export default {
 .nav {
   position: fixed;
   top: 0px;
-  width: 60em;
-  height: 5.5em;
-  background-image: url('./assets/menu.png');
-  background-size: 100%;
+  left: 0;
+  width: 100%;
+  min-height: 5em;
+  background: url('./assets/menu2.png');
   margin: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  //background-color:rgb(121, 109, 252);
+
+  
+  .logo {
+    width: 20em;
+  }
   a {
     font-weight: bold;
     text-decoration:none;
@@ -119,22 +115,44 @@ export default {
     }
   }
   .menu {
-  margin-right: 2em;
-  .bouton {
-    font-size: 1.2em;
-    background: transparent;
-    color:white;
-    border: none;
+
+    text-align: center;
+    max-width: 58em;
+    min-height: 5em;
+    margin: auto;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    .sous_menu {
+      display: flex;
+    }
+    div {
+      margin: auto .5em;
+    }
+    .logo {
+      align-self: flex-start;
+    }
+    .bouton {
+      font-size: 1.2em;
+      background: transparent;
+      color:white;
+      border: none;
+    }
   }
-  }
+  
 }
 .main {
   margin-top: 2em;
   display: flex;
   align-items: center;
-  //justify-content: center;
   flex-direction: column;
   min-height: 100vh;
   background: url('/assets/fond2.png');
+}
+@media screen and (max-width: 700px) {
+  .nav .menu {
+    display: flex;
+justify-content:center;
+  }
 }
 </style>
