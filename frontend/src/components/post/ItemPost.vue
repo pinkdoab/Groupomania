@@ -1,26 +1,21 @@
 <template>
-    <div  v-if="(this.$store.state.UserDisplay == this.createurId) || (this.$store.state.UserDisplay == 0)" class="post">        <!-- affiche post suivant UserDisplay -->
-        <!--h3>ItemPost</h3-->
+    <div  v-if="(this.$store.state.UserDisplay == this.createurId) || (this.$store.state.UserDisplay == 0)" class="post">
         <div class="entete">
             <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
-            {{this.$store.state.moderateur}}
-            <!--p>test : {{this.$store.state.UserLogin}} {{this.createurId}}</p-->
-            <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="btn"><i class="fa fa-trash"></i><i class="fas fa-thumbs-up"></i><i class="fas fa-thumbs-down"></i><i class="far fa-trash-alt"></i><i class="fas fa-power-off"></i><i class="fas fa-angle-up"></i><i class="fas fa-angle-down"></i><i class="fas fa-bell"></i><i class="fas fa-caret-square-down"></i><i class="fas fa-caret-square-up"></i><i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></button>
-            <!--p>{{ dateCreation }}</p-->
-            <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">D</button-->
+            <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="poubelle"><i class="far fa-trash-alt"></i></button>
         </div>
         <div class="corps">
             <img v-if="image !== 'aucune'" v-bind:src="image" width="200">
             
             <p class="bordure">{{ texte }}</p>
             <span>
-                <!--button class="btn"><i class="fa fa-trash"></i></button-->
-                <button class="btnrouge" @click="avisMoins" >-</button>
+                
+                <button class="btnrouge" @click="avisMoins" ><i class="fas fa-thumbs-down"></i></button>
                 {{ avisDefavorable }}
-                <!--button class="btn"><i class="fa fa-trash"></i></button-->
-                <button class="btnvert" @click="avisPlus" >+</button>
+                
+                <button class="btnvert" @click="avisPlus" ><i class="fas fa-thumbs-up"></i></button>
                 {{ avisFavorable }}
-                <!--id: {{id}} createurId: {{createurId}} UserLogin: {{this.$store.state.UserLogin}}-->
+
             </span>
             <button class="btn2" @click="affComm" >Affiche commentaire</button>               
         </div>
@@ -112,6 +107,7 @@ export default {
 
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
+
 .post {
     margin: 1em auto;
     padding: 0px 0px;
@@ -130,7 +126,7 @@ export default {
     justify-content: space-between;
     p {
         margin: 0px;
-        font-size: .8em;
+        font-size: 1em;
         span {
             margin-left: 2px;
             margin-right: 5px;
@@ -138,6 +134,15 @@ export default {
             font-size: 2em;
             vertical-align: -1px;
         }
+    }
+    .poubelle {
+        background-color: white;
+        border: none;
+        color: red;
+        border-radius: 4px;
+        padding: 0px 4px;
+        font-size: 20px;
+        cursor: pointer;
     }
 }
 .corps {
@@ -172,32 +177,24 @@ h3 { color:rgb(104, 206, 153)}
 
 
 .btnrouge {
-  background-color: rgb(255, 71, 30);
+  background-color: white;
   border: none;
-  color: white;
+  color:red;
   border-radius: 4px;
   padding: 0px 4px;
   font-size: 18px;
   cursor: pointer;
 }
 .btnvert {
-  background-color: rgb(35, 162, 10);
+  background-color: white;
   border: none;
-  color: white;
+  color: green;
   border-radius: 4px;
   padding: 0px 4px;
   font-size: 18px;
   cursor: pointer;
 }
-.btn {
-  background-color: rgb(26, 49, 252);
-  border: none;
-  color: white;
-  border-radius: 4px;
-  padding: 0px 4px;
-  font-size: 18px;
-  cursor: pointer;
-}
+
 /* Darker background on mouse-over */
 .btn:hover {
   background-color: rgb(255, 0, 0);

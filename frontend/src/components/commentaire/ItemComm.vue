@@ -4,7 +4,7 @@
             <!--h3>ItemComm</h3-->
             <!--p>createurId : {{ PostId }}</p-->
             <span>Posted by <span class="pseudo">{{ createurPseudo }}</span>le {{ conversionDate }} 
-                <button v-if="(this.$store.state.UserLogin == this.createur) || (this.$store.state.moderateur == 'oui')" @click="suppComm" class="btn"><i class="fa fa-trash"></i></button>
+                <button v-if="(this.$store.state.UserLogin == this.createur) || (this.$store.state.moderateur == 'oui')" @click="suppComm" class="poubelle"><i class="far fa-trash-alt"></i></button>
             </span>
             <!--p>{{ id }}</p-->
 
@@ -118,6 +118,15 @@ img {
 }
 .pied {
     margin-bottom: 10px;
+}
+.poubelle {
+  background-color: white;
+  border: none;
+  color: red;
+  border-radius: 4px;
+  padding: 0px 4px;
+  font-size: 18px;
+  cursor: pointer;
 }
 .btn {
 

@@ -7,10 +7,10 @@
     <h1>Création du compte</h1>
     <form class="formulaire">
       <label class="label" for="pseudo">
-        <p>Pseudo{{ erreurPseudo }}</p>
+        <p>Pseudo</p>
         <div>
             <input id="pseudo" name="pseudo" type="text" v-model="pseudo" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10" v-focus autofocus>
-            <!--p class="erreur">{{ errorPseudo }}</p-->
+            <p v-if="(this.erreurPseudo !== '')" class="erreur">{{ erreurPseudo }} existe déjà</p>
         </div>
       </label> 
 
@@ -18,7 +18,7 @@
         <p>Email</p>
         <div>
             <input id="email" name="email" type="text" v-model="email" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="16">
-            <!--p class="erreur">{{ errorEmail }}</p-->
+            <p v-if="(this.erreurEmail !== '')" class="erreur">{{ erreurEmail }} existe déjà</p>
         </div>
       </label>
 
@@ -34,21 +34,6 @@
     </form>
   </div>
 </template>
-<!--template>
-  <div class="about">
-    <h1>Inscription de l'utilisateur</h1>
-
-    <label for="util">Pseudo</label>
-    <input id="util" type="text" v-model="pseudo"/>
-    <label for="emai">Email</label>
-    <input id="emai" type="text" v-model="email"/>
-    <label for="pass">Password</label>
-    <input id="pass" type="text" v-model="password"/>
-
-    <button class="bouton" @click="connection">Inscription</button>
-
-  </div>
-</template-->
 
 <script>
 const axios = require('axios');
@@ -60,9 +45,8 @@ export default {
       pseudo: '',
       erreurPseudo: '',
       email: '',
-      //erreurEmail: '',
-      password: '',
-      //erreurPassword: ''
+      erreurEmail: '',
+      password: ''
     }
   },
   directives: {
@@ -74,24 +58,26 @@ export default {
 },
   methods: {
     connection: function () {
-
-        axios.post('http://localhost:3000/user/signup/', {
-            nom: this.pseudo,
-            email: this.email,
-            password: this.password,
-        })
-        .then( response => {
-            console.log('AAAA then AAAAA ',response);
-        })
-        .catch( error => {
-            console.log('AAAA catch AAAAA ',error.response.data.message);
-            this.pseudo= ''
-            this.erreurPseudo = error.response.data.message
-            this.email= ''
-            this.password= ''
-            //this.errorPassword = error.response.data.messagePassword
-        });
-        //this.$router.push({name: 'Home'});
+      axios.post('http://localhost:3000/user/signup/', {
+        nom: this.pseudo,
+        email: this.email,
+        password: this.password,
+      })
+      .then( response => {
+        console.log('AAAA then AAAAA ',response);
+        this.$router.push({name: 'Home'});
+      })
+      .catch( error => {
+        console.log('AAAA catch AAAAA ',error.response.data.messageError);
+        this.pseudo= ''
+        this.email= ''
+        this.password= ''
+        if (error.response.data.messageError[0] == 't_user.ind_pseudo') {
+          this.erreurPseudo = error.response.data.messageError[1]
+        } else {
+          if (error.response.data.messageError[0] == 't_user.ind_email') {this.erreurEmail = error.response.data.messageError[1]}
+        }
+      });
     }
   }
 }

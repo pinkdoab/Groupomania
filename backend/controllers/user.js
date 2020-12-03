@@ -16,8 +16,13 @@ exports.signup = (req, res, next) => {
 
         // Sauvegarde du user dans la base de données
         User.create(user, (err, data) => {
-            if (err) {          
-              res.status(500).send({ message: err.message || "Une erreur s'est produite lors de la création du user"});
+            if (err) {
+              console.log('err.message : ',err.message)
+              console.log('err.message : ',err.message.split(/ '(.*)' /)[1])
+              console.log('err.message : ',err.message.split(/key '(.*)'/)[1])
+              var messagePerso = [err.message.split(/key '(.*)'/)[1], err.message.split(/ '(.*)' /)[1]]
+              console.log ('message : ', messagePerso)
+              res.status(500).send({ messageError: messagePerso || "Une erreur s'est produite lors de la création du user"});
 
              } else res.status(200).send(data);
         });

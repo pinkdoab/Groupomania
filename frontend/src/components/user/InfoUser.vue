@@ -2,13 +2,13 @@
 <div v-if="this.$store.state.UserLogin !== 0" id="user-info">
     <!--h3>LoginUser</h3-->
     <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
-    <p>Bonjour <span class= "pseudo">{{ pseudo }}</span></p>
+    <p>Bonjour <span class= "pseudo">{{ pseudo }}</span><i class="fas fa-angle-up"></i><i class="fas fa-angle-down"></i><i class="fas fa-bell"></i><i class="fas fa-caret-square-down"></i><i class="fas fa-caret-square-up"></i></p>
     <p>{{ email }}</p>
     <p>Compte activé le :</p>
     <p>{{ conversionDateCreation }}</p>
     <p>Dernière activite le :</p>
     <p>{{ conversionDateActivite }}</p>
-    <p>Modérateur : {{ moderateur }}</p>
+    <p>Modérateur : {{ moderateur }}<i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></p>
     <!--p>{{ this.$store.state.stat }}</p-->
     <li 
         v-for="item in $store.state.stat"
@@ -19,7 +19,7 @@
     </li>
 
     <!--p>token : {{ $store.state.token }}</p-->
-    <button class="btn" @click="suppressionUser" ><i class="fa fa-trash"></i></button>
+    <button class="btn" @click="suppressionUser" ><i class="far fa-trash-alt"></i></button>
 </div>
 </template>
 

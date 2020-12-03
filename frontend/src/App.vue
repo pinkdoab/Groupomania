@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <div class="fond">
+    <!--div class="fond"-->
       <div class="nav">
         <div class="menu">
           <router-link to="/">Home</router-link> |
           <router-link to="/login">Connection</router-link> | 
           <router-link to="/SignUp">Inscription</router-link> |
-          <button class="bouton" @click="deconnexion" >Déconnexion</button>
+          <button class="bouton" @click="deconnexion" ><i class="fas fa-power-off"></i></button>
         </div>
       </div>
       <div class="main">
         <router-view/>
       </div>
     </div>
-  </div>
+  <!--/div-->
 </template>
 
 <script>
@@ -71,29 +71,24 @@ export default {
 
   font-size: 1em;
 
-  width: 60em;
-  //max-width: 60em;
+  //width: 60em;
+  max-width: 60em;
   //min-width: 40em;
 
   margin: auto;
 
 
 
-  text-align: center;
-  color: #005730;
-  //background-color:rgb(108, 130, 157);
-  //background-image: linear-gradient(to bottom, rgba(230, 236, 239, 0.386), rgba(125, 125, 249, 0.5));
-  //background-image: url('./assets/fond4.png');
-  //filter: blur(4px);
-  background-size: 100%;
-  //opacity:0.50;
+  text-align: center; // A VOIR.................
+  //color: #005730;
+  //background-size: 100%;
 }
 
 .fond {
   //background-color:rgb(248, 14, 240);
   //background-image: url('./assets/fond2.png');
 }
-.fond::before {
+#app::before {
   content: '';
   position: fixed;
   top: 0;
