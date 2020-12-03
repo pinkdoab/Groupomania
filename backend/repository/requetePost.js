@@ -7,8 +7,8 @@ const Post = require("../models/modelsPost.js");
 Post.getAll = result => {
   
     //connectionMySql.query("SELECT p_id AS id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo, t_user.u_id AS createurId FROM t_publication INNER JOIN t_user ON p_user_createur = u_id;", (err, res) => {
-    //connectionMySql.query("SELECT p_id AS id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo, t_user.u_id AS createurId, count(o_favorable) AS nbAvisFavorable, count(o_defavorable) AS nbAvisDefavorable FROM t_publication INNER JOIN t_user ON p_user_createur = u_id INNER JOIN t_opinion WHERE p_id = o_commentaire GROUP BY o_commentaire;", (err, res) => {
-      connectionMySql.query("SELECT p_id AS id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo,t_user.u_id AS createurId, count(o_favorable) AS nbAvisFavorable, count(o_defavorable) AS nbAvisDefavorable FROM t_publication INNER JOIN t_user ON p_user_createur = u_id LEFT OUTER JOIN t_opinion ON p_id = o_commentaire GROUP BY p_id;", (err, res) => {
+    //connectionMySql.query("SELECT p_id AS id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo, t_user.u_id AS createurId, count(o_favorable) AS nbAvisFavorable, count(o_defavorable) AS nbAvisDefavorable FROM t_publication INNER JOIN t_user ON p_user_createur = u_id INNER JOIN t_opinion WHERE p_id = o_commentaire GROUP BY o_commentaire ;", (err, res) => {
+      connectionMySql.query("SELECT p_id AS id, p_texte AS texte, p_image_url AS imageUrl, p_date_creation AS dateCreation, t_user.u_pseudo AS createurPseudo,t_user.u_id AS createurId, count(o_favorable) AS nbAvisFavorable, count(o_defavorable) AS nbAvisDefavorable FROM t_publication INNER JOIN t_user ON p_user_createur = u_id LEFT OUTER JOIN t_opinion ON p_id = o_commentaire GROUP BY p_id ORDER BY p_date_creation DESC;", (err, res) => {
 
       if (err) {
         console.log("error: ", err);
@@ -83,44 +83,4 @@ Post.findById = (customerId, result) => {
   });
 };
 
-
-/*
-Customer.updateById = (id, customer, result) => {
-  sql.query(
-    "UPDATE customers SET email = ?, name = ?, active = ? WHERE id = ?",
-    [customer.email, customer.name, customer.active, id],
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-
-      if (res.affectedRows == 0) {
-        // not found Customer with the id
-        result({ kind: "not_found" }, null);
-        return;
-      }
-
-      console.log("updated customer: ", { id: id, ...customer });
-      result(null, { id: id, ...customer });
-    }
-  );
-};
-
-
-
-Customer.removeAll = result => {
-  sql.query("DELETE FROM customers", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    console.log(`deleted ${res.affectedRows} customers`);
-    result(null, res);
-  });
-};
-*/
 module.exports = Post;

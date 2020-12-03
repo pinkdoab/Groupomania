@@ -5,6 +5,7 @@
 
             <form  v-on:submit.prevent="addNewPost">
                 <div class="input">
+                    <label for="avatar">{{ texteChoixImage }}</label>
                     <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">                  
                 </div>
                 <div class="image-preview" v-if="imageData.length > 0">
@@ -35,7 +36,8 @@ export default {
             newrequete: '',
             imageData: '',
             texte: '',
-            affichageCreaPost: 'oui'
+            affichageCreaPost: 'oui',
+            texteChoixImage: 'Choisissez une image...'
         }
     },
     methods: {
@@ -163,5 +165,36 @@ h3 { color:rgb(104, 206, 153)}
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
+}
+/*#avatar {
+    margin: 0 .5em .5em 0;
+    background-color:green;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}*/
+#avatar {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+label {
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 1em;
+    background-color: rgb(23, 23, 121);
+    display: inline-block;
+}
+
+label:hover {
+    background-color: green;
 }
 </style>
