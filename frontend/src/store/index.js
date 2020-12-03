@@ -9,8 +9,7 @@ export default new Vuex.Store({
     token: null,
     UserDisplay: 0,
     moderateur: 'non',
-    //imageVisu: '',
-    //texteVisu: '',
+    dateDerniereConnexion: '',
     stat: [],
     publication: [],
     commentaire: []
@@ -37,10 +36,10 @@ export default new Vuex.Store({
     SET_MODERATEUR(state,data) {
       state.moderateur = data;
     },
-    /*SET_IMAGEVISU(state,data) {
-      state.imageVisu = data;
+    SET_DATECONNECTION(state,data) {
+      state.dateDerniereConnexion = data;
     },
-    SET_TEXTEVISU(state,data) {
+    /*SET_DATECONNECTION(state,data) {
       state.texteVisu = data;
     }
 

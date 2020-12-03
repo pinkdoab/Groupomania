@@ -1,7 +1,8 @@
 <template>
-    <div  v-if="(this.$store.state.UserDisplay == this.createurId) || (this.$store.state.UserDisplay == 0)" class="post">
+    <div v-if="(this.$store.state.UserDisplay == this.createurId) || (this.$store.state.UserDisplay == 0)" class="post">
         <div class="entete">
             <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
+            <p v-if="this.dateCreation > this.$store.state.dateDerniereConnexion" >Nouvelle publication</p>
             <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="poubelle"><i class="far fa-trash-alt"></i></button>
         </div>
         <div class="corps">

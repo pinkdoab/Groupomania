@@ -7,7 +7,7 @@
     <p>Compte activé le :</p>
     <p>{{ conversionDateCreation }}</p>
     <p>Dernière activite le :</p>
-    <p>{{ conversionDateActivite }}</p>
+    <p>{{ conversionDateActivite }}{{dateDerniereActivite}}</p>
     <p>Modérateur : {{ moderateur }}<i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></p>
     <!--p>{{ this.$store.state.stat }}</p-->
     <li 
@@ -68,6 +68,7 @@ export default {
                 this.moderateur = response.data.moderateur;
 
                 this.$store.commit('SET_MODERATEUR', response.data.moderateur);
+                this.$store.commit('SET_DATECONNECTION', response.data.date_derniere_activite);
             })
             .catch(error => {
                 console.log('error.message : ',error.message);

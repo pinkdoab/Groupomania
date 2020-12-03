@@ -5,7 +5,7 @@
                 <!--h3>CreaComm</h3-->
                 <!--p>publication : {{ PostId }} </p-->
                 <div class="text">
-                    <div class="gauche"><textarea name="nom2" v-model="newrequete" placeholder="New comment..."></textarea></div>
+                    <div class="gauche"><textarea name="nom2" v-model="newrequete" placeholder="Nouveau commentaire..."></textarea></div>
                     <div class="droite"><button class="bouton">Post</button></div>
                 </div>
                 <!--button class="bouton">Post comment</button-->

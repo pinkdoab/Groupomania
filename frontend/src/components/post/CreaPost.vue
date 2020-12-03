@@ -1,22 +1,28 @@
 <template>
     <div v-if="this.$store.state.UserLogin != 0">
-        <button v-if="this.affichageCreaPost == 'non'" class="bouton btn1" @click="affichage" >Votre nouvelle publication...</button>
+        <button v-if="this.affichageCreaPost == 'non'" class="filet bouton btn1"  @click="affichage" >Votre nouvelle publication...</button>
         <div v-if="this.affichageCreaPost == 'oui'" id="post-list-example">
-
+                <h2>Votre nouvelle publication...</h2>
             <form  v-on:submit.prevent="addNewPost">
-                <div class="input">
+                <!--div class="input">
                     <label for="avatar">{{ texteChoixImage }}</label>
                     <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">                  
-                </div>
+                </div-->
                 <div class="image-preview" v-if="imageData.length > 0">
                     <img class="preview" :src="imageData">
                 </div>
                 <div>
-                    <textarea class="bordure" name="nom" v-model="newrequete" id="new-post"></textarea>
+                    <textarea class="bordure" name="nom" v-model="newrequete" id="new-post" placeholder="Votre texte..."></textarea>
                 </div>
+                <!--div class="input">
+                    <label for="avatar">{{ texteChoixImage }}</label>
+                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">                  
+                </div-->
                 <div class="boutonEmplacement">
+                    <label for="avatar">{{ texteChoixImage }}</label>
+                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">
                     <button class="boutonVert">Publier</button>
-                    <button class="boutonRouge" @click="affichage" >effacer</button>
+                    <button class="boutonRouge" @click="affichage" >Effacer</button>
                 </div>
             </form>
         </div>
@@ -36,7 +42,7 @@ export default {
             newrequete: '',
             imageData: '',
             texte: '',
-            affichageCreaPost: 'oui',
+            affichageCreaPost: 'non',
             texteChoixImage: 'Choisissez une image...'
         }
     },
@@ -55,6 +61,7 @@ export default {
         },
         affichage: function () {
             this.affichageCreaPost =='oui' ? this.affichageCreaPost ='non' : this.affichageCreaPost ='oui';
+                            this.imageData= '';
         },
         addNewPost: function () {
             var imagefile = document.querySelector('#avatar');
@@ -132,12 +139,24 @@ img {
 .input {
     margin: 10px;
 }
-h3 { color:rgb(104, 206, 153)}
-
+h2 {
+    color:rgb(2, 2, 155);
+    margin: 0.1em;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*.filet {
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(202, 216, 216);
+    border-radius: 4px;
+}*/
 .btn1 {
-    background-color:green;
+    background-color:white;
+    width: 95%;
     border: none;
-    color: white;
+    color: rgb(2, 2, 155);
     border-radius: 4px;
     padding: 4px 8px;
     font-size: 1em;
@@ -186,15 +205,16 @@ h3 { color:rgb(104, 206, 153)}
 	z-index: -1;
 }
 label {
-    color: white;
+    margin: 0 .5em .5em 0;
+    color: black;
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 2px 8px;
     font-size: 1em;
-    background-color: rgb(23, 23, 121);
-    display: inline-block;
+    background-color: white;
+    //display: inline-block;
 }
 
 label:hover {
-    background-color: green;
+    background-color: rgb(176, 182, 176);
 }
 </style>

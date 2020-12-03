@@ -6,10 +6,6 @@
             <span>Posted by <span class="pseudo">{{ createurPseudo }}</span>le {{ conversionDate }} 
                 <button v-if="(this.$store.state.UserLogin == this.createur) || (this.$store.state.moderateur == 'oui')" @click="suppComm" class="poubelle"><i class="far fa-trash-alt"></i></button>
             </span>
-            <!--p>{{ id }}</p-->
-
-            <!--p>{{ dateCreation }}</p>
-            <p>{{ publication }}</p-->
         </div>
         <div class="main2">
             <p>{{ texte }}</p>
@@ -146,6 +142,6 @@ img {
     text-align: left;
     font-size: 1.2em;
     margin-top: 5px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
 }
 </style>
