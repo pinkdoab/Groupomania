@@ -5,16 +5,15 @@ const multer = require('multer');
 const MIME_TYPES = {
   'image/jpg': 'jpg',
   'image/jpeg': 'jpg',
-  'image/png': 'png'
+  'image/png': 'png',
+  'image/gif': 'gif'
 };
 
 
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-
     callback(null, 'images');
-    //callback(null, '/Users/pink01/Documents/git/groupomania/backend/app/images');
   },
   filename: (req, file, callback) => {
     const name = file.originalname.split(".")[0].split(" ").join("_");

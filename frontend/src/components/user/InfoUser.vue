@@ -2,13 +2,17 @@
 <div v-if="this.$store.state.UserLogin !== 0" id="user-info">
     <!--h3>LoginUser</h3-->
     <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
-    <p>Bonjour <span class= "pseudo">{{ pseudo }}</span><i class="fas fa-angle-up"></i><i class="fas fa-angle-down"></i><i class="fas fa-bell"></i><i class="fas fa-caret-square-down"></i><i class="fas fa-caret-square-up"></i></p>
+    <p>Bonjour <span class= "pseudo">{{ pseudo }}</span><i class="fas fa-caret-square-up"></i></p>
     <p>{{ email }}</p>
-    <p>Compte activé le :</p>
-    <p>{{ conversionDateCreation }}</p>
-    <p>Dernière activite le :</p>
-    <p>{{ conversionDateActivite }}{{dateDerniereActivite}}</p>
-    <p>Modérateur : {{ moderateur }}<i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></p>
+    <div class="information">
+        <p>Création du compte :</p>
+        <p>{{ conversionDateCreation }}</p>
+    </div>
+    <div class="information">
+        <p>Dernière activité :</p>
+        <p>{{ conversionDateActivite }}</p>
+    </div>
+    <p>Modérateur : {{ moderateur }}<!--i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></p-->
     <!--p>{{ this.$store.state.stat }}</p-->
     <li 
         v-for="item in $store.state.stat"
@@ -128,6 +132,13 @@ h3 { color:rgb(104, 206, 153)}
 .pseudo {
     font-size: 1.8em;
     font-weight: bold;
+}
+.information {
+    p:first-of-type {
+        font-weight: bold;
+        margin-top: 1.5em;
+        margin-bottom: 0;
+    }
 }
 .btn {
   background-color: DodgerBlue;

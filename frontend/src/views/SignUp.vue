@@ -17,7 +17,7 @@
       <label class="label" for="email">
         <p>Email</p>
         <div>
-            <input id="email" name="email" type="text" v-model="email" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="16">
+            <input id="email" name="email" type="text" v-model="email" pattern=".+@.+\..+" minlength="4" maxlength="16">
             <p v-if="(this.erreurEmail !== '')" class="erreur">{{ erreurEmail }} existe déjà</p>
         </div>
       </label>
@@ -26,7 +26,7 @@
         <p>Password</p>
         <div>
             <input id="password" name="password" type="text" v-model="password" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10">
-            <!--p class="erreur">{{ errorPassword }}</p-->
+            <p class="erreur">{{ erreurPassword }}</p>
         </div>
       </label> 
 
@@ -46,7 +46,8 @@ export default {
       erreurPseudo: '',
       email: '',
       erreurEmail: '',
-      password: ''
+      password: '',
+      erreurPassword: ''
     }
   },
   directives: {

@@ -1,23 +1,19 @@
 <template>
     <div v-if="this.$store.state.UserLogin != 0">
-        <button v-if="this.affichageCreaPost == 'non'" class="filet bouton btn1"  @click="affichage" >Votre nouvelle publication...</button>
+        <button v-if="this.affichageCreaPost == 'non'" class="filet bouton btn1"  @click="affichage" >Créer votre publication <i class="fas fa-caret-square-down"></i></button>
         <div v-if="this.affichageCreaPost == 'oui'" id="post-list-example">
-                <h2>Votre nouvelle publication...</h2>
+            <h2>Votre nouvelle publication...</h2>
             <form  v-on:submit.prevent="addNewPost">
-                <!--div class="input">
-                    <label for="avatar">{{ texteChoixImage }}</label>
-                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">                  
-                </div-->
                 <div class="image-preview" v-if="imageData.length > 0">
                     <img class="preview" :src="imageData">
                 </div>
+               
                 <div>
                     <textarea class="bordure" name="nom" v-model="newrequete" id="new-post" placeholder="Votre texte..."></textarea>
+                    <p class="caracInterdit" v-if="this.texteInterdit == 'oui'" >Les caractères &lt; et &gt; sont interdits</p>
+                    <p class="caracInterdit">{{imageTaille}}</p>
                 </div>
-                <!--div class="input">
-                    <label for="avatar">{{ texteChoixImage }}</label>
-                    <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">                  
-                </div-->
+
                 <div class="boutonEmplacement">
                     <label for="avatar">{{ texteChoixImage }}</label>
                     <input type="file" id="avatar" name="avatar" @change="previewImage" accept="image/png, image/jpeg">
@@ -28,7 +24,6 @@
         </div>
     </div>
 </template>
-
 
 <!------------------------------------------------------------------------>
 <script>
@@ -43,54 +38,79 @@ export default {
             imageData: '',
             texte: '',
             affichageCreaPost: 'non',
+            texteInterdit: 'non',
+            imageTaille: '',
             texteChoixImage: 'Choisissez une image...'
         }
     },
     methods: {
-         previewImage: function(event) {
+        previewImage: function(event) {
             var input = event.target;
+            this.imageTaille = ''
             if (input.files && input.files[0]) {
+
+                console.log('poids image ',input.files[0].size)
+                if (input.files[0].size > 330000) {
+                    this.imageTaille = 'Poids de l\'image trop élevé';
+                    this.imageData= ''
+                    return;
+                } else {
+                    this.imageTaille = '';
+                }
+
                 var reader = new FileReader();
                 reader.onload = (e) => {
                     this.imageData = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
+                
             } else {
                 this.imageData= ''
             }
         },
         affichage: function () {
             this.affichageCreaPost =='oui' ? this.affichageCreaPost ='non' : this.affichageCreaPost ='oui';
-                            this.imageData= '';
+            this.imageData= '';
+            this.imageTaille= '';
+                        this.texteInterdit= 'non';
         },
         addNewPost: function () {
-            var imagefile = document.querySelector('#avatar');
 
-            /*if (this.$store.state.UserLogin == 0) {
-                this.avertissement = 'Attention : aucun login sélectionné';
-                return;
-                }*/
-            const formData = new FormData();
-            formData.append('texte', this.newrequete);
-            formData.append('createur', this.$store.state.UserLogin);
-            if (imagefile.files[0]){
-                formData.append('image', imagefile.files[0]);
-            }
-            
-            const headers = {'Authorization': `token ${this.$store.state.token}`}
-            axios.post('http://localhost:3000/Post', formData,{
-                headers: headers
-            })
-            .then(response => {
-                console.log('response de la requête création post : ',response.data);
+
+            if (this.imageTaille == '') {
+
+                this.texteInterdit = 'non';
+                var regex = /^[a-zàäâéèêëïîöôùüûçA-Z0-9"'@#&£?();.,=*-+/\s]*$/i;
+                if(!regex.test(this.newrequete))
+                {
+                    console.log('STOP caractères interdits');
+                    this.texteInterdit = 'oui';
+                    return;
+                }
+
+                var imagefile = document.querySelector('#avatar');
+
+                const formData = new FormData();
+                formData.append('texte', this.newrequete);
+                formData.append('createur', this.$store.state.UserLogin);
+                if (imagefile.files[0]){
+                    formData.append('image', imagefile.files[0]);
+                }
                 
-                this.newrequete = '';
-                //this.$store.dispatch('requete_get_publication');
-                this.$store.dispatch('requete_get_post_comm');
-                this.imageData= '';
-                this.affichageCreaPost ='non'
-            })
-            //this.$forceUpdate();       
+                const headers = {'Authorization': `token ${this.$store.state.token}`}
+                axios.post('http://localhost:3000/Post', formData,{
+                    headers: headers
+                })
+                .then(response => {
+                    console.log('response de la requête création post : ',response.data);
+                    
+                    this.newrequete = '';
+                    //this.$store.dispatch('requete_get_publication');
+                    this.$store.dispatch('requete_get_post_comm');
+                    this.imageData= '';
+                    this.affichageCreaPost ='non'
+                })
+            }      
         }
     }
 }
@@ -129,6 +149,10 @@ textarea {
 }
 img {
     width: 100%;
+}
+.caracInterdit {
+    color: red;
+    margin: 0 0 1em;
 }
 .titre {
     margin-top: 0;
