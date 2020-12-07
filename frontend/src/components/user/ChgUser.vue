@@ -1,7 +1,8 @@
 <template>
 <div v-if="this.$store.state.UserLogin !== 0" id="user-list">
    
-    <label for="user-select">Utilisateur(s) à afficher :</label>
+    <label v-if="this.$store.state.UserDisplay == 0" for="user-select">Utilisateurs affichés:</label>
+    <label v-if="this.$store.state.UserDisplay != 0" for="user-select">Utilisateur affiché:</label>
     <select name="user" id="user-select"  v-model="selected" @change="AffUser">
         <option value="0">Tous</option>
         <option v-for="user in listeUser" v-bind:key="user.id" v-bind:value="user.userId">{{ user.pseudo }}</option>
@@ -61,4 +62,10 @@ export default {
     border-radius: 4px;
 }
 h3 { color:rgb(104, 206, 153)}
+@media screen and (max-width: 700px) {
+  #user-list {
+    width: 100%;
+  }
+}
+
 </style>

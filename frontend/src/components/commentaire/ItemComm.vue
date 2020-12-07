@@ -6,6 +6,7 @@
             <span>Posted by <span class="pseudo">{{ createurPseudo }}</span>le {{ conversionDate }} 
                 <button v-if="(this.$store.state.UserLogin == this.createur) || (this.$store.state.moderateur == 'oui')" @click="suppComm" class="poubelle"><i class="far fa-trash-alt"></i></button>
             </span>
+            <p class="newPost" v-if="this.dateCreation > this.$store.state.dateDerniereConnexion" ><i class="fas fa-bell animCloche"></i></p>
         </div>
         <div class="main2">
             <p>{{ texte }}</p>
@@ -78,20 +79,12 @@ h3 { color:rgb(104, 206, 153)}
 img {
     width: 100%;
 }
-//.pied {
-    //background-color:rgb(248, 121, 248);    
-//}
 .bordure {
     text-align: justify;
     margin-top: 0px;
     margin: auto;
     padding: 5px;
     background-color:white;
-    //width: 97%;
-    //height: 70px;
-    //border-width:1px;
-    //border-style:solid;
-    //border-color:black;
 }
 .entete {
     background-color:rgb(242, 248, 252);
@@ -116,12 +109,12 @@ img {
     margin-bottom: 10px;
 }
 .poubelle {
-  background-color: white;
+  background-color: rgb(242, 248, 252);
   border: none;
   color: red;
   border-radius: 4px;
   padding: 0px 4px;
-  font-size: 18px;
+  font-size: 1em;
   cursor: pointer;
 }
 .btn {
@@ -143,5 +136,9 @@ img {
     font-size: 1.2em;
     margin-top: 5px;
         margin-bottom: 10px;
+}
+.animCloche {
+    color:green;
+    font-size: .8em;
 }
 </style>

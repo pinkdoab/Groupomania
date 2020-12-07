@@ -44,6 +44,11 @@ div {
     margin-top: 0;
     //background-color:rgb(206, 252, 228);
 }
+@media screen and (max-width: 700px) {
+  #post-list {
+    width: 100%;
+  }
+}
 
 h3 { color:rgb(104, 206, 153)}
 </style>

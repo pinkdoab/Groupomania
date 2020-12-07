@@ -1,30 +1,34 @@
 <template>
-<div v-if="this.$store.state.UserLogin !== 0" id="user-info">
-    <!--h3>LoginUser</h3-->
-    <!--p>UserLogin : {{ $store.state.UserLogin }}</p-->
-    <p>Bonjour <span class= "pseudo">{{ pseudo }}</span><i class="fas fa-caret-square-up"></i></p>
-    <p>{{ email }}</p>
-    <div class="information">
-        <p>Création du compte :</p>
-        <p>{{ conversionDateCreation }}</p>
+    <div v-if="this.$store.state.UserLogin !== 0" id="user-info">
+        <p class="titre">Bonjour <span class="pseudo">{{ pseudo }}</span><!--i class="fas fa-caret-square-up"></i--></p>
+        <button class="btn info" @click="reduire" >{{ texteBoutonBloc }}</button>
+        <div v-if="this.reduireBloc === 'non'">
+            <p>{{ email }}</p>
+            <div class="information">
+                <p>Création du compte :</p>
+                <p>{{ conversionDateCreation }}</p>
+            </div>
+            <div class="information">
+                <p>Dernière activité :</p>
+                <p>{{ conversionDateActivite }}</p>
+            </div>
+            <p>Modérateur : {{ moderateur }}<!--i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></p--></p>
+            <div v-if="this.moderateur == 'oui' ">
+                <h3>Activité des membres</h3>
+                <h3> ces 15 derniers jours</h3>
+                <ul>
+                <li 
+                    v-for="item in $store.state.stat"
+                    v-bind:key="item.id"
+                >
+                <p v-if="item.post == 1">{{item.pseudo}} {{item.post}} publication</p>
+                <p v-if="item.post > 1">{{item.pseudo}} {{item.post}} publications</p>
+                </li>
+                </ul>
+            </div>
+            <button class="btn" @click="suppressionUser" >Supprimer votre compte <i class="far fa-trash-alt"></i></button>
+        </div>
     </div>
-    <div class="information">
-        <p>Dernière activité :</p>
-        <p>{{ conversionDateActivite }}</p>
-    </div>
-    <p>Modérateur : {{ moderateur }}<!--i class="fas fa-lock"></i><i class="fas fa-lock-open"></i></p-->
-    <!--p>{{ this.$store.state.stat }}</p-->
-    <li 
-        v-for="item in $store.state.stat"
-        v-bind:key="item.id"
-    >
-    <span>{{item.pseudo}} {{item.post}} </span>
-    <p> {{item.Date}} </p>
-    </li>
-
-    <!--p>token : {{ $store.state.token }}</p-->
-    <button class="btn" @click="suppressionUser" ><i class="far fa-trash-alt"></i></button>
-</div>
 </template>
 
 
@@ -40,7 +44,9 @@ export default {
             email: '',
             dateCreation: '',
             dateDerniereActivite: '',
-            moderateur: 'non'
+            moderateur: 'non',
+            reduireBloc: 'oui',
+            texteBoutonBloc: 'Plus d\'informations'
         }
     },
     computed: {
@@ -51,7 +57,7 @@ export default {
         conversionDateActivite: function () {
             const dateFormatee = new Date(this.dateDerniereActivite)
             return dateFormatee.toLocaleString();
-        },
+        }
     },
     created() {
         if (this.$store.state.token !== null) {
@@ -78,7 +84,6 @@ export default {
                 console.log('error.message : ',error.message);
             })
 
-            //axios.get("http://localhost:3000/stat",{
             axios.get(`http://localhost:3000/stat/${this.$store.state.UserLogin}`,{
                 headers: headers
             })
@@ -94,6 +99,10 @@ export default {
         }
     },
     methods: {
+        reduire: function () {
+            this.reduireBloc =='oui' ? this.reduireBloc ='non' : this.reduireBloc ='oui';
+            this.reduireBloc =='oui' ? this.texteBoutonBloc ='Plus d\'informations' : this.texteBoutonBloc ='Moins d\'informations';
+        },
         suppressionUser: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.delete(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
@@ -125,10 +134,22 @@ export default {
     border-color:black;
     border-radius: 4px;
 }
+.titre {
+    margin: 0;
+}
+button {
+    margin: 0;
+}
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
 p {
     margin: 0 0 .5em 0;
 }
-h3 { color:rgb(104, 206, 153)}
+h3 {
+    margin: 0;
+}
 .pseudo {
     font-size: 1.8em;
     font-weight: bold;
@@ -141,6 +162,7 @@ h3 { color:rgb(104, 206, 153)}
     }
 }
 .btn {
+    margin-bottom: 1em;
   background-color: DodgerBlue;
   border: none;
   color: white;
@@ -152,5 +174,13 @@ h3 { color:rgb(104, 206, 153)}
 /* Darker background on mouse-over */
 .btn:hover {
   background-color: rgb(255, 0, 0);
+}
+.info:hover {
+  background-color: green;
+}
+@media screen and (max-width: 700px) {
+  #user-info {
+    width: 100%;
+  }
 }
 </style>

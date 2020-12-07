@@ -1,6 +1,6 @@
 <template>
     <div v-if="this.$store.state.UserLogin != 0">
-        <button v-if="this.affichageCreaPost == 'non'" class="filet bouton btn1"  @click="affichage" >Créer votre publication <i class="fas fa-caret-square-down"></i></button>
+        <button v-if="this.affichageCreaPost == 'non'" class="filet bouton btn1"  @click="affichage" >Créer votre publication <!--i class="fas fa-caret-square-down"></i--></button>
         <div v-if="this.affichageCreaPost == 'oui'" id="post-list-example">
             <h2>Votre nouvelle publication...</h2>
             <form  v-on:submit.prevent="addNewPost">
@@ -177,13 +177,13 @@ h2 {
     border-radius: 4px;
 }*/
 .btn1 {
-    background-color:white;
+    background-color:green;
     width: 95%;
     border: none;
-    color: rgb(2, 2, 155);
+    color: white;
     border-radius: 4px;
     padding: 4px 8px;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
 }
@@ -240,5 +240,13 @@ label {
 
 label:hover {
     background-color: rgb(176, 182, 176);
+}
+@media screen and (max-width: 700px) {
+  #post-list-example {
+    width: 100%;
+  }
+  .btn1 {
+    width: 100%;
+}
 }
 </style>

@@ -6,7 +6,7 @@
                 <!--p>publication : {{ PostId }} </p-->
                 <div class="text">
                     <div class="gauche"><textarea name="nom2" v-model="newrequete" placeholder="Nouveau commentaire..."></textarea></div>
-                    <div class="droite"><button class="bouton">Post</button></div>
+                    <div class="droite"><button class="btn">Poster</button></div>
                 </div>
                 <!--button class="bouton">Post comment</button-->
             </form>
@@ -64,6 +64,16 @@ export default {
     //border-style:solid;
     //border-color:black;
 }
+.btn {
+  background-color: blue;
+  border: none;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
 .text {
     display: flex;
     justify-content: space-between;
@@ -74,6 +84,8 @@ export default {
 textarea {
     resize: vertical;
     width: 100%;
+    display: relative;
+    top: 20px; 
 }
 .gauche {
     flex: 12;

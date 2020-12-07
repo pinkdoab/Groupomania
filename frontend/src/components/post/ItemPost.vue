@@ -3,7 +3,7 @@
         <div class="entete">
             <div>
                 <p>Posted by <span>{{ createurPseudo }}</span>le {{ conversionDate }} </p>
-                <p class="newPost" v-if="this.dateCreation > this.$store.state.dateDerniereConnexion" ><i class="fas fa-bell"></i></p>
+                <p class="newPost" v-if="this.dateCreation > this.$store.state.dateDerniereConnexion" ><i class="fas fa-bell animCloche"></i></p>
             </div>
             <div>
                 <button v-if="(this.$store.state.UserLogin == this.createurId) || (this.$store.state.moderateur == 'oui')" @click="suppPost" class="poubelle"><i class="far fa-trash-alt"></i></button>
@@ -15,7 +15,7 @@
                 <div class="legende">
                     <div class="avismoins"><button class="btnrouge" @click="avisMoins" ><i class="fas fa-thumbs-down"></i></button> {{ avisDefavorable }}</div>
                     <div class="avisplus"><button class="btnvert" @click="avisPlus" ><i class="fas fa-thumbs-up"></i></button>{{ avisFavorable }}</div>
-                    <button class="btn2" @click="affComm" >Commentaire <i class="fas fa-caret-square-down"></i></button> 
+                    <button class="btn2" @click="affComm" >Commentaire <!--i class="fas fa-caret-square-down"></i--></button>
                 </div>             
         </div>
         <div v-if="affCommentaire === 'oui'" class ="pied">
@@ -99,8 +99,8 @@ export default {
             });
         }              
     }
-
 }
+
 </script>
 
 
@@ -223,5 +223,32 @@ h3 { color:rgb(104, 206, 153)}
     padding: 4px 8px;
     font-size: .8em;
     cursor: pointer;
+}
+.animCloche {
+
+        animation: progress-bar 1000ms infinite ;
+
+}
+
+@keyframes progress-bar{
+    0% {
+        transform: scaleX(0);
+        opacity: .1;
+    }
+    17% {
+        transform: scaleX(.18);
+    }
+    24% {
+        transform: scaleX(.4);
+    }
+    46% {
+        transform: scaleX(.81);
+    }
+    85%,100% {
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 </style>
