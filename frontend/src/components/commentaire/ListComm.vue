@@ -14,10 +14,11 @@
                 v-bind:createurPseudo="req.createurPseudo"
                 v-bind:PostId="PostId"
             >
-                <ItemComm/>
+                <ItemComm v-blind:couleurComm="couleurComm"/>
             </li>
             <CreaComm class="positionComm" v-bind:PostId="PostId"/>
         </div>
+        {{couleurComm}}
     </div>
 </template>
 
@@ -32,7 +33,7 @@ export default {
         ItemComm,
         CreaComm
     },
-    props: ['PostId']
+    props: ['PostId', 'couleurComm']
 }
 </script>
 

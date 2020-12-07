@@ -1,8 +1,15 @@
 <template>
+<!--div-->
+    <!--div v-if="this.$store.state.UserLogin == 0" class="presentation">
+    <h2>Bienvenue sur le réseau social interne de Groupomania</h2>
+    <h2>Pour profiter de nos services. Veuillez-vous connecter</h2>
+    </div-->
   <div v-if="this.$store.state.UserLogin != 0" class="home">
     <!--p>commentaire : {{ $store.state.commentaire }}</p-->
     <!--p>publication : {{ $store.state.publication }}</p-->
     <!--p>commentaire : {{ $store.state.token }}</p-->
+
+
     <div class="gauche">
       <InfoUser/>
       <ChgUser/>
@@ -12,6 +19,7 @@
       <ListPost/>
     </div>
   </div>
+<!--/div-->
 </template>
 
 <script>
@@ -47,9 +55,13 @@ export default {
 
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
+.presentation {
+  margin-top: 15em;
+}
 .home {
   margin-top: 5em;
   width: 100%;
+  //width: 40em;
   display: flex;
   justify-content: center;
 }

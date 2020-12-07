@@ -17,9 +17,9 @@
                     <div class="avisplus"><button class="btnvert" @click="avisPlus" ><i class="fas fa-thumbs-up"></i></button>{{ avisFavorable }}</div>
                     <button class="btn2" @click="affComm" >Commentaire <!--i class="fas fa-caret-square-down"></i--></button>
                 </div>             
-        </div>
+        </div>{{ couleurComm }}
         <div v-if="affCommentaire === 'oui'" class ="pied">
- <ListComm v-bind:PostId="id"/>
+ <ListComm v-bind:PostId="id" v-blind:couleurComm="couleurComm" @custom-event-name="chgCoulComm"/>
 
             <!--p>this.$store.state.UserLogin  {{this.$store.state.UserLogin}}</p-->
             <!--p>createurId  {{createurId}}</p-->
@@ -41,7 +41,8 @@ export default {
     },
     data: function() {
         return {
-            affCommentaire: 'non'
+            affCommentaire: 'non',
+            couleurComm: 'gris'
         }
     },
     computed: {
@@ -52,8 +53,11 @@ export default {
         },       
     },
     //props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
-    props: ['id','texte','image','dateCreation','createurId','createurPseudo','avisFavorable','avisDefavorable'],
+    props: ['id','texte','image','dateCreation','createurId','createurPseudo','avisFavorable','avisDefavorable' ],
     methods: {
+        chgCoulComm: function () {
+            //this.couleurComm = 'vert'
+        },
         affComm: function () {
            if (this.affCommentaire === 'oui') {
                this.affCommentaire = 'non'

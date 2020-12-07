@@ -22,17 +22,29 @@ const axios = require('axios');
 
 export default {
     name: 'ItemComm',
-    props: ['id','texte','dateCreation','publication','createurId','PostId','createur', 'createurPseudo'],
+    props: ['id','texte','dateCreation','publication','createurId','PostId','createur', 'createurPseudo','couleurComm'],
     computed: {
         // un accesseur (getter) calculé
         conversionDate: function () {
             const dateFormatee = new Date(this.dateCreation)
             return dateFormatee.toLocaleString();
-        },       
+        },
+        //coulComm: function () {
+            //if (this.dateCreation > this.$store.state.dateDerniereConnexion) {
+
+            //}
+        //},      
+    },
+    mounted() {
+        //this.emitCustomEvent();
+        this.$emit('custom-event-name', { message: 'chg couleur' })
     },
     methods: {
+        emitCustomEvent: function () {
+            this.couleurComm = 'vert'
+            this.$emit('custom-event-name', { couleurComm: 'vert' })
+        },
         suppComm: function () {
-
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.delete(`http://localhost:3000/comm/${this.id}`,{
                 headers: headers
