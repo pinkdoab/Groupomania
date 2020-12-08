@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
+  const token = req.headers.authorization;
+  console.log('\n--- token  ---', token)
   try {
     console.log('***** début authentification (auth.js) *****')
     const token = req.headers.authorization.split(' ')[1];
-
+    console.log('\n--- token  ---', token) 
     var decoded = jwt.decode(token, {complete: true});
 
     console.log('\n--- token décodé ---') 

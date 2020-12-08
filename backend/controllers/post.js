@@ -76,16 +76,18 @@ exports.create = (req, res) => {
 // Supprimer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 exports.delete = (req, res) => {
-
+  console.log('req.body.userId 1 ', req.body.userId)
   Post.findById(req.params.postId, (err, data, next) => {
     if(err) {
       res.status(404).send({
         message: "Le post avec un Id " + req.params.postId + " n'existe pas"
       });
     } else {
-      console.log('data.p_user_createur', data.p_user_createur)
-      console.log('req.body.userId', req.body.userId)
-      if (data.p_user_createur !== req.body.userId) {
+      console.log('data.p_user_createur ', data.p_user_createur)
+      console.log('req.body.userId ', req.body.userId)
+      console.log('data.moderateur ', parseInt(req.body.userId, 10))
+      if ((data.p_user_createur !== parseInt(req.body.userId, 10)) && (parseInt(req.body.userId, 10) !== 10)) {
+      //if ((parseInt(req.body.userId, 10) !== 10)) {
         res.status(401).send({
           message: "Interdit de supprimer le post d'un autre user !"
         });

@@ -10,14 +10,16 @@
         <p>Pseudo</p>
         <div>
             <input id="pseudo" name="pseudo" type="text" v-model="pseudo" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10" v-focus autofocus>
-            <p v-if="(this.erreurPseudo !== '')" class="erreur">{{ erreurPseudo }} existe déjà</p>
+            <p v-if="(this.erreurPseudo2 !== '')" class="erreur">{{ erreurPseudo2 }}</p>
+            <p v-if="(this.erreurPseudo !== '')" class="erreur">'{{ erreurPseudo }}' existe déjà</p>
         </div>
       </label> 
 
       <label class="label" for="email">
         <p>Email</p>
         <div>
-            <input id="email" name="email" type="text" v-model="email" pattern=".+@.+\..+" minlength="4" maxlength="16">
+            <input id="email" name="email" type="text" v-model="email" pattern=".+@.+\..+" minlength="4" maxlength="25">
+            <p v-if="(this.erreurEmail2 !== '')" class="erreur">{{ erreurEmail2 }}</p>
             <p v-if="(this.erreurEmail !== '')" class="erreur">{{ erreurEmail }} existe déjà</p>
         </div>
       </label>
@@ -26,7 +28,8 @@
         <p>Password</p>
         <div>
             <input id="password" name="password" type="text" v-model="password" pattern="[A-Za-z0-9 ]+" minlength="4" maxlength="10">
-            <p class="erreur">{{ erreurPassword }}</p>
+            <p v-if="(this.erreurPassword !== '')" class="erreur">{{ erreurPassword }}</p>
+            <!--p class="erreur">{{ erreurPassword }}</p-->
         </div>
       </label> 
 
@@ -44,6 +47,7 @@ export default {
     return {
       pseudo: '',
       erreurPseudo: '',
+      erreurPseudo2: '',
       email: '',
       erreurEmail: '',
       password: '',
@@ -59,6 +63,32 @@ export default {
 },
   methods: {
     connection: function () {
+
+      if (this.pseudo.length < 4) {
+        this.erreurPseudo = '';
+        this.erreurPseudo2 = 'Minimun 4 caractères';
+        this.erreurEmail = '';
+        this.erreurEmail2 = '';         
+        this.erreurPassword = '';
+        return;
+      }
+      if (/.+@.+\..+/.test(this.email) == false) {
+        this.erreurPseudo = '';
+        this.erreurPseudo2 = '';
+        this.erreurEmail = ''; 
+        this.erreurEmail2 = 'Email invalide';
+        this.erreurPassword = '';     
+        return;
+      }
+      if (this.password.length < 4) {
+        this.erreurPseudo = '';
+        this.erreurPseudo2 = '';
+        this.erreurEmail = '';
+        this.erreurEmail2 = '';
+        this.erreurPassword = 'Minimun 4 caractères';     
+        return;
+      }
+
       axios.post('http://localhost:3000/user/signup/', {
         nom: this.pseudo,
         email: this.email,
@@ -87,18 +117,14 @@ export default {
 <style scoped lang="scss">
 
 .container {
-  //background-image: url('../assets/fond2.png');
   margin:  6em auto;
   padding: 2em;
   width: 26em;
   background-color:white;
   border-radius: 8px;
   box-shadow: 1px 1px 12px rgb(51, 49, 89);
-  h1,h2 {
+  h1 {
     margin: 0;
-  }
-  .logo {
-     width: 4em;
   }
   .formulaire {
     margin-top: 2em;
@@ -110,7 +136,6 @@ export default {
     border-color:rgb(202, 216, 216);
     box-shadow: 3px 3px 6px #aaa;
     .label {
-      margin: left;
       font-size: 1.2em;
       text-align: left;
       div {
@@ -149,19 +174,9 @@ export default {
       width:100px;
       border:none;
       &:hover {
-      background: rgb(37, 139, 37);
+        background: rgb(37, 139, 37);
+      }
     }
-    }
-    
-    .bouton12 {
-	padding:6px 0 6px 0;
-	font:bold 16px Arial;
-	background:rgb(9, 153, 9);
-	color:#fff;
-	border-radius:4px;
-	width:100px;
-	border:none;
-}  
   } 
 }
 </style>

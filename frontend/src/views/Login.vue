@@ -108,7 +108,6 @@ export default {
     border-color:rgb(202, 216, 216);
     box-shadow: 3px 3px 6px #aaa;
     .label {
-      margin: left;
       font-size: 1.2em;
       text-align: left;
       div {

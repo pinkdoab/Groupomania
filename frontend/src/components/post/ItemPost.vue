@@ -19,11 +19,7 @@
                 </div>             
         </div>{{ couleurComm }}
         <div v-if="affCommentaire === 'oui'" class ="pied">
- <ListComm v-bind:PostId="id" v-blind:couleurComm="couleurComm" @custom-event-name="chgCoulComm"/>
-
-            <!--p>this.$store.state.UserLogin  {{this.$store.state.UserLogin}}</p-->
-            <!--p>createurId  {{createurId}}</p-->
-            <!--button v-if="this.$store.state.UserLogin === this.createurId" @click="suppPost">Supprimer publication</button-->
+            <ListComm v-bind:PostId="id"/>
         </div>
     </div>
 </template>
@@ -52,7 +48,6 @@ export default {
             return dateFormatee.toLocaleString();
         },       
     },
-    //props: ['id','texte','image','dateCreation','createurId','createurPseudo'],
     props: ['id','texte','image','dateCreation','createurId','createurPseudo','avisFavorable','avisDefavorable' ],
     methods: {
         chgCoulComm: function () {
@@ -63,17 +58,20 @@ export default {
                this.affCommentaire = 'non'
            } else this.affCommentaire = 'oui';
         },
+
         suppPost: function () {
-            const headers = {'Authorization': `token ${this.$store.state.token}`}
-            axios.delete(`http://localhost:3000/Post/${this.id}`,{
-                headers: headers
+            axios({
+                method: 'delete',
+                url: `http://localhost:3000/Post/${this.id}`,
+                headers: {'Authorization': `token ${this.$store.state.token}`},
+                data: { userId: parseInt(this.$store.state.UserLogin, 10)}
             })
             .then(response => {
                 console.log('response requête delete : ',response.data.message); 
-                //this.$store.dispatch('requete_get_publication');
                 this.$store.dispatch('requete_get_post_comm');              
             });
         },
+
         avisMoins: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.post(`http://localhost:3000/like/`, {
@@ -88,6 +86,7 @@ export default {
                 this.$store.dispatch('requete_get_post_comm');                             
             });
         },
+        
         avisPlus: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.post(`http://localhost:3000/like/`, {
@@ -166,9 +165,6 @@ export default {
 
 .corps {
     margin: 0px 0px;
-    //display: flex;
-    //flex-direction: row;
-    //background-color:rgb(216, 248, 249);
 }
 img {
     width: 100%;

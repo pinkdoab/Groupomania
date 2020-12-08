@@ -140,10 +140,6 @@ export default {
 button {
     margin: 0;
 }
-ul {
-    list-style-type: none;
-    padding-inline-start: 0;
-}
 p {
     margin: 0 0 .5em 0;
 }

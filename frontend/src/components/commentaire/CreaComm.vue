@@ -57,34 +57,27 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #comm-list-example {
-    //width: 70%;
     margin: auto;
-    //background-color:rgb(206, 252, 228);
-    //border-width:1px;
-    //border-style:solid;
-    //border-color:black;
 }
 .btn {
-  background-color: blue;
-  border: none;
-  font-weight: bold;
-  color: white;
-  border-radius: 4px;
-  padding: 10px 5px;
-  font-size: 12px;
-  cursor: pointer;
+    background-color: blue;
+    border: none;
+    font-weight: bold;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 5px;
+    font-size: 12px;
+    cursor: pointer;
 }
 .text {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    //margin: auto;
     width: 100%;
 }
 textarea {
     resize: vertical;
     width: 100%;
-    display: relative;
     top: 20px; 
 }
 .gauche {

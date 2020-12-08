@@ -14,7 +14,7 @@
                 v-bind:createurPseudo="req.createurPseudo"
                 v-bind:PostId="PostId"
             >
-                <ItemComm v-blind:couleurComm="couleurComm"/>
+                <ItemComm/>
             </li>
             <CreaComm class="positionComm" v-bind:PostId="PostId"/>
         </div>

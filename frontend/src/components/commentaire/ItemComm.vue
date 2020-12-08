@@ -35,15 +35,7 @@ export default {
             //}
         //},      
     },
-    mounted() {
-        //this.emitCustomEvent();
-        this.$emit('custom-event-name', { message: 'chg couleur' })
-    },
     methods: {
-        emitCustomEvent: function () {
-            this.couleurComm = 'vert'
-            this.$emit('custom-event-name', { couleurComm: 'vert' })
-        },
         suppComm: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.delete(`http://localhost:3000/comm/${this.id}`,{

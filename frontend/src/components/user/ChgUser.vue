@@ -50,10 +50,7 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #user-list {
-    //position: fixed;
-    //top: 25em;
     width: 90%;
-    //width: 70%;
     margin: 10px auto;
     background-color:white;
     border-width:1px;
