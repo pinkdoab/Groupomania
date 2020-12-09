@@ -227,6 +227,12 @@ h3 { color:rgb(104, 206, 153)}
 .animCloche {
    animation: progress-bar 4000ms infinite ;
 }
+@media screen and (max-width: 700px) {
+  .entete {
+    font-size: .75em;
+  }
+}
+
 @keyframes progress-bar{
     0% {
         transform: scaleX(0);

@@ -160,7 +160,7 @@ button {
     color: white;
     border-radius: 4px;
     padding: 4px 8px;
-    font-size: .8em;
+    font-size: 1em;
     cursor: pointer;    
     }
     .btn:hover {

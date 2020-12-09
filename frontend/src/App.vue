@@ -86,7 +86,7 @@ export default {
   z-index: -100;
   background: url('./assets/fond4.png');
   //filter: blur(10px);
-  opacity:0.90;
+  opacity:0.80;
   background-size: cover;
 }
 
@@ -139,7 +139,7 @@ export default {
   }
 }
 .main {
-  margin-top: 2em;
+  margin-top: 0em;
   display: flex;
   align-items: center;
   flex-direction: column;

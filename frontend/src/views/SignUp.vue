@@ -114,7 +114,7 @@ export default {
 <style scoped lang="scss">
 
 .container {
-  margin:  6em auto;
+  margin:  7em auto;
   padding: 2em;
   width: 24em;
   background-color:white;

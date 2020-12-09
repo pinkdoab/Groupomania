@@ -12,7 +12,7 @@
         <h2 class="remerciement">Merci</h2>
       </div>
     </div>
-    <div v-if="this.$store.state.UserLogin != 0" class="home">
+    <div v-if="this.$store.state.UserLogin != 0" class="home2">
       <!--p>commentaire : {{ $store.state.commentaire }}</p-->
       <!--p>publication : {{ $store.state.publication }}</p-->
       <!--p>commentaire : {{ $store.state.token }}</p-->
@@ -65,7 +65,7 @@ export default {
   margin-top: 15em;
 }
 .home {
-  margin-top: 5em;
+  margin-top: 6em;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -76,15 +76,19 @@ export default {
     flex: 3;
   }
 }
-@media screen and (max-width: 700px) {
-  .home {
-    display: 92%;
+.home2 {
+  margin-top: 0em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .gauche {
+    flex: 1;
+  }
+  .droite {
+    flex: 3;
   }
 }
-
-
 .container {
-  //background-image: url('../assets/fond2.png');
   margin: 1em auto;
   padding: 2em;
   width: 24em;
@@ -106,6 +110,12 @@ export default {
   .remerciement {
     margin-top: 1em;
     color: rgb(28, 24, 113)
+  }
+}
+@media screen and (max-width: 700px) {
+  .home2 {
+    font-size: 1.4em;
+    display: block;
   }
 }
 </style>

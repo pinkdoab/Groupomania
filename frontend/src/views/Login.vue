@@ -82,7 +82,7 @@ export default {
 
 .container {
   //background-image: url('../assets/fond2.png');
-  margin:  6em auto;
+  margin:  7em auto;
   padding: 2em;
   width: 24em;
   background-color:white;

@@ -142,4 +142,9 @@ img {
     color:rgb(33, 0, 154);
     font-size: .8em;
 }
+@media screen and (max-width: 700px) {
+  .entete {
+    font-size: .8em;
+  }
+}
 </style>
