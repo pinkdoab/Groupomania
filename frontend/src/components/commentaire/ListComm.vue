@@ -1,8 +1,6 @@
 <template>
     <div v-if="this.$store.state.UserLogin !== 0">
         <div class="bordure" id="comm-list">
-            <!--h3>ListComm</h3-->
-            <!--CreaComm v-bind:PostId="PostId"/-->
             <li is="ItemComm"
                 v-for="req in $store.state.commentaire"
                 v-bind:key="req.c_id"
@@ -42,21 +40,17 @@ export default {
 #comm-list {
     margin: 10px auto;
     width: 95%;
-
-    //background-color:rgb(206, 252, 228);
 }
 .positionComm {
-    margin-top: 2em;
+    margin-top: .5em;
 }
 .bordure {
-    width: 95%;
+    //width: 95%;
     text-align: justify;
     margin-top: 0px;
     margin: 0px 15px 5px 15px;
     padding: 5px;
     background-color:rgb(242, 248, 252);
-    //width: 97%;
-    //height: 70px;
     border-width:1px;
     border-style:solid;
     border-color:rgb(202, 216, 216);

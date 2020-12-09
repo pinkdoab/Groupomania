@@ -9,7 +9,7 @@
                 </div>
                
                 <div>
-                    <textarea class="bordure" name="nom" v-model="newrequete" id="new-post" placeholder="Votre texte..."></textarea>
+                    <textarea class="bordure" name="nom" v-model="newrequete" id="new-post" placeholder="Votre texte..." autofocus ></textarea>
                     <p class="caracInterdit" v-if="this.texteInterdit == 'oui'" >Les caractères &lt; et &gt; sont interdits</p>
                     <p class="caracInterdit">{{imageTaille}}</p>
                 </div>
@@ -72,12 +72,12 @@ export default {
             this.affichageCreaPost =='oui' ? this.affichageCreaPost ='non' : this.affichageCreaPost ='oui';
             this.imageData= '';
             this.imageTaille= '';
-                        this.texteInterdit= 'non';
+            this.texteInterdit= 'non';
         },
         addNewPost: function () {
 
-
-            if (this.imageTaille == '') {
+            if ((this.imageData != '') || (this.newrequete != '')) {
+            //if (this.newrequete != '') {
 
                 this.texteInterdit = 'non';
                 var regex = /^[a-zàäâéèêëïîöôùüûçA-Z0-9"'@#&£?();.,=*-+/\s]*$/i;
@@ -170,12 +170,6 @@ h2 {
     font-weight: bold;
     cursor: pointer;
 }
-/*.filet {
-    border-width:1px;
-    border-style:solid;
-    border-color:rgb(202, 216, 216);
-    border-radius: 4px;
-}*/
 .btn1 {
     background-color:green;
     width: 95%;
@@ -209,17 +203,6 @@ h2 {
     font-weight: bold;
     cursor: pointer;
 }
-/*#avatar {
-    margin: 0 .5em .5em 0;
-    background-color:green;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-}*/
 #avatar {
 	width: 0.1px;
 	height: 0.1px;

@@ -51,14 +51,27 @@ export default {
 <style scoped lang="scss">
 #user-list {
     width: 90%;
+    height: 4em;
     margin: 10px auto;
     background-color:white;
     border-width:1px;
     border-style:solid;
     border-color:black;
     border-radius: 4px;
+    h3 {
+        color:rgb(104, 206, 153)
+    }
+    label {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+    select {
+         font-size: 1em;
+         width: 80%;
+         background-color: white;
+    }
 }
-h3 { color:rgb(104, 206, 153)}
+
 @media screen and (max-width: 700px) {
   #user-list {
     width: 100%;

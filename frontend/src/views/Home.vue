@@ -1,25 +1,31 @@
 <template>
-<!--div-->
-    <!--div v-if="this.$store.state.UserLogin == 0" class="presentation">
-    <h2>Bienvenue sur le réseau social interne de Groupomania</h2>
-    <h2>Pour profiter de nos services. Veuillez-vous connecter</h2>
-    </div-->
-  <div v-if="this.$store.state.UserLogin != 0" class="home">
-    <!--p>commentaire : {{ $store.state.commentaire }}</p-->
-    <!--p>publication : {{ $store.state.publication }}</p-->
-    <!--p>commentaire : {{ $store.state.token }}</p-->
-
-
-    <div class="gauche">
-      <InfoUser/>
-      <ChgUser/>
+  <div class="home">
+    <div v-if="this.$store.state.UserLogin == 0">
+      <div  class="container">
+        <img class="logo" src="./../assets/icon.png">
+        <div>
+          <h1>Bienvenue sur le réseau social interne de Groupomania</h1>
+        </div>
+        <div class="paragraphe">
+        <h2>Pour profiter de nos services, veuillez-vous inscrire ou vous connecter.</h2>
+        </div>
+        <h2 class="remerciement">Merci</h2>
+      </div>
     </div>
-    <div class="droite">
-      <CreaPost/>
-      <ListPost/>
+    <div v-if="this.$store.state.UserLogin != 0" class="home">
+      <!--p>commentaire : {{ $store.state.commentaire }}</p-->
+      <!--p>publication : {{ $store.state.publication }}</p-->
+      <!--p>commentaire : {{ $store.state.token }}</p-->
+      <div class="gauche">
+        <InfoUser/>
+        <ChgUser/>
+      </div>
+      <div class="droite">
+        <CreaPost/>
+        <ListPost/>
+      </div>
     </div>
   </div>
-<!--/div-->
 </template>
 
 <script>
@@ -61,24 +67,45 @@ export default {
 .home {
   margin-top: 5em;
   width: 100%;
-  //width: 40em;
   display: flex;
   justify-content: center;
-}
-p {
-  width: 100px;
-  font-size: 6px;
-}
-.gauche {
-  flex: 1;
-}
-.droite {
+  .gauche {
+    flex: 1;
+  }
+  .droite {
     flex: 3;
+  }
 }
 @media screen and (max-width: 700px) {
   .home {
-  display: block;
-  width: 100%;
+    display: 92%;
+  }
+}
+
+
+.container {
+  //background-image: url('../assets/fond2.png');
+  margin: 1em auto;
+  padding: 2em;
+  width: 24em;
+  background-color:white;
+  border-radius: 8px;
+  box-shadow: 1px 1px 12px rgb(51, 49, 89);
+  h1 {
+    margin: 0;
+  }
+  .logo {
+     width: 5em;
+  }
+  .paragraphe {
+    margin-top: 2em;
+  }
+  .img {
+    width: 80%;
+  }
+  .remerciement {
+    margin-top: 1em;
+    color: rgb(28, 24, 113)
   }
 }
 </style>

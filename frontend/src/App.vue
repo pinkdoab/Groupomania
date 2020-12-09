@@ -5,7 +5,7 @@
           <div><img class="logo" src="./assets/logo_groupomania.png"></div>
           <div class="sous_menu">
             <div><router-link to="/">Home</router-link></div>
-            <div><router-link to="/login">Connection</router-link></div> 
+            <div><router-link to="/login">Connexion</router-link></div> 
             <div><router-link to="/SignUp">Inscription</router-link></div>
             <div><button class="bouton" @click="deconnexion" ><i class="fas fa-power-off"></i></button></div>
           </div>
@@ -40,8 +40,6 @@ export default {
           })
         .then(response => {
           console.log('OK', response)
-                //this.$store.dispatch('requete_get_post_comm'); 
-
         })
         .catch(response => {
           console.log('KO', response)
@@ -74,7 +72,7 @@ export default {
   max-width: 60em;
   margin: 0 auto;
 
-  text-align: center; // A VOIR.................
+  text-align: center;
 
 }
 
@@ -139,7 +137,6 @@ export default {
       border: none;
     }
   }
-  
 }
 .main {
   margin-top: 2em;
@@ -152,7 +149,7 @@ export default {
 @media screen and (max-width: 700px) {
   .nav .menu {
     display: flex;
-justify-content:center;
+    justify-content:center;
   }
 }
 </style>

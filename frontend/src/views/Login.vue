@@ -1,9 +1,5 @@
 <template>
   <div class="container">
-    <!--h1>Réseau social interne</h1-->
-    <!--img class="logo"
-     src="../assets/logoseul_groupomania.png"
-     alt="Grapefruit slice atop a pile of other slices"-->
     <h1>Identification</h1>
     <form class="formulaire">
       <label class="label" for="pseudo">
@@ -22,7 +18,7 @@
         </div>
       </label> 
 
-      <button type="button" class="bouton" value="connection" @click="connection" >Connection</button>
+      <button type="button" class="bouton" value="connection" @click="connection" >Connexion</button>
     </form>
   </div>
 </template>
@@ -88,7 +84,7 @@ export default {
   //background-image: url('../assets/fond2.png');
   margin:  6em auto;
   padding: 2em;
-  width: 26em;
+  width: 24em;
   background-color:white;
   border-radius: 8px;
   box-shadow: 1px 1px 12px rgb(51, 49, 89);

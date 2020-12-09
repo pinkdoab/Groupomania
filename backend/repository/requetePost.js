@@ -13,7 +13,7 @@ Post.getAll = result => {
         result(null, err);
         return;
       }  
-      console.log("post getAll: ", res);
+      //console.log("post getAll: ", res);
       result(null, res);
     });
   };
@@ -72,7 +72,28 @@ Post.findById = (customerId, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0]);
+      //console.log("found customer: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+// ----------------------------------------------------------------------------------------
+// 
+// ----------------------------------------------------------------------------------------
+Post.findByIdModerateur = (userId, result) => {
+  connectionMySql.query(`SELECT u_moderateur FROM t_user WHERE u_id=${userId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      //console.log("found customer: ", res[0]);
       result(null, res[0]);
       return;
     }

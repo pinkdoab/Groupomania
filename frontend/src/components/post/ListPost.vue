@@ -1,8 +1,6 @@
 <template>
     <div v-if="this.$store.state.UserLogin !== 0">
-
         <div id="post-list">
-            <!--h3>ListPost</h3-->
             <li is="ItemPost"
                 v-for="req in $store.state.publication"
                 v-bind:key="req.id"
@@ -42,13 +40,10 @@ div {
     width: 95%;
     margin: auto;
     margin-top: 0;
-    //background-color:rgb(206, 252, 228);
 }
 @media screen and (max-width: 700px) {
   #post-list {
     width: 100%;
   }
 }
-
-h3 { color:rgb(104, 206, 153)}
 </style>

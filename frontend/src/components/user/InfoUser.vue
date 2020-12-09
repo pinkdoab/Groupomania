@@ -94,8 +94,6 @@ export default {
             .catch(error => {
                 console.log('error.message : ',error.message);
             })
-
-
         }
     },
     methods: {
@@ -124,8 +122,6 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 #user-info {
-    //position: fixed;
-    //top: 3em;
     width: 90%;
     margin: auto;
     background-color:white;
@@ -133,46 +129,45 @@ export default {
     border-style:solid;
     border-color:black;
     border-radius: 4px;
-}
-.titre {
-    margin: 0;
+    .titre {
+        margin: 0;
+    }
+    p {
+        margin: 0 0 .5em 0;
+    }
+    h3 {
+        margin: 0;
+    }
+    .pseudo {
+        font-size: 1.8em;
+        font-weight: bold;
+    }
+    .information {
+        p:first-of-type {
+            font-weight: bold;
+            margin-top: 1.5em;
+            margin-bottom: 0;
+        }
+    }
 }
 button {
     margin: 0;
 }
-p {
-    margin: 0 0 .5em 0;
-}
-h3 {
-    margin: 0;
-}
-.pseudo {
-    font-size: 1.8em;
-    font-weight: bold;
-}
-.information {
-    p:first-of-type {
-        font-weight: bold;
-        margin-top: 1.5em;
-        margin-bottom: 0;
-    }
-}
 .btn {
     margin-bottom: 1em;
-  background-color: DodgerBlue;
-  border: none;
-  color: white;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: .8em;
-  cursor: pointer;
-}
-/* Darker background on mouse-over */
-.btn:hover {
-  background-color: rgb(255, 0, 0);
-}
-.info:hover {
-  background-color: green;
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: .8em;
+    cursor: pointer;    
+    }
+    .btn:hover {
+        background-color: rgb(255, 0, 0);
+    }
+    .info:hover {
+        background-color: green;
 }
 @media screen and (max-width: 700px) {
   #user-info {

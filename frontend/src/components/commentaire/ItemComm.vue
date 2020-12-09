@@ -57,7 +57,7 @@ export default {
 <!------ Add "scoped" attribute to limit CSS to this component only ------>
 <style scoped lang="scss">
 .comm {
-    width: 90%;
+    width: 95%;
     margin: auto;
     padding: 0px 0px;
     display: flex;
@@ -109,9 +109,6 @@ img {
         }
 
 }
-.pied {
-    margin-bottom: 10px;
-}
 .poubelle {
   background-color: rgb(242, 248, 252);
   border: none;
@@ -142,7 +139,7 @@ img {
         margin-bottom: 10px;
 }
 .animCloche {
-    color:green;
+    color:rgb(33, 0, 154);
     font-size: .8em;
 }
 </style>

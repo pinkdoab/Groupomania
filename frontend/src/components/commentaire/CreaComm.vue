@@ -4,10 +4,14 @@
             <form v-on:submit.prevent="addNewComm">
                 <!--h3>CreaComm</h3-->
                 <!--p>publication : {{ PostId }} </p-->
-                <div class="text">
-                    <div class="gauche"><textarea name="nom2" v-model="newrequete" placeholder="Nouveau commentaire..."></textarea></div>
-                    <div class="droite"><button class="btn">Poster</button></div>
-                </div>
+                <!--div class="text"-->
+                    <div class="gauche">
+                        <textarea name="nom2" v-model="newrequete" placeholder="Nouveau commentaire..."></textarea>
+                    </div>
+                    <div class="droite">
+                        <button class="btn">Poster</button>
+                    </div>
+                <!--/div-->
                 <!--button class="bouton">Post comment</button-->
             </form>
         </div>
@@ -58,15 +62,22 @@ export default {
 <style scoped lang="scss">
 #comm-list-example {
     margin: auto;
+        width: 95%;
+}
+form {
+
+    display: flex;
+    justify-content: space-between;
 }
 .btn {
-    background-color: blue;
+    margin: auto;
+    background-color: green;
     border: none;
     font-weight: bold;
     color: white;
     border-radius: 4px;
-    padding: 10px 5px;
-    font-size: 12px;
+    padding: 9px 5px;
+    font-size: 1em;
     cursor: pointer;
 }
 .text {
@@ -77,24 +88,14 @@ export default {
 }
 textarea {
     resize: vertical;
-    width: 100%;
-    top: 20px; 
+    width: 99%;
+    top: 2em; 
 }
 .gauche {
-    flex: 12;
+    flex: 1;
 }
 .droite {
-    flex: 1;
-    margin: auto 0px auto 10px;
+    //flex: 2;
+    //margin: auto 0px auto 10px;
 }
-.titre {
-    margin-top: 0;
-}
-.bouton {
-    margin-bottom: 10px;
-}
-.input {
-    margin: 10px;
-}
-h3 { color:rgb(104, 206, 153)}
 </style>

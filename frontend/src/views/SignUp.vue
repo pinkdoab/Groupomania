@@ -1,9 +1,5 @@
 <template>
   <div class="container">
-    <!--h1>Réseau social interne</h1-->
-    <!--img class="logo"
-     src="../assets/logoseul_groupomania.png"
-     alt="Grapefruit slice atop a pile of other slices"-->
     <h1>Création du compte</h1>
     <form class="formulaire">
       <label class="label" for="pseudo">
@@ -33,7 +29,7 @@
         </div>
       </label> 
 
-      <button type="button" class="bouton" value="connection" @click="connection" >Création</button>
+      <button type="button" class="bouton" value="connection" @click="connection" >Inscription</button>
     </form>
   </div>
 </template>
@@ -50,6 +46,7 @@ export default {
       erreurPseudo2: '',
       email: '',
       erreurEmail: '',
+      erreurEmail2: '',
       password: '',
       erreurPassword: ''
     }
@@ -119,7 +116,7 @@ export default {
 .container {
   margin:  6em auto;
   padding: 2em;
-  width: 26em;
+  width: 24em;
   background-color:white;
   border-radius: 8px;
   box-shadow: 1px 1px 12px rgb(51, 49, 89);

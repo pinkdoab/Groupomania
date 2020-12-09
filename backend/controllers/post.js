@@ -76,9 +76,23 @@ exports.create = (req, res) => {
 // Supprimer un post avec un Id spécifié dans la demande
 // ----------------------------------------------------------------------------------------
 exports.delete = (req, res) => {
+  console.log('DATA MODERATEUR ')
+  console.log('req.body.userId ', req.body.userId)
+
+
+  Post.findByIdModerateur(req.body.userId, (err, data) => {
+
+    if (err) {
+      res.status(404).send({ message: `moderateur non trouvé`});
+    } else {
+      console.log('DATA MODERATEUR => ', data.u_moderateur)
+    }
+  })
+
+  
   console.log('req.body.userId 1 ', req.body.userId)
   Post.findById(req.params.postId, (err, data, next) => {
-    if(err) {
+    if (err) {
       res.status(404).send({
         message: "Le post avec un Id " + req.params.postId + " n'existe pas"
       });

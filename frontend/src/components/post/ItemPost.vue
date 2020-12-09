@@ -11,13 +11,13 @@
         </div>
         <div class="corps">
             <img v-if="image !== 'aucune'" v-bind:src="image" width="200">           
-            <p class="bordure">{{ texte }}</p>
+            <p v-if="texte != ''" class="bordure">{{ texte }}</p>
                 <div class="legende">
                     <div class="avismoins"><button class="btnrouge" @click="avisMoins" ><i class="fas fa-thumbs-down"></i></button> {{ avisDefavorable }}</div>
                     <div class="avisplus"><button class="btnvert" @click="avisPlus" ><i class="fas fa-thumbs-up"></i></button>{{ avisFavorable }}</div>
                     <button class="btn2" @click="affComm" >Commentaire <!--i class="fas fa-caret-square-down"></i--></button>
                 </div>             
-        </div>{{ couleurComm }}
+        </div>
         <div v-if="affCommentaire === 'oui'" class ="pied">
             <ListComm v-bind:PostId="id"/>
         </div>
@@ -86,7 +86,7 @@ export default {
                 this.$store.dispatch('requete_get_post_comm');                             
             });
         },
-        
+
         avisPlus: function () {
             const headers = {'Authorization': `token ${this.$store.state.token}`}
             axios.post(`http://localhost:3000/like/`, {
@@ -103,7 +103,6 @@ export default {
         }              
     }
 }
-
 </script>
 
 
@@ -157,12 +156,12 @@ export default {
     }
 }
 .legende {
-        display: flex;
-        div {
-            margin: 0 0em .2em 1em;
-        }
+    display: flex;
+    align-items: center;
+    div {
+        margin: 0 0em .2em 1em;
     }
-
+}
 .corps {
     margin: 0px 0px;
 }
@@ -184,7 +183,6 @@ img {
     margin-bottom: 10px;
 }
 h3 { color:rgb(104, 206, 153)}
-
 
 .btnrouge {
     position: relative;
@@ -208,8 +206,6 @@ h3 { color:rgb(104, 206, 153)}
     font-size: 18px;
     cursor: pointer;
 }
-
-/* Darker background on mouse-over */
 .btn:hover {
     background-color: rgb(255, 0, 0);
 }
@@ -221,30 +217,22 @@ h3 { color:rgb(104, 206, 153)}
     color:black;
     border-radius: 4px;
     padding: 4px 8px;
-    font-size: .8em;
+    font-size: 1em;
+    border-width: 1px;
+    border-style: solid;
+    border-color:black;
+    border-radius: 4px;
     cursor: pointer;
 }
 .animCloche {
-
-        animation: progress-bar 1000ms infinite ;
-
+   animation: progress-bar 4000ms infinite ;
 }
-
 @keyframes progress-bar{
     0% {
         transform: scaleX(0);
         opacity: .1;
     }
-    17% {
-        transform: scaleX(.18);
-    }
-    24% {
-        transform: scaleX(.4);
-    }
-    46% {
-        transform: scaleX(.81);
-    }
-    85%,100% {
+    60%,100% {
         opacity: 1;
     }
     100% {
