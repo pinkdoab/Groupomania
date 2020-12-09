@@ -13,8 +13,8 @@
             <img v-if="image !== 'aucune'" v-bind:src="image" width="200">           
             <p v-if="texte != ''" class="bordure">{{ texte }}</p>
                 <div class="legende">
-                    <div class="avismoins"><button class="btnrouge" @click="avisMoins" ><i class="fas fa-thumbs-down"></i></button> {{ avisDefavorable }}</div>
                     <div class="avisplus"><button class="btnvert" @click="avisPlus" ><i class="fas fa-thumbs-up"></i></button>{{ avisFavorable }}</div>
+                    <div class="avismoins"><button class="btnrouge" @click="avisMoins" ><i class="fas fa-thumbs-down"></i></button> {{ avisDefavorable }}</div>
                     <button class="btn2" @click="affComm" >Commentaire <!--i class="fas fa-caret-square-down"></i--></button>
                 </div>             
         </div>
@@ -121,7 +121,7 @@ export default {
     border-radius: 4px;
 }
 .entete {
-    margin: 3px;
+    margin: 0 .6em 0 1em;
     display: flex;
     justify-content: space-between;
     p {
@@ -133,8 +133,7 @@ export default {
             font-weight:bold;
             font-size: 1.6em;
             vertical-align: -1px;
-        }
-        
+        }        
     }
     div {
         display: flex;
@@ -143,7 +142,6 @@ export default {
             position: relative;
             top: 2px; left: .5em;
             color: rgb(33, 0, 154);
-
         }
     .poubelle {
         background-color: white;
@@ -169,6 +167,7 @@ img {
     width: 100%;
 }
 .bordure {
+    font-size: 1.2em;
     text-align: justify;
     margin-top: 0px;
     margin: 0px 15px 5px 15px;
@@ -229,7 +228,7 @@ h3 { color:rgb(104, 206, 153)}
 }
 @media screen and (max-width: 700px) {
   .entete {
-    font-size: .75em;
+    font-size: .73em;
   }
 }
 

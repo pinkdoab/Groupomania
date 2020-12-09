@@ -2,11 +2,10 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
-  console.log('\n--- token  ---', token)
+  console.log('\n***** début authentification (auth.js) *****')
   try {
-    console.log('***** début authentification (auth.js) *****')
+    //console.log('***** début authentification (auth.js) *****')
     const token = req.headers.authorization.split(' ')[1];
-    console.log('\n--- token  ---', token) 
     var decoded = jwt.decode(token, {complete: true});
 
     console.log('\n--- token décodé ---') 
@@ -25,13 +24,14 @@ module.exports = (req, res, next) => {
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
 
-    console.log('userId : ', userId);
-    console.log('req.body.userId : ', req.body.userId);
+    console.log('userId du token : ', userId);
+    console.log('userId de body : ', req.body.userId);
 
     if (req.body.userId && req.body.userId !== userId) {   // au cas où userId EXISTE...
       res.status(401).json({ error: 'Le req.body.userId ne correspond pas au token !' });
+      console.log('Authentification ratée');
     } else {
-      console.log('OK req.body.userId = userId');
+      console.log('Authentification réussie');
       next();
     }
   } catch {

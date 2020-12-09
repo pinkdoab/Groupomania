@@ -4,6 +4,7 @@ const Comm = require("../repository/requeteComm.js");
 // Récupérer tous les commentaires de la base de données
 // ----------------------------------------------------------------------------------------
 exports.findAll = (req, res) => {
+  console.log('findAll')
     Comm.getAll((err, data) => {
       if (err)
         res.status(501).send({

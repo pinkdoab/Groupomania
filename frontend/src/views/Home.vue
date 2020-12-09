@@ -90,16 +90,16 @@ export default {
 }
 .container {
   margin: 1em auto;
-  padding: 2em;
+  padding: .5em 1em;
   width: 24em;
   background-color:white;
   border-radius: 8px;
   box-shadow: 1px 1px 12px rgb(51, 49, 89);
   h1 {
-    margin: 0;
+    margin: auto;
   }
   .logo {
-     width: 5em;
+    width: 5em;
   }
   .paragraphe {
     margin-top: 2em;

@@ -79,16 +79,15 @@ exports.delete = (req, res) => {
   console.log('DATA MODERATEUR ')
   console.log('req.body.userId ', req.body.userId)
 
-
+  let moderateur = 'non';
   Post.findByIdModerateur(req.body.userId, (err, data) => {
-
     if (err) {
       res.status(404).send({ message: `moderateur non trouvé`});
     } else {
-      console.log('DATA MODERATEUR => ', data.u_moderateur)
+      console.log('DATA MODERATEUR 1 => ', data.u_moderateur)
+      moderateur = data.u_moderateur;
     }
   })
-
   
   console.log('req.body.userId 1 ', req.body.userId)
   Post.findById(req.params.postId, (err, data, next) => {
@@ -100,11 +99,18 @@ exports.delete = (req, res) => {
       console.log('data.p_user_createur ', data.p_user_createur)
       console.log('req.body.userId ', req.body.userId)
       console.log('data.moderateur ', parseInt(req.body.userId, 10))
-      if ((data.p_user_createur !== parseInt(req.body.userId, 10)) && (parseInt(req.body.userId, 10) !== 10)) {
-      //if ((parseInt(req.body.userId, 10) !== 10)) {
+
+      console.log('DATA MODERATEUR 3 => ', moderateur)
+
+      //if ((data.p_user_createur !== parseInt(req.body.userId, 10)) && (parseInt(req.body.userId, 10) !== 10)) {
+      if ((data.p_user_createur !== parseInt(req.body.userId, 10)) && (moderateur !== 'oui')) {
+
         res.status(401).send({
           message: "Interdit de supprimer le post d'un autre user !"
         });
+
+
+
       } else {
         console.log('data : ')
         console.dir(data);

@@ -43,8 +43,37 @@ export default {
     }
   }
 },
+  created() {
+    //this.deconnexion();
+  },
   methods: {
+    deconnexion: function () {
+      console.log('this.$store.state.UserLogin ' ,this.$store.state.UserLogin)
+      console.log('this.$store.state.token ' ,this.$store.state.token)
+      if (this.$store.state.token !== null){
+        const headers = {'Authorization': `token ${this.$store.state.token}`}
+        axios.put(`http://localhost:3000/user/${this.$store.state.UserLogin}`,{
+            headers: headers
+          },{
+            userId: this.$store.state.UserLogin
+          })
+        .then(response => {
+          console.log('OK', response)
+        })
+        .catch(response => {
+          console.log('KO', response)
+        }) 
+
+        this.$store.commit('SET_USERLOGIN',0);
+        this.$store.commit('SET_TOKEN', null);
+        this.$store.commit('SET_USERDISPLAY',0);
+        this.$store.dispatch('clearLocalStockage')
+  
+      }
+    },
     connection: function () {
+
+      this.deconnexion();
       this.errorPseudo = ''
       this.errorPassword = ''
 
